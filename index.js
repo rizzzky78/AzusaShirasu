@@ -931,7 +931,10 @@ if (!m.isGroup) return reply(lang.groupOnly())
 			user.hobi = hobix
 			user.regTime = + new Date
 			user.serialNumber = cryptoRandomString(20);
-			alpha.sendButImage(m.chat, m.sender ,[{buttonId: '.menu',buttonText:{displayText: '✅ Command'},type: 1},{buttonId:'rules',buttonText: {displayText:'Rules 📝'}, type: 1}], lang.RegReg(cryptoRandomString(20), tanggal(new Date()), namax.trim(), umurx, hobix, m.sender.split('@')[0], prefix, prefix, Object.keys(global.db.data.users).length), `© ${ownername}`, [m.sender], {quoted: m } )
+				alpha.sendButImage(m.chat, m.sender ,[
+				{buttonId: 'sewabot', buttonText:{displayText: 'Sewa Bot'}, type: 1},
+				{buttonId: '.menu',buttonText:{displayText: '✅ Command'},type: 1},
+				{buttonId:'rules',buttonText: {displayText:'Rules 📝'}, type: 1}], lang.RegReg(cryptoRandomString(20), tanggal(new Date()), namax.trim(), umurx, hobix, m.sender.split('@')[0], prefix, prefix, Object.keys(global.db.data.users).length), `© ${ownername}`, [m.sender], {quoted: m } )
 			}
 			break
 	    case 'toimage': case 'toimg': {
@@ -1080,9 +1083,10 @@ if (!m.isGroup) return reply(lang.groupOnly())
 				]
 				await alpha.send5ButImg(from, lang.sewaBot(prefix), `© ${ownername}`,gam, but , { userJid: m.chat, quoted: m })
 				}
-			case 'nick':
+			break
+			/*case 'nick':
 				alpha.sendMessage(m.chat, 'Nick H᭄ꦿ• YourNick', {quoted: m})
-            break
+            break*/
             case 'pay': case 'bayar':{
              alpha.sendMessage(m.chat, {image: qris, caption : (db.data.settings[botNumber].captionPay || 'Payment. caption pay bisa ubah dengan command .setcaptionpay ')}, {quoted: m})
             	}
