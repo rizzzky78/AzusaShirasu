@@ -1092,23 +1092,29 @@ if (!m.isGroup) return reply(lang.groupOnly())
 				}
 				break
 //
-			case 'nick':{
+		case 'nick': case 'nickarmada': {
             	let gem = await getBuffer(picak + 'Armada\nHentai impact 3rd')
             var but = [
 					{
 					"urlButton": {
 						"displayText": "Salin ID Armada",
-						"url": `https://www.whatsapp.com/otp/copy/1051147`
+						"url": "https://www.whatsapp.com/otp/copy/1051147"
 						}
 					},
-										{
+					{
 					"urlButton": {
 						"displayText": "Salin Nick Armada",
-						"url": `https://www.whatsapp.com/otp/copy/H᭄ꦿ• YourNick`
+						"url": "https://www.whatsapp.com/otp/copy/H᭄ꦿ• YourNick"
+						}
+					},
+					{
+					"urlButton": {
+						"displayText": "Salin Nama Budi",
+						"url": "https://www.whatsapp.com/otp/copy/H᭄ꦿ• Budi"
 						}
 					}
 				]
-				await alpha.send5ButImg(from, `© ${ownername}`,gem, but , { userJid: m.chat, quoted: m })
+				await alpha.send5ButImg(from, lang.armada(prefix), `© ${ownername}`,gem, but , { userJid: m.chat, quoted: m })
 				}
 				break
             case 'pay': case 'bayar':{
