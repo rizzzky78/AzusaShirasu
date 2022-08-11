@@ -1684,6 +1684,21 @@ Jika sudah dipahami rules-nya, silakan ketik *${prefix}menu* untuk memulai!
 Terimakasih! 
 `
 }
+exports.armada = () => {
+return`
+Armada Hentai Impact 3rd
+
+Chat Admiral: wa.me/6281xxxxx
+Chat Vice: wa.me/6281xxxxx
+
+Fanpage: www.facebook/???
+
+Group Chat: ???
+
+
+_made by love from Budi_ >///<
+`
+}
 exports.sewaBot = () => {
 return`
  「 Bundle Sewa Bot Price List 」
