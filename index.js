@@ -1080,7 +1080,7 @@ if (!m.isGroup) return reply(lang.groupOnly())
 //
 case 'nick':{
 	try {
-	alpha.sendButMessage(from, 'WHY BUDI?, BECAUSE BUDI IS BUDI :<', `© ${ownername}`,[
+	alpha.sendButMessage(from, 'WHY BUDI?,\n\nBECAUSE BUDI IS BUDI :<\n\n\nSALAM BUDI', `© ${ownername}`,[
 		{buttonId: 'ambilidarmada', buttonText: {displayText: 'Salin ID Armada'}},
 		{buttonId: 'ambilnick', buttonText: {displayText: 'Salin Nick'}}])
 	} catch {
@@ -1091,11 +1091,11 @@ case 'nick':{
 //await alpha.send5ButImg(from, lang.armada(prefix), `© ${ownername}`,gem, butNick , { userJid: m.chat, quoted: m })
 case 'ambilnick':{
 let iniNick = "H᭄ꦿ• YourNick"
-alpha.sendText(from, iniNick, { userJid: m.chat, quoted: m })
+alpha.sendText(m.chat, iniNick, m)
 } break
 case 'ambilidarmada':{
 let iniIDArmada = "1051147"
-alpha.sendText(from, iniIDArmada, { userJid: m.chat, quoted: m })
+alpha.sendText(m.chat, iniIDArmada, m)
 } break
 			
 case 'nickarmada':{
@@ -2581,7 +2581,7 @@ break
 case 'menuwibu': case 'wibumenu':{
 	let iniGambar = await getBuffer("https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/picture/shirasu_azusa2.png")
 	try {
-	alpha.sendButMessage(from, iniGambar, '*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[
+	alpha.send2ButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[
 		{buttonId: 'neko', buttonText: {displayText: 'Neko'}},
 		{buttonId: 'waifu', buttonText: {displayText: 'Waifu'}},
 		{buttonId: 'loli', buttonText: {displayText: 'Loli'}},
@@ -2603,12 +2603,7 @@ case 'menuwibu': case 'wibumenu':{
 		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}},
 	])
 } catch {
-let caption = `
-*_NSFW MENU_*
-
-API: LoLHuman
-
-_Dosa Tanggung Sendiri ya Tod_`
+let caption = '*_NSFW MENU_*\n\nAPI: LoLHuma\n\n\n_Dosa Tanggung Sendiri ya Tod_'
 	alpha.sendButMessage(from, caption, `© ${ownername}`,[
 		{buttonId: 'neko', buttonText: {displayText: 'Neko'}},
 		{buttonId: 'waifu', buttonText: {displayText: 'Waifu'}},
