@@ -1080,34 +1080,25 @@ if (!m.isGroup) return reply(lang.groupOnly())
 //
 case 'nick':{
 	try {
-	alpha.sendButMessage(from, lang.armada(prefix), `© ${ownername}`,[
+	alpha.sendButMessage(from, 'WHY BUDI?, BECAUSE BUDI IS BUDI :<', `© ${ownername}`,[
 		{buttonId: 'ambilidarmada', buttonText: {displayText: 'Salin ID Armada'}},
 		{buttonId: 'ambilnick', buttonText: {displayText: 'Salin Nick'}}])
 	} catch {
-	alpha.sendButMessage(from, 'Mode Anti View Once', `© ${ownername}`,[
+	alpha.sendButMessage(from, 'Armada Hentai Impek', `© ${ownername}`,[
 		{"quickReplyButton": {"displayText": "Salin ID Armada", buttonId: 'ambilidarmada'}},
 		{"quickReplyButton": {"displayText": "Salin Nick", buttonId: 'ambilnick'}}])}
 } break
 //await alpha.send5ButImg(from, lang.armada(prefix), `© ${ownername}`,gem, butNick , { userJid: m.chat, quoted: m })
 case 'ambilnick':{
 let iniNick = "H᭄ꦿ• YourNick"
-var butBudi = [
-		{ "urlButton": {
-		  "displayText": "FansPage Armada",
-		  "url": "https://www.whatsapp.com/otp/copy/apaansiTod" }
-		}]
-alpha.send1ButMes(from, iniNick, `© ${ownername}`, butBudi, { userJid: m.chat, quoted: m })
+alpha.sendText(from, iniNick, { userJid: m.chat, quoted: m })
 } break
 case 'ambilidarmada':{
 let iniIDArmada = "1051147"
-var butBudilagi = [
-	{ "urlButton": {
-		"displayText": "FansPage Armada",
-		"url": "https://www.whatsapp.com/otp/copy/apaansiTod" }
-	  }]
-alpha.send1ButMes(from, iniIDArmada, `© ${ownername}`, butBudilagi, { userJid: m.chat, quoted: m })
+alpha.sendText(from, iniIDArmada, { userJid: m.chat, quoted: m })
 } break
-			case 'nickarmada':{
+			
+case 'nickarmada':{
             var but = [
 					{
 					"urlButton": {
@@ -2587,37 +2578,74 @@ db.data.users[m.sender].limit -= 1
 break
 */
 /*	Using LoLHuman Apikey	*/
-case'randomhentai2': case 'bj': case 'ero': case 'cum': case 'feet': case 'yuri': case 'trap': case 'lewd': case 'feed':case 'eron':
-case 'solo': case 'gasm': case 'poke': case 'anal': case 'holo': case 'tits': case 'kuni': case 'kiss': case 'erok': case 'smug':
-case 'baka': case 'solog': case 'feetg': case 'lewdk': case 'waifu': case 'pussy': case 'femdom': case 'cuddle': case 'eroyuri': 
-case 'cum_jpg': case 'blowjob': case 'erofeet': case 'holoero':  case 'classic': case 'erokemo': case 'fox_girl':
-case 'futanari': case 'lewdkemo': case 'wallpaper': case 'pussy_jpg': case 'kemonomimi': case 'nsfw_avatar': {				
-	reply(lang.wait())
-	try { // opsi 1 -- using fetcher
-		fetchJson(`https://api.lolhuman.xyz/api/random/${command}?apikey=rizzzuchi78apikey`).then(({data}) => {
-		alpha.sendImage(m.chat, data, lang.ok(), m)}).catch((e) => {
-			reply(lang.err())})
-	} catch { // opsi 2 -- using typeData"string"
-	let iniLewd = await getBuffer(`https://api.lolhuman.xyz/api/random/${command}apikey=rizzzuchi78apikey`)
-		alpha.sendImage(m.chat, iniLewd, lang.ok(), m).catch((e) => {
-			reply(lang.err())})
-	}
-} break
-case 'randomhentai': case 'chiisaihentai': case 'trap': case 'blowjob': case 'yaoi': case 'ecchi': case 'hentai': case 'ahegao':
-case 'hololewd': case 'sideoppai': case 'animefeets': case 'animebooty': case 'animethighss': case 'hentaiparadise': case 'animearmpits':
-case 'hentaifemdom': case 'lewdanimegirls': case 'biganimetiddies': case 'animebellybutton': case 'hentai4everyone': {
-		reply(lang.wait())
-	try { // Dia Budi?
-		fetchJson(`https://api.lolhuman.xyz/api/random2/${command}?apikey=rizzzuchi78apikey`).then(({data}) => {
-		alpha.sendImage(m.chat, data, lang.ok(), m)}).catch((e) => {
-			reply(lang.err())})
-	} catch { // yahahha Budi
-	let iniLewd = await getBuffer(`https://api.lolhuman.xyz/api/random2/${command}apikey=rizzzuchi78apikey`)
-		alpha.sendImage(m.chat, iniLewd, lang.ok(), m).catch((e) => {
-			reply(lang.err())})
-	}
+case 'menuwibu': case 'wibumenu':{
+	let iniGambar = await getBuffer("https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/picture/shirasu_azusa2.png")
+	try {
+	alpha.sendButMessage(from, iniGambar, '*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[
+		{buttonId: 'neko', buttonText: {displayText: 'Neko'}},
+		{buttonId: 'waifu', buttonText: {displayText: 'Waifu'}},
+		{buttonId: 'loli', buttonText: {displayText: 'Loli'}},
+		{buttonId: 'chiisaihentai', buttonText: {displayText: 'Chiisai Hentai'}},
+		{buttonId: 'trap', buttonText: {displayText: 'Trap'}},
+		{buttonId: 'blowjob', buttonText: {displayText: 'Blowjob'}},
+		{buttonId: 'yaoi', buttonText: {displayText: 'Yaoi'}},
+		{buttonId: 'milf', buttonText: {displayText: 'Milf'}},
+		{buttonId: 'ecchi', buttonText: {displayText: 'Ecchi'}},
+		{buttonId: 'ahegao', buttonText: {displayText: 'Ahegao'}},
+		{buttonId: 'hololewd', buttonText: {displayText: 'Hololewd'}},
+		{buttonId: 'sideoppai', buttonText: {displayText: 'Side Oppai'}},
+		{buttonId: 'animefeets', buttonText: {displayText: 'Feets'}},
+		{buttonId: 'animebooty', buttonText: {displayText: 'Thighss'}},
+		{buttonId: 'animearmpits', buttonText: {displayText: 'Armpits'}},
+		{buttonId: 'hentaifemdom', buttonText: {displayText: 'Femdom'}},
+		{buttonId: 'lewdanimegirls', buttonText: {displayText: 'Girls'}},
+		{buttonId: 'biganimetiddies', buttonText: {displayText: 'Susu Badag'}},
+		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}},
+	])
+} catch {
+let caption = `
+*_NSFW MENU_*
+
+API: LoLHuman
+
+_Dosa Tanggung Sendiri ya Tod_`
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[
+		{buttonId: 'neko', buttonText: {displayText: 'Neko'}},
+		{buttonId: 'waifu', buttonText: {displayText: 'Waifu'}},
+		{buttonId: 'loli', buttonText: {displayText: 'Loli'}},
+		{buttonId: 'chiisaihentai', buttonText: {displayText: 'Chiisai Hentai'}},
+		{buttonId: 'trap', buttonText: {displayText: 'Trap'}},
+		{buttonId: 'blowjob', buttonText: {displayText: 'Blowjob'}},
+		{buttonId: 'yaoi', buttonText: {displayText: 'Yaoi'}},
+		{buttonId: 'milf', buttonText: {displayText: 'Milf'}},
+		{buttonId: 'ecchi', buttonText: {displayText: 'Ecchi'}},
+		{buttonId: 'ahegao', buttonText: {displayText: 'Ahegao'}},
+		{buttonId: 'hololewd', buttonText: {displayText: 'Hololewd'}},
+		{buttonId: 'sideoppai', buttonText: {displayText: 'Side Oppai'}},
+		{buttonId: 'animefeets', buttonText: {displayText: 'Feets'}},
+		{buttonId: 'animebooty', buttonText: {displayText: 'Thighss'}},
+		{buttonId: 'animearmpits', buttonText: {displayText: 'Armpits'}},
+		{buttonId: 'hentaifemdom', buttonText: {displayText: 'Femdom'}},
+		{buttonId: 'lewdanimegirls', buttonText: {displayText: 'Girls'}},
+		{buttonId: 'biganimetiddies', buttonText: {displayText: 'Susu Badag'}},
+		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}},
+	])	
+}
 } break
 
+case 'neko': case 'waifu':case 'loli':case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'milf':case 'ecchi':
+case 'ahegao':case 'hololewd':case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'animearmpits':
+case 'hentaifemdom':case 'lewdanimegirls':case 'biganimetiddies':case 'hentai4everyone':{
+	reply(lang.wait())
+try {
+	let thisLewd = await(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=rizzzuchi78apikey`)
+		await sendFileFromUrl(from, thisLewd, lang.ok(), m)
+} catch {
+	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=rizzzuchi78apikey`)
+	await alpha.sendFileFromUrl(from, lewdLagi, lang.ok(), m).catch((err) => { reply(lang.err())})
+}
+} break			
+						
 //sound
 case 'sound71': case 'sound72': case 'sound73': case 'sound74': case 'sound75': case 'sound1': case 'sound2': case 'sound3': case 'sound4': case 'sound5': case 'sound6': case 'sound7': case 'sound8': case 'sound9': case 'sound10': case 'sound11': case 'sound12': case 'sound13': case 'sound14': case 'sound15': case 'sound16': case 'sound17': case 'sound18 ': case 'sound19': case 'sound20': case 'sound21': case 'sound22': case 'sound23': case 'sound24': case 'sound25': case 'sound26': case 'sound27': case 'sound28': case 'sound29': case 'sound30': case 'sound31': case 'sound32': case 'sound33': case 'sound34': case 'sound35': case 'sound36': case 'sound37': case 'sound38': case 'sound39': case 'sound40': case 'sound41': case 'sound42': case 'sound43': case 'sound44': case 'sound45': case 'sound46': case 'sound47': case 'sound48': case 'sound49': case 'sound50': case 'sound51': case 'sound52': case 'sound53': case 'sound54': case 'sound55': case 'sound56': case 'sound57': case 'sound58': case 'sound59': case 'sound60': case 'sound61': case 'sound62': case 'sound63': case 'sound64': case 'sound65': case 'sound66': case 'sound67': case 'sound68': case 'sound69': case 'sound70':{
 				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
