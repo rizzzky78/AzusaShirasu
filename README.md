@@ -70,27 +70,16 @@ global.sessionName = 'session'
 
 ----------
 
-<p align="center">
-</p>
-
-
 ## Thanks to
 
-- [Dika](https://github.com/DikaArdnt)
-
-- [Nurutomo](https://github.com/Nurutomo)
-
-- [Mhankbarbar](https://github.com/MhankBarBar)
-
-- [Fatih A.](https://github.com/fatiharridho)
-
-- [Ferdiz](https://github.com/FERDIZ-afk)
-
-- [Rashid](https://github.com/rashidsiregar28)
-
-- [Adiwajshing](https://github.com/adiwajshing)
-
-- [zeeone-ofc](https://zeeone-ofc.github.io)
+* [Dika](https://github.com/DikaArdnt)
+* [Nurutomo](https://github.com/Nurutomo)
+* [Mhankbarbar](https://github.com/MhankBarBar)
+* [Fatih A.](https://github.com/fatiharridho)
+* [Ferdiz](https://github.com/FERDIZ-afk)
+* [Rashid](https://github.com/rashidsiregar28)
+* [Adiwajshing](https://github.com/adiwajshing)
+* [zeeone-ofc](https://zeeone-ofc.github.io)
 
 ## License
 
