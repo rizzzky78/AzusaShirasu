@@ -5075,9 +5075,6 @@ if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].register
 				break             
 				
  default:
-if (body.startsWith(`${prefix}${command}`)){                
-	reply("Perintah yang lu masukin gak ada coy\nCoba cek di Menu")
-}
   
 if (budy.includes(`6281329585825`===`081329585825`===`+6281329585825`)){
 	const pesanOwner = ["Hayoloo mo ngapain tag Owner gua?",
