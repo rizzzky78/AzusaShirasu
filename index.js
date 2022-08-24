@@ -4,10 +4,10 @@
 Change log:
 	- removed must be registered when using commands
 	- added "armada nick feature"--"id armada"
-	- maybe fixed lewd feature(?)
+	- added few features
 
 
-	Last Edited -- 14 August 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 24 August 2022 -- 20.48 WIB Indonesian Time
 
 */
 
@@ -54,10 +54,19 @@ const database = require('./database/database.json')
 const stcCmd = JSON.parse(fs.readFileSync('./database/command.json'))
 const db_respon_list = JSON.parse(fs.readFileSync('./database/list-message.json'));
 
-pp_bot = fs.readFileSync(thumbnail)
-qris = fs.readFileSync(donasi)
+pp_bot = fs.readFileSync(thumbnail);
+qris = fs.readFileSync(donasi);
 lang = global.language 
 moment.tz.setDefault("Asia/Jakarta").locale("id");
+
+// apikey lolhuman
+const lol = "rizzzuchi78apikey";
+
+// picture library
+const pictureMenu = [
+	'link',
+	'link'
+]
 
 // Database Game
 const hit_today = []
@@ -1977,17 +1986,14 @@ const buttojns = [
 						if(typemenu == 'katalog2'){
 							alpha.sendKatalog2(m.chat, "ALL MENU BOT", lang.listMenu(time, salam, pushname, prefix), pp_bot, {quoted:m})
 							}
-						if(typemenu == 'list'){
-							alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${pushname}\n│  *Number* : ${sender.split("@")[0]}\n│  *Status* : ${isCreator? ` Owner️ ${botname}` :`User ${botname}`}\n╰─⬣\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : ${ownername}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣\n\n╭─⬣「 _*INDONESIAN TIME*_ 」⬣\n│ *Wib* : ${time}\n│ *Wita* : ${wita}\n│ *Wit* : ${wit}  \n╰─⬣`, `© ${ownername}`, `Selamat ${salam} ${pushname} ☺️`, `CLICK HERE`, {quoted:fgif})
+if(typemenu == 'list'){
+alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${pushname}\n│  *Number* : ${sender.split("@")[0]}\n│  *Status* : ${isCreator? ` Owner️ ${botname}` :`User ${botname}`}\n╰─⬣\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : ${ownername}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣\n\n╭─⬣「 _*INDONESIAN TIME*_ 」⬣\n│ *Wib* : ${time}\n│ *Wita* : ${wita}\n│ *Wit* : ${wit}  \n╰─⬣`, `© ${ownername}`, `Selamat ${salam} ${pushname} ☺️`, `CLICK HERE`, {quoted:fgif})
 						}
 					}
 					break    
 	case 'allmenu':{
 			await alpha.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${ownername}`,pp_bot, [
 				{"quickReplyButton": {"displayText": "Sewa Bot","id": 'sewaBot'}},
-				//{"urlButton": {"displayText": "Sewa Bot -> Chat Owner","url": `${youtube}`}},
-				//{"urlButton": {"displayText": "WebSite","url": `${myweb}`}},
-				{"quickReplyButton": {"displayText": "Donasi","id": 'donate'}},
 				{"quickReplyButton": {"displayText": "Owner","id": 'owner'}},
 				{"quickReplyButton": {"displayText": "Rules","id": 'rules'}}
 			])
@@ -2737,62 +2743,87 @@ case 'neko': case 'waifu':case 'loli':case 'chiisaihentai':case 'trap':case 'blo
 case 'ahegao':case 'hololewd':case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'animearmpits':
 case 'hentaifemdom':case 'lewdanimegirls':case 'biganimetiddies':case 'hentai4everyone':{
 	reply(lang.wait())
+	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
+	let capt = captx[Math.floor(Math.random() * (captx.length))]
 try {
-	let thisLewd = await(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=rizzzuchi78apikey`)
-		await sendFileFromUrl(from, thisLewd, lang.ok(), m)
+	let thisLewd = await(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${lol}`)
+		await sendFileFromUrl(from, thisLewd, capt, m)
 } catch {
-	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=rizzzuchi78apikey`)
-	await alpha.sendFileFromUrl(from, lewdLagi, lang.ok(), m).catch((err) => { reply(lang.err())})
+	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, lewdLagi, capt, m).catch((err) => { reply(lang.err())})
 }
 } break
 
 case 'cum': case'lewd': case'eron': case'keta': case'tits': case'solog': case 'feetg': case'femdom': case'futanari': case'lewdkemo':
 case'pussy_jpg': case'solo': case'anal':{
+	reply(lang.wait())
+	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
+	let capt = captx[Math.floor(Math.random() * (captx.length))]
 try {
-	let thisLewd = await(`https://api.lolhuman.xyz/api/random2/${command}?apikey=rizzzuchi78apikey`)
-		await sendFileFromUrl(from, thisLewd, lang.ok(), m)
+	let thisLewd = await(`https://api.lolhuman.xyz/api/random2/${command}?apikey=${lol}`)
+		await sendFileFromUrl(from, thisLewd, capt, m)
 } catch {
-	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random2/${command}?apikey=rizzzuchi78apikey`)
-	await alpha.sendFileFromUrl(from, lewdLagi, lang.ok(), m).catch((err) => { reply(lang.err())})
+	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random2/${command}?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, lewdLagi, capt, m).catch((err) => { reply(lang.err())})
 }
 } break
-/*
 
-https://api.lolhuman.xyz/api/jooxplay?apikey=rizzzuchi78apikey&query=melukis%20senja
-https://api.lolhuman.xyz/api/zippyshare?apikey=rizzzuchi78apikey&url=https://www51.zippyshare.com/v/5W0TOBz1/file.html
-https://api.lolhuman.xyz/api/mediafire?apikey=rizzzuchi78apikey&url=https://www.mediafire.com/file/1xgaov026oc44n0/photo_2021-02-05_10-13-39.jpg/file
-*/
-
-
-case 'nhentaipdf':{
+case 'nhpdf':{
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
 	reply(lang.wait())
 	let henid = args[0]
-try {
-	//let nhenpdf = await(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=rizzzuchi78apikey`)
-	await alpha.sendMessage(m.chat, { pdf: { url: `https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=rizzzuchi78apikey` } }, { quoted: m} )
-	//await sendFileFromUrl(from, nhenpdf, m)
-} catch {
-	let nhenpdfx = await getBuffer(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=rizzzuchi78apikey`)
-	await alpha.sendFileFromUrl(from, nhenpdfx, m).catch((err) => { reply(lang.err())})
-}
-//alpha.sendMessage(m.chat, { video: { url: result.video_1 }, caption: `⭔ Title : ${result.title}` }, { quoted: m })           
+		var nhenpdf = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdf => {
+			buff = nhenpdf.result
+			await alpha.sendFileFromUrl(from, buff, m)
+		})
+} break
+
+case 'nhentaipdf':{
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
+	reply(lang.wait())
+	let henid = args[0]
+	try {
+		var nhenpdfx = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfx => {
+			await alpha.sendFileFromUrl(from, nhenpdfx.result, m)
+		})
+		} catch {
+			var nhenpdfy = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfy => {
+					try {
+						let linkDownload = nhenpdfy.result
+						alpha.sendFileFromUrl(from, linkDownload, m)
+					} catch {
+						alpha.sendFileFromUrl(from, nhenpdfy.result, m).catch((err) => { reply("ERROR ASU!")})
+					}
+			}
+			)
+		}
 } break
 
 case 'doujindesu':{
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} https://doujindesu.xxx/2021/01/18/queen-bee-chapter-33/`)
 	reply(lang.wait())
 	let links = args[0]
 try {
-	let doudesu = await(`https://api.lolhuman.xyz/api/doujindesu?apikey=rizzzuchi78apikey&url=${links}`)
-		await sendFileFromUrl(from, doudesu, m)
+	var doudesu = await fetchJson(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
+		async doudesu => {
+			let txtresult = `Title: ${doudesu.title}\n`
+			txt += `Link Download: ${doudesu.link_dl}`
+			reply(txtresult)
+		}
+	)
 } catch {
-	let doudesux = await getBuffer(`https://api.lolhuman.xyz/api/doujindesu?apikey=rizzzuchi78apikey&url=${links}`)
-	await alpha.sendFileFromUrl(from, doudesux, m).catch((err) => { reply(lang.err())})
+	var doudesux = await getBuffer(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
+		async doudesux => {
+			let buffer = doudesu.link_dl
+			await alpha.sendFileFromUrl(from, buffer, m).catch((err) => { reply(lang.err())})
+		}
+	)
 }
 } break
 
 case 'wait':{
 	let link = args[0]
-	let result = await(`https://api.lolhuman.xyz/api/wait?apikey=rizzzuchi78apikey&img=${link}`)
+	let result = await(`https://api.lolhuman.xyz/api/wait?apikey=${lol}&img=${link}`)
 alpha.sendMessage(m.chat, { video: { url: result.video },
 caption: `Anilist id : ${result.anilist_id}\n
 MAL id : ${result.mal_id}\n
@@ -2807,14 +2838,122 @@ Similarity : ${result.similarity}
 
 case 'wmit':{
 	let query = args[0]
-	let result = await(`https://api.lolhuman.xyz/api/wmit?apikey=rizzzuchi78apikey&img=${query}`)
+	let result = await(`https://api.lolhuman.xyz/api/wmit?apikey=${lol}&img=${query}`)
 	await reply(from, result, m)
 } break
 /*
 https://api.lolhuman.xyz/api/wmit?apikey=rizzzuchi78apikey&img=https://i.pinimg.com/736x/e7/41/e7/e741e7edf1bb992342a46e415a825338.jpg
-https://api.lolhuman.xyz/api/random2/bj?apikey=rizzzuchi78apikey
-
 */
+
+// MEME
+case'budi':{
+alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
+} break
+case 'inibudi':{
+	setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000 ) 
+	setTimeout(() => { reply('dalam waktu...') }, 3000 ) 
+		setTimeout(() => { reply('Tiga - 3') }, 5000 ) 
+			setTimeout(() => { reply('Dua - 2') }, 7000 ) 
+				setTimeout(() => { reply('Satu - 1') }, 9000 ) 
+				setTimeout(() => { reply('Lahh nungguin ye?') }, 14000 ) 
+				setTimeout(() => { reply('Mampus, mau aja gw kibulin...') }, 17000 ) 
+} break 
+case'memes':{
+let caption = '*_Memes Menu_*\n\nAPI: LoLHuman'
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[
+		{buttonId: 'meme', buttonText: {displayText: 'Meme'}},
+		{buttonId: 'memeindo', buttonText: {displayText: 'Meme Indo'}},
+		{buttonId: 'darkjokes', buttonText: {displayText: 'Darkjokes'}}
+	])	
+} break
+case'darkjokes':case'darkjoke':{
+	let djokes = await getBuffer(`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'meme':{
+	let memes = await getBuffer(`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'memeindo':{
+	let memindo = await getBuffer(`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'cecan':{
+	let ccn = await getBuffer(`https://api.lolhuman.xyz/api/random/cecan?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, ccn, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'cogan':{
+	let cgn = await getBuffer(`https://api.lolhuman.xyz/api/random/cogan?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, cgn, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'ppcouple':{
+	let ppcpl = await getBuffer(`https://api.lolhuman.xyz/api/random/ppcouple?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, ppcpl, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case'esteticpicture':{
+	let este = await getBuffer(`https://api.lolhuman.xyz/api/random/estetic?apikey=${lol}`)
+	await alpha.sendFileFromUrl(from, este, lang,ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case 'waifuu':case 'art':case 'bts':case 'exo':case 'elf':case 'loli':case 'shota':case 'husbu':case 'sagiri':
+case'shinobu':case 'megumin':case 'wallnime':{
+		let anu1 = `Nih kack, jangan lupa bilang makasih...`					
+		let queryanu = await getBuffer(`https://api.lolhuman.xyz/api/random/${command}?apikey=${lol}`)
+		await alpha.sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { reply(lang.err())})	
+} break						 
+
+case 'wikipedia':{
+	if (args.length == 0) return reply(`Example: ${prefix + command} Tahu`)
+	let query = args.join(" ") 
+	var get_result = await fetchJson(`https://api.lolhuman.xyz/api/wiki?apikey=${lol}&query=${query}`).then(
+		async get_result  => {
+			let txt = `${get_result.result}`
+			alpha.sendText(m.chat, txt, m)
+		})
+} break
+
+case 'kbbi':{
+if (args.length == 0) return reply(`Example: ${prefix + command} kursi`)
+var get_result = await fetchJson(`https://api.lolhuman.xyz/api/kbbi?apikey=${lol}&query=${args.join(" ")}`).then(
+		 async get_result => {
+			let lila = get_result.result
+			let ini_txt = `\`\`\`Kata : ${lila[0].nama}\`\`\`\n`
+			ini_txt += `\`\`\`Kata Dasar : ${lila[0].kata_dasar}\`\`\`\n`
+			ini_txt += `\`\`\`Pelafalan : ${lila[0].pelafalan}\`\`\`\n`
+			ini_txt += `\`\`\`Bentuk Tidak Baku : ${lila[0].bentuk_tidak_baku}\`\`\`\n\n`
+			for (var x of lila) {
+				ini_txt += `\`\`\`Kode : ${x.makna[0].kelas[0].kode}\`\`\`\n`
+				ini_txt += `\`\`\`Kelas : ${x.makna[0].kelas[0].nama}\`\`\`\n`
+				ini_txt += `\`\`\`Artinya : \n${x.makna[0].kelas[0].deskripsi}\`\`\`\n\n`
+				ini_txt += `\`\`\`Makna Lain : \n${x.makna[0].submakna}\`\`\`\n `
+				ini_txt += `\`\`\`Contoh Kalimat : \n${x.makna[0].contoh}\`\`\`\n`
+			}
+			alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+/*
+var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
+	.then(async data =>{
+		let txt = '*Asmaul Husna*\n\n'
+		txt += `• Latin : ${data.result.latin}\n`
+		txt += `• Arabic : ${data.result.arabic}\n`
+		txt += `• Tr id : ${data.result.translation_id}\n`
+		txt += `• Tr en : ${data.result.translation_en}`
+		reply(txt)
+		})
+		.catch(e =>{
+reply(lang.err())
+})
+*/
+
 
 //sound
 case 'sound71': case 'sound72': case 'sound73': case 'sound74': case 'sound75': case 'sound1': case 'sound2': case 'sound3': case 'sound4': case 'sound5': case 'sound6': case 'sound7': case 'sound8': case 'sound9': case 'sound10': case 'sound11': case 'sound12': case 'sound13': case 'sound14': case 'sound15': case 'sound16': case 'sound17': case 'sound18 ': case 'sound19': case 'sound20': case 'sound21': case 'sound22': case 'sound23': case 'sound24': case 'sound25': case 'sound26': case 'sound27': case 'sound28': case 'sound29': case 'sound30': case 'sound31': case 'sound32': case 'sound33': case 'sound34': case 'sound35': case 'sound36': case 'sound37': case 'sound38': case 'sound39': case 'sound40': case 'sound41': case 'sound42': case 'sound43': case 'sound44': case 'sound45': case 'sound46': case 'sound47': case 'sound48': case 'sound49': case 'sound50': case 'sound51': case 'sound52': case 'sound53': case 'sound54': case 'sound55': case 'sound56': case 'sound57': case 'sound58': case 'sound59': case 'sound60': case 'sound61': case 'sound62': case 'sound63': case 'sound64': case 'sound65': case 'sound66': case 'sound67': case 'sound68': case 'sound69': case 'sound70':{
@@ -4296,7 +4435,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'gunlogogaming':{
-if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'm14ebr', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'm14ebr', 'zeeone', 'ofc', prefix, command))
@@ -4324,7 +4463,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'banneroffreefire':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'misha', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'misha', 'zeeone', 'ofc', prefix, command))
@@ -4352,7 +4491,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'letterlogos':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'w', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'w', 'zeeone', 'ofc', prefix, command))
@@ -4380,7 +4519,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'bannerofoverwatch':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'reinhardt', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'reinhardt', 'zeeone', 'ofc', prefix, command))
@@ -4408,7 +4547,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'bannerofapex':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'bg3', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'bg3', 'zeeone', 'ofc', prefix, command))
@@ -4436,7 +4575,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'bannerofpubg':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'bg3', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'background', 'bg3', 'zeeone', 'ofc', prefix, command))
@@ -4464,8 +4603,8 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'mascotstyle':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
-if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly ??`, m)
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly ??`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'dragon-4', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'dragon-4', 'zeeone', 'ofc', prefix, command))
 var mon = args.join(' ')
@@ -4492,7 +4631,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'logoaccording':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'dragon3', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'dragon3', 'zeeone', 'ofc', prefix, command))
@@ -4520,7 +4659,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 
 	break
 	case 'avataroverwatch':{
-		if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+		/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text ) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'zenyatta', 'zeeone', 'ofc', prefix, command))
 if (!text.includes('|')) return reply(lang.MaketeamlogoT('teks', 'teks2', 'thumb', 'zenyatta', 'zeeone', 'ofc', prefix, command))
@@ -4549,7 +4688,7 @@ alpha.sendMessage(from, {image:{ url: textpro2}, caption: lang.ok()}, {quoted:m}
 	break
 
 case 'asmaulhusna':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
 	.then(async data =>{
@@ -4567,7 +4706,7 @@ reply(lang.err())
 }
 	break
 case 'kisahnabi':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.KisahNabi(prefix, command, 'Adam'))
 	var asma = await fetchJson(api('alfa', '/api/islam/'+command, {nabi : q}, 'apikey'))
@@ -4587,7 +4726,7 @@ reply(lang.err())
 }
 	break
 case 'jadwalshalat':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.KisahNabi(prefix, command, 'Makassar'))
 	var asma = await fetchJson(api('alfa', '/api/islam/'+command, {daerah : q}, 'apikey'))
@@ -4609,7 +4748,7 @@ reply(lang.err())
 }
 	break
 case 'randomquran':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
 	.then(async data =>{
@@ -4635,7 +4774,7 @@ reply(lang.err())
 }
 	break
 case 'randomquran2':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.quran2(prefix, commad , 'Juz', '1'))
 	if (isLimit(sender, isPremium, isCreator, isOwner, limitawal, limit)) return sendButMessage(from, lang.limit(prefix), `© ${ownername}`, [{buttonId: 'limit', buttonText: {displayText: `Check Limit`, },type: 1,}]);
@@ -4662,7 +4801,7 @@ if (!text) return reply(lang.quran2(prefix, commad , 'Juz', '1'))
 }
 	break
 case 'listsurah':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
 	.then(async data =>{
@@ -4681,7 +4820,7 @@ reply(lang.err())
 }
 	break
 case 'tafsirsurah':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if (!text) return reply(lang.quran2(prefix, command , 'Surah', 'Al-fatihah'))
 	var asma = await fetchJson(api('alfa', '/api/islam/'+command, {surah : q}, 'apikey'))
@@ -4702,7 +4841,7 @@ reply(lang.err())
 }
 	break
 case 'alquranaudio':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 if(!text) return reply(lang.quran3(prefix, command, 'Surah', 'ayat', '1','2'))
 	var mon = args.join(' ')
@@ -4738,7 +4877,7 @@ reply(lang.err())
 /*db.data.users[m.sender].limit -= 1*/}
 	break
 case 'awoawo':case 'benedict':case 'chat':case 'dbfly':case 'dino_kuning':case 'doge':case 'gojosatoru':case 'hope_boy':case 'jisoo':case 'kr_robot':case 'kucing':case 'lonte':case 'manusia_lidi':case 'menjamet':case 'meow':case 'nicholas':case 'patrick':case 'popoci':case 'sponsbob':case 'kawan_sponsbob':case 'tyni':{
-	if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+	/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 reply(lang.wait())
 let lp = api('alfa', '/api/telegram-sticker/'+command, {}, 'apikey')
@@ -4936,6 +5075,26 @@ if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].register
 				break             
 				
  default:
+if (body.startsWith(`${prefix}${command}`)){                
+	reply("Perintah yang lu masukin gak ada coy\nCoba cek di Menu")
+}
+  
+if (budy.includes(`6281329585825`===`081329585825`===`+6281329585825`)){
+	const pesanOwner = ["Hayoloo mo ngapain tag Owner gua?",
+	"Mau ngapain Kak?",
+	"Hmmm... masih Saya pantau :)",
+	"Arek keperluan nopo lek?, gak iso karo aku wae po?",
+	"Iya kak, ada perlu apa sama Owner Saya?, apakah bisa Saya wakilkan? atau perlu Saya panggilkan? 🙃",
+	"Hmmm... mau ngajak mabar yaa",
+	"Lagi sibuk nyari ayam kampus kak,.. eh mksdnya lagi sibuk nugas :v",
+	"Lagi bertapa kak, berharap kehidupan ini agar lebih baik lagi :)",
+	"Jangan di tag kak, sedang memikirkan masa depan..",
+	"Mo nagapain su",
+	"Tchh, nandayo koitse"]
+		const thisMess = pesanOwner[Math.floor(Math.random() * (pesanOwner.length))]
+			reply(thisMess)
+}
+
 if (budy.startsWith('=>')) {
 if (!m.key.fromMe && !isCreator) return reply(lang.ownerOnly())
 function Return(sul) {
