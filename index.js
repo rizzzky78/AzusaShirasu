@@ -4,10 +4,10 @@
 Change log:
 	- removed must be registered when using commands
 	- added "armada nick feature"--"id armada"
-	- added few features
+	- maybe fixed lewd feature(?)
 
 
-	Last Edited -- 24 August 2022 -- 20.48 WIB Indonesian Time
+	Last Edited -- 14 August 2022 -- 21.14 WIB Indonesian Time
 
 */
 
@@ -2774,7 +2774,7 @@ case 'nhpdf':{
 	let henid = args[0]
 		var nhenpdf = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdf => {
 			buff = nhenpdf.result
-			await alpha.sendFileFromUrl(from, buff, m)
+			await sendFileFromUrl(from, buff, m)
 		})
 } break
 
@@ -2784,15 +2784,15 @@ case 'nhentaipdf':{
 	let henid = args[0]
 	try {
 		var nhenpdfx = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfx => {
-			await alpha.sendFileFromUrl(from, nhenpdfx.result, m)
+			await sendFileFromUrl(from, nhenpdfx.result, m)
 		})
 		} catch {
 			var nhenpdfy = await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfy => {
 					try {
 						let linkDownload = nhenpdfy.result
-						alpha.sendFileFromUrl(from, linkDownload, m)
+						sendFileFromUrl(from, linkDownload, m)
 					} catch {
-						alpha.sendFileFromUrl(from, nhenpdfy.result, m).catch((err) => { reply("ERROR ASU!")})
+						sendFileFromUrl(from, nhenpdfy.result, m).catch((err) => { reply("ERROR ASU!")})
 					}
 			}
 			)
@@ -2815,7 +2815,7 @@ try {
 	var doudesux = await getBuffer(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
 		async doudesux => {
 			let buffer = doudesu.link_dl
-			await alpha.sendFileFromUrl(from, buffer, m).catch((err) => { reply(lang.err())})
+			await sendFileFromUrl(from, buffer, m).catch((err) => { reply(lang.err())})
 		}
 	)
 }
@@ -2868,44 +2868,49 @@ let caption = '*_Memes Menu_*\n\nAPI: LoLHuman'
 } break
 case'darkjokes':case'darkjoke':{
 	let djokes = await getBuffer(`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'meme':{
 	let memes = await getBuffer(`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'memeindo':{
 	let memindo = await getBuffer(`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'cecan':{
+		reply(lang.wait())
 	let ccn = await getBuffer(`https://api.lolhuman.xyz/api/random/cecan?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, ccn, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, ccn, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'cogan':{
+		reply(lang.wait())
 	let cgn = await getBuffer(`https://api.lolhuman.xyz/api/random/cogan?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, cgn, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, cgn, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'ppcouple':{
+		reply(lang.wait())
 	let ppcpl = await getBuffer(`https://api.lolhuman.xyz/api/random/ppcouple?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, ppcpl, lang.ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, ppcpl, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'esteticpicture':{
+		reply(lang.wait())
 	let este = await getBuffer(`https://api.lolhuman.xyz/api/random/estetic?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, este, lang,ok(), m).catch((err) => { reply(lang.err())})
+	await sendFileFromUrl(from, este, lang,ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case 'waifuu':case 'art':case 'bts':case 'exo':case 'elf':case 'loli':case 'shota':case 'husbu':case 'sagiri':
 case'shinobu':case 'megumin':case 'wallnime':{
+		reply(lang.wait())
 		let anu1 = `Nih kack, jangan lupa bilang makasih...`					
 		let queryanu = await getBuffer(`https://api.lolhuman.xyz/api/random/${command}?apikey=${lol}`)
-		await alpha.sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { reply(lang.err())})	
+		await sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { reply(lang.err())})	
 } break						 
 
 case 'wikipedia':{
@@ -5075,6 +5080,9 @@ if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].register
 				break             
 				
  default:
+if (body.startsWith(`${prefix}${command}`)){                
+	reply("Perintah yang lu masukin gak ada coy\nCoba cek di Menu")
+}
   
 if (budy.includes(`6281329585825`===`081329585825`===`+6281329585825`)){
 	const pesanOwner = ["Hayoloo mo ngapain tag Owner gua?",
