@@ -1993,7 +1993,7 @@ alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${p
 						}
 					}
 					break    
-	case 'allmenux':{
+	case 'allmenu':{
 			await alpha.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${ownername}`,pp_bot, [
 				{"quickReplyButton": {"displayText": "Sewa Bot","id": 'sewaBot'}},
 				{"quickReplyButton": {"displayText": "Owner","id": 'owner'}},
@@ -2001,7 +2001,7 @@ alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${p
 			])
 		}
 	break   
-	case 'allmenu':{
+	case 'allmenux':{
 		await alpha.sendButImg(from, pp_bot, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${ownername}`, [
 			{"quickReplyButton": {"displayText": "Sewa Bot","id": 'sewaBot'}},
 			{"quickReplyButton": {"displayText": "Owner","id": 'owner'}},
@@ -2619,7 +2619,7 @@ case 'menuwibu':case'menubudi': {
 } break
 
 case 'semuamenu':
-alpha.sendText(m.chat, listMenu(time, salam, pushname, prefix), m)
+alpha.sendText(m.chat, lang.listMenu(time, salam, pushname, prefix), m)
 break
 case 'randomhentai':case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'ecchi':case 'hentai':case 'ahegao':case 'hololewd':
 case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'hentaiparadise':case 'animearmpits':case 'hentaifemdom':case 'lewdanimegirls':
@@ -2700,6 +2700,7 @@ case 'nhentaipdf':case'nhpdf':{
 } break
 
 case 'doujindesu':case'doudesu':{
+		reply(lang.wait())
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} https://doujindesu.xxx/2021/01/18/queen-bee-chapter-33/`)
 	reply(lang.wait())
 	let links = args[0]
@@ -2739,7 +2740,7 @@ case 'doujindesulatest':{
 
 case 'doujindesusearch':{
 	let query = args.join(" ")
-	reply(lang,wait())
+	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/doujindesusearch?apikey=${lol}&query=${query}`).then(async doudesuSearch =>{
 		doudesuSearch = doudesuSearch.result
 		let ini_txt = "Result : \n"
@@ -2755,7 +2756,7 @@ case 'doujindesusearch':{
 } break
 
 case 'neonimelatest':{
-	reply(lang,wait())
+	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/neonimelatest?apikey=${lol}`).then(async neolatest => {
 		let thisResult = neolatest.result
 		let ini_txt = "Result : \n"
@@ -2773,7 +2774,7 @@ case 'neonimelatest':{
 } break
 
 case'storyanime':{
-	reply(lang,wait())
+	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
 		getResult = storyAnime.result
 		await sendFileFromUrl(from, getResult, lang,ok(), m)
@@ -2847,16 +2848,19 @@ let caption = '*_Memes Menu_*\n\nAPI: LoLHuman'
 	])	
 } break
 case'darkjokes':case'darkjoke':{
+		reply(lang.wait())
 	let djokes = await (`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
 	await sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'meme':{
+		reply(lang.wait())
 	let memes = await (`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
 	await sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'memeindo':{
+		reply(lang.wait())
 	let memindo = await (`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
 	await sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
