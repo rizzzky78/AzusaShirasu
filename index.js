@@ -2688,12 +2688,11 @@ case 'nhentaipdf':case'nhpdf':{
 	let henid = args[0]
 		await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async getResult => {
 				getResult = getResult.result
-				thisBuffer = await getBuffer(getResult)
 				try {
-					await sendFileFromUrl(from, thisBuffer, document, {filename:`${henid}.pdf`}, m)
+					await sendFileFromUrl(from, getResult, document, {filename:`${henid}.pdf`}, m)
 					reply('Done kack!')
 				} catch {
-					await sendFileFromUrl(from, thisBuffer, m)
+					await sendFileFromUrl(from, getResult, m)
 					reply('Done kack!').catch((err) => { reply(lang.err())})
 				}
 		})	
