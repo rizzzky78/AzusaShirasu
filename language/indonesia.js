@@ -687,7 +687,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}ping
 ├ ${prefix}runtime
 ├ ${prefix}botstatus
-╰❒ ${prefix}donate
+├ ${prefix}donate
+╰❒ 
 
 
 ╭─❒ 「 Owner 」 
@@ -724,7 +725,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}self
 ├ ${prefix}public [only bot]
 ├ ${prefix}del [reply pesan bot]
-╰❒ ${prefix}setppbot [reply image]
+├ ${prefix}setppbot [reply image]
+╰❒ 
 
 ╭─❒ 「 Store Menu 」
 ├ ${prefix}list
@@ -748,13 +750,15 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}pay
 ├ ${prefix}setcaptionpay
 ├ ${prefix}proses
-╰❒ ${prefix}done
+├ ${prefix}done
+╰❒ 
 
 ╭─❒ 「 Anonymous 」
 ├ ${prefix}anonymous 
 ├ ${prefix}start
 ├ ${prefix}skip [daerah]
-╰❒ ${prefix}stop [surah|ayat]
+├ ${prefix}stop [surah|ayat]
+╰❒ 
 
 
 ╭─❒ 「 Database 」 
@@ -768,7 +772,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}addmsg [nama file]
 ├ ${prefix}getmsg [nama file]
 ├ ${prefix}listmsg
-╰❒ ${prefix}delmsg [nama file]
+├ ${prefix}delmsg [nama file]
+╰❒ 
 
 ╭─❒ 「 Rpg Games 」
 ├ ${prefix}adventure
@@ -808,7 +813,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}bansos
 ├ ${prefix}berdagang
 ├ ${prefix}berkebon
-╰❒ ${prefix}build
+├ ${prefix}build
+╰❒ 
 
 ╭─❒ 「 Group 」 
 ├ ${prefix}register
@@ -851,24 +857,30 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}take packname|author
 ├ ${prefix}group [open/close]
 ├ ${prefix}tagall [text]
-╰❒ ${prefix}hidetag [text]
+├ ${prefix}hidetag [text]
+╰❒ 
 
-╭─❒ 「 Anime 」 
+╭─❒ 「 Anime 」
+├ ${prefix}neonimelatest
+├ ${prefix}storyanime 
 ├ ${prefix}quotesanime
 ├ ${prefix}anime [query]
 ├ ${prefix}manga [query]
-╰❒ ${prefix}character [query]
+├ ${prefix}character [query]
+╰❒ 
 
 ╭─❒ 「 Tag 」 
 ├ ${prefix}stickertag
 ├ ${prefix}videotag [query]
 ├ ${prefix}vntag [query]
-╰❒ ${prefix}imagetag [query]
+├ ${prefix}imagetag [query]
+╰❒ 
 
 ╭─❒ 「 Stalking 」 
 ├ ${prefix}igstalk [username]
 ├ ${prefix}ghstalk [username]
-╰❒ ${prefix}ytstalk [channel]
+├ ${prefix}ytstalk [channel]
+╰❒ 
 
 
 ╭─❒ 「 Search 」 
@@ -880,7 +892,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}wattpad [query]
 ├ ${prefix}webtoons [query]
 ├ ${prefix}drakor [query]
-╰❒ ${prefix}pinterest [query]
+├ ${prefix}pinterest [query]
+╰❒ 
 
 
 ╭─❒ 「 Converter 」
@@ -893,7 +906,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}tourl [image/video/stiker]
 ├ ${prefix}togif [sticker]
 ├ ${prefix}tomp4 [sticker]
-╰❒${prefix}toimg [reply sticker]
+├ ${prefix}toimg [reply sticker]
+╰❒
 
 
 ╭─❒ 「 Image Effect 」 
@@ -930,7 +944,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}challenger [reply image/stiker]
 ├ ${prefix}burn [reply image/stiker]
 ├ ${prefix}brazzers [reply image/stiker]
-╰❒ ${prefix}beautiful [reply image/stiker]
+├ ${prefix}beautiful [reply image/stiker]
+╰❒ 
 
 
 ╭─❒ 「 Sticker Effect 」 
@@ -952,7 +967,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}greyscale [reply image/stiker]
 ├ ${prefix}threshold [reply image/stiker]
 ├ ${prefix}brightness [reply image/stiker]
-╰❒ ${prefix}invertgreyscale [reply image/stiker]
+├ ${prefix}invertgreyscale [reply image/stiker]
+╰❒ 
 
 
 ╭─❒ 「 Download 」 
@@ -980,7 +996,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}gitclone [link repo]
 ├ ${prefix}gitrepo [username repo branch]
 ├ ${prefix}mediafire [link]
-╰❒ ${prefix}twitter link
+├ ${prefix}twitter link
+╰❒ 
 
 ╭─❒ 「 Primbon 」
 ├ ${prefix}nomorhoki 887435047326
@@ -1012,9 +1029,19 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}memancing
 ├ ${prefix}masasubur
 ├ ${prefix}zodiak 
-╰❒ ${prefix}shio [query]
+├ ${prefix}shio [query]
+╰❒ 
 
 ╭─❒ 「 Random Anime 」
+├ ${prefix}waifuu
+├ ${prefix}art
+├ ${prefix}elf
+├ ${prefix}shota
+├ ${prefix}husbu
+├ ${prefix}sagiri
+├ ${prefix}shinobu
+├ ${prefix}megumin
+├ ${prefix}wallnime
 ├ ${prefix}loli
 ├ ${prefix}neko
 ├ ${prefix}waifu
@@ -1045,7 +1072,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}wink
 ├ ${prefix}poke
 ├ ${prefix}dance
-╰❒ ${prefix}cringe
+├ ${prefix}cringe
+╰❒ 
 
 ╭─❒ 「 Voice Change Menu 」
 ├ ${prefix}bass
@@ -1059,7 +1087,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}robot
 ├ ${prefix}slow
 ├ ${prefix}smooth
-╰❒ ${prefix}tupai
+├ ${prefix}tupai
+╰❒ 
 
 ╭─❒ 「 Storage Menu 」
 ├ ${prefix}addvn
@@ -1069,78 +1098,76 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}addvideo
 ├ ${prefix}listvideo
 ├ ${prefix}addstik
-╰❒ ${prefix}liststik
+├ ${prefix}liststik
+╰❒ 
 
 ╭─❒ 「 Nsfw 」
-├ ${prefix}cuddle
-├ ${prefix}foxgirl
-├ ${prefix}kemonomimi2
-├ ${prefix}woof
-├ ${prefix}holo2
-├ ${prefix}hug
-├ ${prefix}kiss
-├ ${prefix}lizard
-├ ${prefix}meowi
-├ ${prefix}neko2
-├ ${prefix}pat
-├ ${prefix}poke
-├ ${prefix}slap
-├ ${prefix}tickle
-├ ${prefix}baka
-├ ${prefix}smug
-├ ${prefix}neko_sfw
-├ ${prefix}hentai
-├ ${prefix}hentai_gif
-├ ${prefix}spank
-├ ${prefix}blowjob
-├ ${prefix}cumarts
-├ ${prefix}eroyuri
-├ ${prefix}eroneko
-├ ${prefix}erokemonomimi
-├ ${prefix}erokitsune
-├ ${prefix}ero
-├ ${prefix}feet
-├ ${prefix}erofeet
-├ ${prefix}feetgif
-├ ${prefix}femdom
-├ ${prefix}futanari
-├ ${prefix}holoero
-├ ${prefix}holo
-├ ${prefix}keta
-├ ${prefix}kitsune
-├ ${prefix}kemonomimi
-├ ${prefix}pussyart
-├ ${prefix}pussywankgif
-├ ${prefix}girl_solo
-├ ${prefix}girl_solo_gif
-├ ${prefix}tits
+├ ${prefix}doujindesu [link]
+├ ${prefix}doujindesulatest
+├ ${prefix}doujindesusearch [query]
+├ ${prefix}nhentaisearch [query]
+├ ${prefix}nhentaipdf [query]
+├ ${prefix}randomhentai
+├ ${prefix}chiisaihentai
 ├ ${prefix}trap
-├ ${prefix}yuri
-├ ${prefix}avatar2
-├ ${prefix}anal
-├ ${prefix}bj
-├ ${prefix}boobs
-├ ${prefix}classic
-├ ${prefix}cumsluts
-├ ${prefix}kuni
-├ ${prefix}lesbian
-├ ${prefix}neko
-├ ${prefix}neko_gif
+├ ${prefix}blowjob
+├ ${prefix}yaoi
+├ ${prefix}ecchi
+├ ${prefix}hentai
 ├ ${prefix}ahegao
-├ ${prefix}bdsm
-├ ${prefix}cuckold
+├ ${prefix}hololewd            
+├ ${prefix}sideoppai
+├ ${prefix}animefeets
+├ ${prefix}animebooty
+├ ${prefix}animethighss
+├ ${prefix}hentaiparadise
+├ ${prefix}animearmpits
+├ ${prefix}hentaifemdom
+├ ${prefix}lewdanimegirls
+├ ${prefix}biganimetiddies
+├ ${prefix}animebellybutton
+├ ${prefix}hentai4everyone
+├ ${prefix}bj
+├ ${prefix}ero
 ├ ${prefix}cum
-├ ${prefix}foot
-├ ${prefix}gangbang
-├ ${prefix}glasses
-├ ${prefix}jahy
-├ ${prefix}masturbation
-├ ${prefix}nsfw_neko
-├ ${prefix}orgy
-├ ${prefix}panties
-├ ${prefix}tentacles
-├ ${prefix}thighs
-╰❒ ${prefix}zettai
+├ ${prefix}feet
+├ ${prefix}yuri
+├ ${prefix}trap
+├ ${prefix}lewd
+├ ${prefix}eron
+├ ${prefix}solo
+├ ${prefix}gasm
+├ ${prefix}poke
+├ ${prefix}anal
+├ ${prefix}holo
+├ ${prefix}tits
+├ ${prefix}kuni
+├ ${prefix}kiss
+├ ${prefix}erok
+├ ${prefix}smug
+├ ${prefix}baka
+├ ${prefix}solog
+├ ${prefix}feetg
+├ ${prefix}lewdk
+├ ${prefix}waifu
+├ ${prefix}pussy
+├ ${prefix}femdom
+├ ${prefix}cuddle
+├ ${prefix}hentai
+├ ${prefix}eroyuri
+├ ${prefix}cum_jpg
+├ ${prefix}erofeet
+├ ${prefix}holoero
+├ ${prefix}classic
+├ ${prefix}erokemo
+├ ${prefix}fox_girl
+├ ${prefix}futanari
+├ ${prefix}lewdkemo
+├ ${prefix}wallpaper
+├ ${prefix}pussy_jpg
+├ ${prefix}kemonomimi
+├ ${prefix}nsfw_avatar
+╰❒
 
 ╭─❒ 「 Ephoto360 Menu 」
 ├ ${prefix}youtubegold
@@ -1221,7 +1248,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}summerbeach
 ├ ${prefix}1917text
 ├ ${prefix}puppycute
-╰❒ ${prefix}rosebirthday
+├ ${prefix}rosebirthday
+╰❒ 
 
 
 ╭─❒ 「 Textpro Menu 」
@@ -1404,10 +1432,13 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}3dchrome text
 ├ ${prefix}metalb2 text
 ├ ${prefix}metalg text
-╰❒ ${prefix}metalg text
+├ ${prefix}metalg text
+╰❒ 
 
 
 ╭─❒ 「 Others 」
+├ ${prefix}cerpen
+├ ${prefix}ceritahoror
 ├ ${prefix}afk [reason]
 ├ ${prefix}translate kode_bahasa text
 ├ ${prefix}kalkulator [query]
@@ -1429,7 +1460,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}tebaktebakan
 ├ ${prefix}tekateki
 ├ ${prefix}susunkata
-╰❒ ${prefix}caklontong
+├ ${prefix}caklontong
+╰❒ 
 
 
 ╭─❒ 「 Asupan Menu 」
@@ -1454,7 +1486,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}geayubi
 ├ ${prefix}santuy
 ├ ${prefix}ukhty
-╰❒ ${prefix}syifa
+├ ${prefix}syifa
+╰❒ 
 
 ╭─❒ 「 Telegram Sticker 」
 ├ ${prefix}awoawo
@@ -1477,7 +1510,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}popoci
 ├ ${prefix}sponsbob
 ├ ${prefix}kawan_sponsbob
-╰❒ ${prefix}tyni
+├ ${prefix}tyni
+╰❒ 
 
 ╭─❒ 「 Random Cewe 」
 ├ ${prefix}china 
@@ -1490,7 +1524,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}jenni 
 ├ ${prefix}jiso 
 ├ ${prefix}lisa  
-╰❒ ${prefix}rose
+├ ${prefix}rose
+╰❒ 
 
 ╭─❒ 「 Logo Menu 」
 ├ ${prefix}coverbannerlol text|heroes
@@ -1557,7 +1592,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}bannerofpubg text|text2|background
 ├ ${prefix}mascotstyle text|text2|thumb
 ├ ${prefix}logoaccording text|text2|thumb
-╰❒ ${prefix}avataroverwatch text|text2|thumb
+├ ${prefix}avataroverwatch text|text2|thumb
+╰❒ 
 
 
 ╭─❒ 「 Islamic Menu 」
@@ -1568,79 +1604,12 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}randomquran2
 ├ ${prefix}listsurah
 ├ ${prefix}tafsirsurah [surah]
-╰❒ ${prefix}alquranaudio [surah|ayat]
+├ ${prefix}alquranaudio [surah|ayat]
+╰❒ 
 
 ╭─❒ 「 Sound Menu 」
-├ ${prefix}sound1
-├ ${prefix}sound2
-├ ${prefix}sound3
-├ ${prefix}sound4
-├ ${prefix}sound5
-├ ${prefix}sound6
-├ ${prefix}sound7
-├ ${prefix}sound8
-├ ${prefix}sound9
-├ ${prefix}sound10
-├ ${prefix}sound11
-├ ${prefix}sound12
-├ ${prefix}sound13
-├ ${prefix}sound14
-├ ${prefix}sound15
-├ ${prefix}sound16
-├ ${prefix}sound17
-├ ${prefix}sound18 
-├ ${prefix}sound19
-├ ${prefix}sound20
-├ ${prefix}sound21
-├ ${prefix}sound22
-├ ${prefix}sound23
-├ ${prefix}sound24
-├ ${prefix}sound25
-├ ${prefix}sound26
-├ ${prefix}sound27
-├ ${prefix}sound28
-├ ${prefix}sound29
-├ ${prefix}sound30
-├ ${prefix}sound31
-├ ${prefix}sound32
-├ ${prefix}sound33
-├ ${prefix}sound34
-├ ${prefix}sound35
-├ ${prefix}sound36
-├ ${prefix}sound37
-├ ${prefix}sound38
-├ ${prefix}sound39
-├ ${prefix}sound40
-├ ${prefix}sound41
-├ ${prefix}sound42
-├ ${prefix}sound43
-├ ${prefix}sound44
-├ ${prefix}sound45
-├ ${prefix}sound46
-├ ${prefix}sound47
-├ ${prefix}sound48
-├ ${prefix}sound49
-├ ${prefix}sound50
-├ ${prefix}sound51
-├ ${prefix}sound52
-├ ${prefix}sound53
-├ ${prefix}sound54
-├ ${prefix}sound55
-├ ${prefix}sound56
-├ ${prefix}sound57
-├ ${prefix}sound58
-├ ${prefix}sound59
-├ ${prefix}sound60
-├ ${prefix}sound61
-├ ${prefix}sound62
-├ ${prefix}sound63
-├ ${prefix}sound64
-├ ${prefix}sound65
-├ ${prefix}sound66
-├ ${prefix}sound67
-├ ${prefix}sound68
-├ ${prefix}sound69
-╰❒ ${prefix}sound70
+├ ${prefix}sound 1-70
+╰❒ 
 
 ╭─❒ 「 TqTo 」 
 ├ My God
@@ -1652,8 +1621,10 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ Nurutomo
 ├ Rashid
 ├ ZeeoneOfc
-├ Penyedia Module
-╰❒ And All Support
+├ Lolhuman
+├ Maintainer: Owner
+├ And All Support
+╰❒ 
     `
 }
 
@@ -1702,12 +1673,6 @@ _made by love from Budi_ >///<
 exports.sewaBot = () => {
 return`
  「 Bundle Sewa Bot Price List 」
-
-╭─❒   
-├ Price: 20K IDR
-├ Grub WA join: include 2 Group
-├ Valid: 30day
-╰❒
 
 ╭─❒ 
 ├ Price: 15K IDR
@@ -1897,7 +1862,9 @@ exports.group = (prefix) =>{
 `}
 
 exports.anime = (prefix) =>{
-	return`╭─❒ 「 Anime 」 
+	return`╭─❒ 「 Anime 」
+├ ${prefix}neonimelatest
+├ ${prefix}storyanime  
 ├ ${prefix}quotesanime
 ├ ${prefix}anime [query]
 ├ ${prefix}manga [query]
@@ -1924,8 +1891,9 @@ exports.search = (prefix) =>{
 ├ ${prefix}ytsearch [query]
 ├ ${prefix}wallpaper [query]
 ├ ${prefix}google [query]
+├ ${prefix}kbbi [query]
+├ ${prefix}wikipedia [query]
 ├ ${prefix}wikimedia [query]
-├ ${prefix}hentai
 ├ ${prefix}wattpad [query]
 ├ ${prefix}webtoons [query]
 ├ ${prefix}drakor [query]
@@ -2076,86 +2044,73 @@ exports.ranime = (prefix) =>{
 }
 
 exports.nsfw = (prefix) =>{
-	return`
-╔══
-║  NSFW Menu
-║  NotSafeForWork Menu
-╚══
-
-
-╔══
-║ Lewd Pictures
-╠══
-╠════⟢ Lewd I
-║ ${tz} ${prefix}randomhentai
-║ ${tz} ${prefix}chiisaihentai
-║ ${tz} ${prefix}trap
-║ ${tz} ${prefix}blowjob
-║ ${tz} ${prefix}yaoi
-║ ${tz} ${prefix}ecchi
-║ ${tz} ${prefix}hentai
-║ ${tz} ${prefix}ahegao
-║ ${tz} ${prefix}hololewd            
-║ ${tz} ${prefix}sideoppai
-║ ${tz} ${prefix}animefeets
-║ ${tz} ${prefix}animebooty
-║ ${tz} ${prefix}animethighss
-║ ${tz} ${prefix}hentaiparadise
-║ ${tz} ${prefix}animearmpits
-║ ${tz} ${prefix}hentaifemdom
-║ ${tz} ${prefix}lewdanimegirls
-║ ${tz} ${prefix}biganimetiddies
-║ ${tz} ${prefix}animebellybutton
-║ ${tz} ${prefix}hentai4everyone
-╠══
-╠════⟢ Lewd II
-║ ${tz} ${prefix}bj
-║ ${tz} ${prefix}ero
-║ ${tz} ${prefix}cum
-║ ${tz} ${prefix}feet
-║ ${tz} ${prefix}yuri
-║ ${tz} ${prefix}trap
-║ ${tz} ${prefix}lewd
-║ ${tz} ${prefix}eron
-║ ${tz} ${prefix}solo
-║ ${tz} ${prefix}gasm
-║ ${tz} ${prefix}poke
-║ ${tz} ${prefix}anal
-║ ${tz} ${prefix}holo
-║ ${tz} ${prefix}tits
-║ ${tz} ${prefix}kuni
-║ ${tz} ${prefix}kiss
-║ ${tz} ${prefix}erok
-║ ${tz} ${prefix}smug
-║ ${tz} ${prefix}baka
-║ ${tz} ${prefix}solog
-║ ${tz} ${prefix}feetg
-║ ${tz} ${prefix}lewdk
-║ ${tz} ${prefix}waifu
-║ ${tz} ${prefix}pussy
-║ ${tz} ${prefix}femdom
-║ ${tz} ${prefix}cuddle
-║ ${tz} ${prefix}hentai
-║ ${tz} ${prefix}eroyuri
-║ ${tz} ${prefix}cum_jpg
-║ ${tz} ${prefix}erofeet
-║ ${tz} ${prefix}holoero
-║ ${tz} ${prefix}classic
-║ ${tz} ${prefix}erokemo
-║ ${tz} ${prefix}fox_girl
-║ ${tz} ${prefix}futanari
-║ ${tz} ${prefix}lewdkemo
-║ ${tz} ${prefix}wallpaper
-║ ${tz} ${prefix}pussy_jpg
-║ ${tz} ${prefix}kemonomimi
-║ ${tz} ${prefix}nsfw_avatar
-╚══
-
-╔══
-║ Get Features
-║ API's By: LoLHuman
-║ Azusa Bot
-╚══
+	return`╭─❒ 「 NSFW Menu 」
+├ ${prefix}doujindesu [link]
+├ ${prefix}doujindesulatest
+├ ${prefix}doujindesusearch [query]
+├ ${prefix}nhentaisearch [query]
+├ ${prefix}nhentaipdf [query]
+├ ${prefix}randomhentai
+├ ${prefix}chiisaihentai
+├ ${prefix}trap
+├ ${prefix}blowjob
+├ ${prefix}yaoi
+├ ${prefix}ecchi
+├ ${prefix}hentai
+├ ${prefix}ahegao
+├ ${prefix}hololewd            
+├ ${prefix}sideoppai
+├ ${prefix}animefeets
+├ ${prefix}animebooty
+├ ${prefix}animethighss
+├ ${prefix}hentaiparadise
+├ ${prefix}animearmpits
+├ ${prefix}hentaifemdom
+├ ${prefix}lewdanimegirls
+├ ${prefix}biganimetiddies
+├ ${prefix}animebellybutton
+├ ${prefix}hentai4everyone
+├ ${prefix}bj
+├ ${prefix}ero
+├ ${prefix}cum
+├ ${prefix}feet
+├ ${prefix}yuri
+├ ${prefix}trap
+├ ${prefix}lewd
+├ ${prefix}eron
+├ ${prefix}solo
+├ ${prefix}gasm
+├ ${prefix}poke
+├ ${prefix}anal
+├ ${prefix}holo
+├ ${prefix}tits
+├ ${prefix}kuni
+├ ${prefix}kiss
+├ ${prefix}erok
+├ ${prefix}smug
+├ ${prefix}baka
+├ ${prefix}solog
+├ ${prefix}feetg
+├ ${prefix}lewdk
+├ ${prefix}waifu
+├ ${prefix}pussy
+├ ${prefix}femdom
+├ ${prefix}cuddle
+├ ${prefix}hentai
+├ ${prefix}eroyuri
+├ ${prefix}cum_jpg
+├ ${prefix}erofeet
+├ ${prefix}holoero
+├ ${prefix}classic
+├ ${prefix}erokemo
+├ ${prefix}fox_girl
+├ ${prefix}futanari
+├ ${prefix}lewdkemo
+├ ${prefix}wallpaper
+├ ${prefix}pussy_jpg
+├ ${prefix}kemonomimi
+├ ${prefix}nsfw_avatar
+╰❒ 
 `
 }
 
@@ -2347,11 +2302,15 @@ exports.textpro = (prefix) =>{
 
 exports.other = (prefix) =>{
 return`╭─❒ 「 Others 」
+├ ${prefix}cerpen
+├ ${prefix}ceritahoror
+├ ${prefix}esteticpicture
 ├ ${prefix}ttp [text]
 ├ ${prefix}attp [text]
 ├ ${prefix}afk [reason]
 ├ ${prefix}translate kode_bahasa text
 ├ ${prefix}kalkulator [query]
+├ ${prefix}memes [select button]
 ├ ${prefix}smeme [text]
 ├ ${prefix}smeme2 [text|text]
 ╰❒ ${prefix}memegen [text|text]
@@ -2376,6 +2335,9 @@ return`╭─❒ 「 Game Menu 」
 }
 exports.asupan = (prefix) =>{
 return`╭─❒ 「 Asupan Menu 」
+├ ${prefix}cecan
+├ ${prefix}cogan
+├ ${prefix}ppcouple
 ├ ${prefix}chika
 ├ ${prefix}delvira
 ├ ${prefix}ayu
