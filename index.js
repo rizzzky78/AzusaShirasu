@@ -2678,7 +2678,7 @@ case 'nhentaisearch':{
 			ini_txt += `Favourite : ${x.favourite}\n\n`
 			ini_txt += `- - - \n`
 		}
-		alpha.sendText(m.chat, ini_txt, m)
+		alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -2686,7 +2686,7 @@ case 'nhentaipdf':case'nhpdf':{
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
 	reply(lang.wait())
 	let henid = args[0]
-		var getResult = fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfx => {
+		await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async getResult => {
 				getResult = getResult.result
 				thisBuffer = await getBuffer(getResult)
 				try {
@@ -2734,7 +2734,7 @@ case 'doujindesulatest':{
 			ini_txt += `Episode : ${x.episode}\n`
 			ini_txt += `- - - \n`
 		}
-		alpha.sendText(m.chat, ini_txt, m)
+		alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -2751,25 +2751,25 @@ case 'doujindesusearch':{
 			ini_txt += `Status : ${x.type}\n`
 			ini_txt += `- - - \n`
 		}
-		alpha.sendText(m.chat, ini_txt, m)
+		alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
 
 case 'neonimelatest':{
 	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/neonimelatest?apikey=${lol}`).then(async neolatest => {
-		let thisResult = neolatest.result
+		neolatest = neolatest.result
 		let ini_txt = "Result : \n"
-		for (var x of thisResult) {
-			ini_txt += `Title : ${thisResult.title}\n`
-			ini_txt += `Link : ${thisResult.link}\n`
-			ini_txt += `Thumbnail : ${thisResult.thumbnail}\n`
-			ini_txt += `Episode : ${thisResult.episode}\n`
-			ini_txt += `Date : ${thisResult.date}\n`
-			ini_txt += `Description : ${thisResult.desc}\n`
+		for (var x of neolatest) {
+			ini_txt += `Title : ${x.title}\n`
+			ini_txt += `Link : ${x.link}\n`
+			ini_txt += `Thumbnail : ${x.thumbnail}\n`
+			ini_txt += `Episode : ${x.episode}\n`
+			ini_txt += `Date : ${x.date}\n`
+			ini_txt += `Description : ${x.desc}\n`
 			ini_txt += `- - - \n`
 		}
-		alpha.sendText(m.chat, ini_txt, m)
+		alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -2777,7 +2777,7 @@ case'storyanime':{
 	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
 		getResult = storyAnime.result
-		await sendFileFromUrl(from, getResult, lang,ok(), m)
+		await sendFileFromUrl(from, getResult, lang.ok(), m).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -2787,7 +2787,7 @@ case 'cerpen':{
 		let ini_txt = `Judul : #${cerpenResult.title}\n`
 			ini_txt += `Pendongeng : ${cerpenResult.creator}\n`
 			ini_txt += `Cerita : ${cerpenResult.cerpen}\n`
-				alpha.sendText(m.chat, ini_txt, m)
+				alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -2798,7 +2798,7 @@ case 'ceritahoror':{
 		let ini_txt = `Judul : #${cerResult.title}\n`
 			ini_txt += `Deskripsi : ${cerResult.desc}\n\n`
 			ini_txt += `Cerita : ${cerResult.story}\n`
-				sendFileFromUrl(from, thumb, ini_txt, m)				
+				sendFileFromUrl(from, thumb, ini_txt, m).catch((err) => { reply(lang.err())})			
 	})
 } break
 
