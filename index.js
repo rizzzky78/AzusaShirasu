@@ -7,7 +7,7 @@ Change log:
 	- maybe fixed lewd feature(?)
 
 
-	Last Edited -- 25 August 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 26 August 2022 -- 21.14 WIB Indonesian Time
 
 */
 
@@ -1195,7 +1195,7 @@ alpha.sendText(m.chat, iniIDArmada, m)
 					})
 			/*/*db.data.users[m.sender].limit -= 1*/					}
 					break
-				case 'waifu': case 'loli':{
+				case 'waifux': case 'lolix':{
 				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
 				/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 					reply(lang.wait())
@@ -1925,12 +1925,12 @@ break
 			      month: 'long',
 			      year: 'numeric'
 			    }).format(dnew)
-				
+				//Creator : @${ownernya.split('@')[0]}
 				let ownernya = ownernomer + '@s.whatsapp.net'
 				var ini_anu =`Hi ${user.name}
 
 ╭─❒ 「 Bot Info 」 
-├ Creator :  @${ownernya.split('@')[0]}
+├ Creator :  @Rizu
 ├ Powered  : @${ini_mark.split('@')[0]}
 ├ Prefix :   ${prefix}
 ├ Total hit : ${hitall}
@@ -1993,7 +1993,7 @@ alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${p
 						}
 					}
 					break    
-	case 'allmenu':{
+	case 'allmenux':{
 			await alpha.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${ownername}`,pp_bot, [
 				{"quickReplyButton": {"displayText": "Sewa Bot","id": 'sewaBot'}},
 				{"quickReplyButton": {"displayText": "Owner","id": 'owner'}},
@@ -2001,6 +2001,14 @@ alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${p
 			])
 		}
 	break   
+	case 'allmenu':{
+		await alpha.sendButImg(from, pp_bot, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix) , `© ${ownername}`, [
+			{"quickReplyButton": {"displayText": "Sewa Bot","id": 'sewaBot'}},
+			{"quickReplyButton": {"displayText": "Owner","id": 'owner'}},
+			{"quickReplyButton": {"displayText": "Rules","id": 'rules'}}
+		])
+	} break
+
 	case 'infocmd': case'infomenu':{
 		alpha.sendButImage(m.chat, sender, [{buttonId: '.command',buttonText:{displayText: '༺ Back'},type: 1},{buttonId:'owner',buttonText: {displayText:'Owner ༻'}, type: 1}], `Selamat ${salam} @${sender.split('@')[0]} 😊\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : @${ownernomer.split("@")[0]}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣` + '\n\n' +  lang.info(prefix), `© ${ownername}`, [sender, ownernomer + '@s.whatsapp.net'], {quoted:m})
       }
@@ -2576,143 +2584,46 @@ await sendFileFromUrl(from, to, lang.ok(), m)
  
 /*	Using LoLHuman Apikey	*/
 case 'menuwibu':case'menubudi': {
-	let iniGambar = await getBuffer("https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/picture/shirasu_azusa2.png")
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[
+	let caption = "NSFW Menu Button\nPls select button bellow"
+	setTimeout(() => { 
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[
 		{buttonId: 'neko', buttonText: {displayText: 'Neko'}},
 		{buttonId: 'waifu', buttonText: {displayText: 'Waifu'}},
-		{buttonId: 'loli', buttonText: {displayText: 'Loli'}}])
-
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[
+		{buttonId: 'loli', buttonText: {displayText: 'Loli'}}]) }, 1000)
+	setTimeout(() => {
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[
 		{buttonId: 'chiisaihentai', buttonText: {displayText: 'Chiisai Hentai'}},
 		{buttonId: 'trap', buttonText: {displayText: 'Trap'}},
-		{buttonId: 'blowjob', buttonText: {displayText: 'Blowjob'}}])
-
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[		
+		{buttonId: 'blowjob', buttonText: {displayText: 'Blowjob'}}]) }, 3000)
+	setTimeout(() => {
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[		
 		{buttonId: 'yaoi', buttonText: {displayText: 'Yaoi'}},
 		{buttonId: 'milf', buttonText: {displayText: 'Milf'}},
-		{buttonId: 'ecchi', buttonText: {displayText: 'Ecchi'}}])
-
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[				
+		{buttonId: 'ecchi', buttonText: {displayText: 'Ecchi'}}]) }, 5000)
+	setTimeout(() => {
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[				
 		{buttonId: 'ahegao', buttonText: {displayText: 'Ahegao'}},
 		{buttonId: 'hololewd', buttonText: {displayText: 'Hololewd'}},
-		{buttonId: 'sideoppai', buttonText: {displayText: 'Side Oppai'}}])
-
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[				
+		{buttonId: 'sideoppai', buttonText: {displayText: 'Side Oppai'}}]) }, 7000)
+	setTimeout(() => {
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[				
 		{buttonId: 'animefeets', buttonText: {displayText: 'Feets'}},
 		{buttonId: 'animebooty', buttonText: {displayText: 'Thighss'}},
-		{buttonId: 'animearmpits', buttonText: {displayText: 'Armpits'}}])
-
-	alpha.sendButMes(from,'*NSFW MENU*\n\nScroll Down!', `© ${ownername}`,[				
+		{buttonId: 'animearmpits', buttonText: {displayText: 'Armpits'}}]) }, 9000)
+	setTimeout(() => {
+	alpha.sendButMessage(from, caption, `© ${ownername}`,[				
 		{buttonId: 'hentaifemdom', buttonText: {displayText: 'Femdom'}},
 		{buttonId: 'lewdanimegirls', buttonText: {displayText: 'Girls'}},
 		{buttonId: 'biganimetiddies', buttonText: {displayText: 'Susu Badag'}},
-		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}}
-	])
+		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}}]) }, 11000)
 } break
 
 case 'semuamenu':
-let iniMenu = `All Menu Modded
-nsfwmenu
-
-- fixed no Regist needed -
-ytplay
-ytcari
-youtubemp3
-youtubemp4
-
-
-sisanya nanti :)`
-alpha.sendText(m.chat, iniMenu, m)
+alpha.sendText(m.chat, listMenu(time, salam, pushname, prefix), m)
 break
-
-case 'nsfwmenu':
-let picture = 'link'
-let sange = `
-NSFW MENU
-
-coba ae lah satu", mager gw ngelistnya :)
-
-╔══
-║ Lewd Pictures
-╠══
-╠════⟢ Lewd I
-║ randomhentai
-║ chiisaihentai
-║ trap
-║ blowjob
-║ yaoi
-║ ecchi
-║ hentai
-║ ahegao
-║ hololewd            
-║ sideoppai
-║ animefeets
-║ animebooty
-║ animethighss
-║ hentaiparadise
-║ animearmpits
-║ hentaifemdom
-║ lewdanimegirls
-║ biganimetiddies
-║ animebellybutton
-║ hentai4everyone
-╠══
-╠════⟢ Lewd II
-║ bj
-║ ero
-║ cum
-║ feet
-║ yuri
-║ trap
-║ lewd
-║ eron
-║ solo
-║ gasm
-║ poke
-║ anal
-║ holo
-║ tits
-║ kuni
-║ kiss
-║ erok
-║ smug
-║ baka
-║ solog
-║ feetg
-║ lewdk
-║ waifu
-║ pussy
-║ femdom
-║ cuddle
-║ hentai
-║ eroyuri
-║ cum_jpg
-║ erofeet
-║ holoero
-║ classic
-║ erokemo
-║ fox_girl
-║ futanari
-║ lewdkemo
-║ wallpaper
-║ pussy_jpg
-║ kemonomimi
-║ nsfw_avatar
-╚══
-
-╔══
-║ Get Features
-║ API's By: LoLHuman
-║ Azusa Bot
-╚══
-`
-alpha.sendFileFromUrl(from, picture, sange, m)
-alpha.send1ButMes(m.chat, 'Kembali Ke Beranda', `© ${ownername}`, `help`, `Menu`, m)
-break
-
-case 'neko': case 'waifu':case 'loli':case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'milf':case 'ecchi':
-case 'ahegao':case 'hololewd':case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'animearmpits':
-case 'hentaifemdom':case 'lewdanimegirls':case 'biganimetiddies':case 'hentai4everyone':{
+case 'randomhentai':case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'ecchi':case 'hentai':case 'ahegao':case 'hololewd':
+case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'hentaiparadise':case 'animearmpits':case 'hentaifemdom':case 'lewdanimegirls':
+case 'biganimetiddies':case 'animebellybutton':case 'hentai4everyone':case 'neko': case 'waifu':case 'loli':case 'milf':{
 	reply(lang.wait())
 	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
 	let capt = captx[Math.floor(Math.random() * (captx.length))]
@@ -2725,8 +2636,11 @@ try {
 }
 } break
 
-case 'cum': case'lewd': case'eron': case'keta': case'tits': case'solog': case 'feetg': case'femdom': case'futanari': case'lewdkemo':
-case'pussy_jpg': case'solo': case'anal':{
+case 'randomhentai2':case 'bj':case 'ero':case 'cum':case 'feet':case 'yuri':case 'trap':case 'lewd':case 'feed':case 'eron':case 'solo':
+case 'gasm':case 'poke':case 'anal':case 'holo':case 'tits':case 'kuni':case 'kiss':case 'erok':case 'smug':case 'baka':case 'solog':
+case 'feetg':case 'lewdk':case 'waifu':case 'pussy':case 'femdom':case 'cuddle':case 'hentai':case 'eroyuri':case 'cum_jpg':
+case 'blowjob':case 'erofeet':case 'holoero':case 'classic':case 'erokemo':case 'fox_girl':case 'futanari':case 'lewdkemo':case 'wallpaper':
+case 'pussy_jpg':case 'kemonomimi':case 'nsfw_avatar':case'lewd': case'keta':case'femdom': case'futanari':case'anal':{
 	reply(lang.wait())
 	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
 	let capt = captx[Math.floor(Math.random() * (captx.length))]
@@ -2739,25 +2653,53 @@ try {
 }
 } break
 
+case 'waifuu':case 'art':case 'bts':case 'exo':case 'elf':case 'loli':case 'shota':case 'husbu':case 'sagiri':
+case'shinobu':case 'megumin':case 'wallnime':{
+		reply(lang.wait())
+		let anu1 = `Nih kack, jangan lupa bilang makasih...`					
+		let queryanu = await (`https://api.lolhuman.xyz/api/random/${command}?apikey=${lol}`)
+		await sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { reply(lang.err())})
+} break			
 
-case 'nhentaipdf':{
+case 'nhentaisearch':{
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} Budi`)
+	let query = args.join(" ")
+	reply(lang.wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/nhentaisearch?apikey=${lol}&query=${query}`).then(async nhSearch => {
+		thisResult = nhSearch.result
+		let ini_txt = "Result : \n"
+		for (var x of thisResult) {
+			ini_txt += `Id : #${x.id}\n`
+			ini_txt += `Title English : ${x.title_english}\n`
+			ini_txt += `Title Japanese : ${x.title_japanese}\n`
+			ini_txt += `Native : ${x.title_native}\n`
+			ini_txt += `Upload : ${x.date_upload}\n`
+			ini_txt += `Page : ${x.page}\n`
+			ini_txt += `Favourite : ${x.favourite}\n\n`
+			ini_txt += `- - - \n`
+		}
+		alpha.sendText(m.chat, ini_txt, m)
+	})
+} break
+
+case 'nhentaipdf':case'nhpdf':{
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
 	reply(lang.wait())
 	let henid = args[0]
 		var getResult = fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async nhenpdfx => {
-				getResult = getresult.result
+				getResult = getResult.result
 				thisBuffer = await getBuffer(getResult)
 				try {
 					await sendFileFromUrl(from, thisBuffer, document, {filename:`${henid}.pdf`}, m)
 					reply('Done kack!')
 				} catch {
 					await sendFileFromUrl(from, thisBuffer, m)
-					reply('Done kack!')
+					reply('Done kack!').catch((err) => { reply(lang.err())})
 				}
 		})	
 } break
 
-case 'doujindesu':{
+case 'doujindesu':case'doudesu':{
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} https://doujindesu.xxx/2021/01/18/queen-bee-chapter-33/`)
 	reply(lang.wait())
 	let links = args[0]
@@ -2777,6 +2719,86 @@ try {
 		}
 	)
 }
+} break
+
+case 'doujindesulatest':{
+	reply(lang.wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/doujindesulatest?apikey=${lol}`).then(async doudesuLts => {
+		doudesuLts = doudesuLts.result
+		let ini_txt = "Result : \n"
+		for (var x of doudesuLts) {
+			ini_txt += `Title : #${x.title}\n`
+			ini_txt += `Link : ${x.link}\n`
+			ini_txt += `Thumbnail : ${x.thumbnail}\n`
+			ini_txt += `Episode : ${x.episode}\n`
+			ini_txt += `- - - \n`
+		}
+		alpha.sendText(m.chat, ini_txt, m)
+	})
+} break
+
+case 'doujindesusearch':{
+	let query = args.join(" ")
+	reply(lang,wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/doujindesusearch?apikey=${lol}&query=${query}`).then(async doudesuSearch =>{
+		doudesuSearch = doudesuSearch.result
+		let ini_txt = "Result : \n"
+		for (var x of doudesuSearch) {
+			ini_txt += `Title : #${x.title}\n`
+			ini_txt += `Link : ${x.link}\n`
+			ini_txt += `Thumbnail : ${x.thumbnail}\n`
+			ini_txt += `Status : ${x.type}\n`
+			ini_txt += `- - - \n`
+		}
+		alpha.sendText(m.chat, ini_txt, m)
+	})
+} break
+
+case 'neonimelatest':{
+	reply(lang,wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/neonimelatest?apikey=${lol}`).then(async neolatest => {
+		let thisResult = neolatest.result
+		let ini_txt = "Result : \n"
+		for (var x of thisResult) {
+			ini_txt += `Title : ${thisResult.title}\n`
+			ini_txt += `Link : ${thisResult.link}\n`
+			ini_txt += `Thumbnail : ${thisResult.thumbnail}\n`
+			ini_txt += `Episode : ${thisResult.episode}\n`
+			ini_txt += `Date : ${thisResult.date}\n`
+			ini_txt += `Description : ${thisResult.desc}\n`
+			ini_txt += `- - - \n`
+		}
+		alpha.sendText(m.chat, ini_txt, m)
+	})
+} break
+
+case'storyanime':{
+	reply(lang,wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
+		getResult = storyAnime.result
+		await sendFileFromUrl(from, getResult, lang,ok(), m)
+	})
+} break
+
+case 'cerpen':{
+	await fetchJson(`https://api.lolhuman.xyz/api/cerpen?apikey=${lol}`).then(async cerpen => {
+		cerpenResult = cerpen.result
+		let ini_txt = `Judul : #${cerpenResult.title}\n`
+			ini_txt += `Pendongeng : ${cerpenResult.creator}\n`
+			ini_txt += `Cerita : ${cerpenResult.cerpen}\n`
+				alpha.sendText(m.chat, ini_txt, m)
+	})
+} break
+
+case 'ceritahoror':{
+	await fetchJson(`https://api.lolhuman.xyz/api/ceritahoror?apikey=${lol}`).then(async ceritaHoror => {
+		cerResult = ceritaHoror.result
+		let thumb = ceritaHoror.result.thumbnail
+		let ini_txt = `Judul : #${cerResult.title}\n`
+			ini_txt += `Deskripsi : ${cerResult.desc}\n\n`
+			ini_txt += `Cerita : ${cerResult.story}\n`
+				sendFileFromUrl(from, thumb, ini_txt, m)				
+	})
 } break
 
 case 'wait':{
@@ -2825,51 +2847,43 @@ let caption = '*_Memes Menu_*\n\nAPI: LoLHuman'
 	])	
 } break
 case'darkjokes':case'darkjoke':{
-	let djokes = await getBuffer(`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
-	await sendFileFromUrl(from, djokes, lang.ok(), m)
+	let djokes = await (`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
+	await sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'meme':{
-	let memes = await getBuffer(`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
-	await sendFileFromUrl(from, memes, lang.ok(), m)
+	let memes = await (`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
+	await sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'memeindo':{
-	let memindo = await getBuffer(`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
-	await sendFileFromUrl(from, memindo, lang.ok(), m)
+	let memindo = await (`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
+	await sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'cecan':{
 		reply(lang.wait())
-	let ccn = await getBuffer(`https://api.lolhuman.xyz/api/random/cecan?apikey=${lol}`)
-	await sendFileFromUrl(from, ccn, lang.ok(), m)
+	let ccn = await (`https://api.lolhuman.xyz/api/random/cecan?apikey=${lol}`)
+	await sendFileFromUrl(from, ccn, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'cogan':{
 		reply(lang.wait())
-	let cgn = await getBuffer(`https://api.lolhuman.xyz/api/random/cogan?apikey=${lol}`)
-	await sendFileFromUrl(from, cgn, lang.ok(), m)
+	let cgn = await (`https://api.lolhuman.xyz/api/random/cogan?apikey=${lol}`)
+	await sendFileFromUrl(from, cgn, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'ppcouple':{
 		reply(lang.wait())
-	let ppcpl = await getBuffer(`https://api.lolhuman.xyz/api/random/ppcouple?apikey=${lol}`)
-	await sendFileFromUrl(from, ppcpl, lang.ok(), m)
+	let ppcpl = await (`https://api.lolhuman.xyz/api/random/ppcouple?apikey=${lol}`)
+	await sendFileFromUrl(from, ppcpl, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
 case'esteticpicture':{
 		reply(lang.wait())
-	let este = await getBuffer(`https://api.lolhuman.xyz/api/random/estetic?apikey=${lol}`)
-	await sendFileFromUrl(from, este, lang,ok(), m)
-} break
-
-case 'waifuu':case 'art':case 'bts':case 'exo':case 'elf':case 'loli':case 'shota':case 'husbu':case 'sagiri':
-case'shinobu':case 'megumin':case 'wallnime':{
-		reply(lang.wait())
-		let anu1 = `Nih kack, jangan lupa bilang makasih...`					
-		let queryanu = await getBuffer(`https://api.lolhuman.xyz/api/random/${command}?apikey=${lol}`)
-		await sendFileFromUrl(from, queryanu, anu1, m)
-} break						 
+	let este = await (`https://api.lolhuman.xyz/api/random/estetic?apikey=${lol}`)
+	await sendFileFromUrl(from, este, lang,ok(), m).catch((err) => { reply(lang.err())})
+} break			 
 
 case 'wikipedia':{
 	if (args.length == 0) return reply(`Example: ${prefix + command} Tahu`)
