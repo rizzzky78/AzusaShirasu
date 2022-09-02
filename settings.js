@@ -1,6 +1,6 @@
 const fs = require('fs')
 const chalk = require('chalk')
-const  { indonesia, english, spanyol} = require(`./language`)
+const  { indonesia, english, spanyol } = require(`./language`)
 
 // Website Api
 global.APIs = {
