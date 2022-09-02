@@ -53,6 +53,7 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
 
 
 const database = require('./database/database.json')
+const { getResults } = require('google-it/lib/googleIt')
 const stcCmd = JSON.parse(fs.readFileSync('./database/command.json'))
 const db_respon_list = JSON.parse(fs.readFileSync('./database/list-message.json'));
 
@@ -893,7 +894,7 @@ if (!m.isGroup) return reply(lang.groupOnly())
             }
             break
             case 'delete': case 'del': {
-            	if (!m.key.fromMe && !isCreator) return reply(lang.ownerOnly())
+            	//if (!m.key.fromMe && !isCreator) return reply(lang.ownerOnly())
                 if (!m.quoted) throw false
                 let { chat, fromMe, id, isBaileys } = m.quoted
                 if (!isBaileys) return reply(lang.NoMsgBot())
@@ -2776,7 +2777,11 @@ case'storyanime':{
 	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
 		getResult = storyAnime.result
-		await sendFileFromUrl(from, getResult, lang.ok(), m).catch((err) => { reply(lang.err())})
+	try {
+		await sendFileFromUrl(from, getResult, lang.ok(), m)
+	} catch {
+		reply(`Lu download sendiri gih, lemot di gua, nih link nya\n${getResult}`).catch((err) => { reply(lang.err())})
+	}
 	})
 } break
 
