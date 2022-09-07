@@ -3585,7 +3585,7 @@ case 'xhamster':{
 
 */
 
-case 'ytplay2':{
+/*case 'ytplay2':{
 	let query = args.join(" ")
 	if (args.length == 0) return await reply(`Example: ${prefix + command} melukis senja`)
 		await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
@@ -3599,7 +3599,7 @@ case 'ytplay2':{
 				await sendFileFromUrl(from, result, caption, m).catch((err) => { reply(lang.err())})
 			})
 		})
-} break
+} break*/
 case 'ytsearch2':{			
 	let query = args.join(" ")
 	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
@@ -3651,18 +3651,7 @@ case 'youtubemp4':{
 } break
 
 /*
-var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
-	.then(async data =>{
-		let txt = '*Asmaul Husna*\n\n'
-		txt += `• Latin : ${data.result.latin}\n`
-		txt += `• Arabic : ${data.result.arabic}\n`
-		txt += `• Tr id : ${data.result.translation_id}\n`
-		txt += `• Tr en : ${data.result.translation_en}`
-		reply(txt)
-		})
-		.catch(e =>{
-reply(lang.err())
-})
+
 */
 case'budi':{
 	alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
