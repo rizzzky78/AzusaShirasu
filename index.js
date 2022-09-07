@@ -1116,7 +1116,7 @@ case 'changelog':{
 } break
 
 case 'donasi': case 'donate':{
-	let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/QRsaweria.png'
+	let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/qrcode-saweria.png'
 	await sendFileFromUrl(from, thumb, lang.tos(ownernomer), m)
 } break
 
@@ -2794,33 +2794,33 @@ case 'otakudesusearch':{
 	await fetchJson(`https://api.lolhuman.xyz/api/otakudesusearch?apikey=${lol}&query=${query}`)
 		.then(async datas => {
 			let Result = datas.result
-			let thisText = `Hasil Pencarian`
-			thisText += `Judul: ${Result.title}`
-			thisText += `Japanese: ${Result.japanese}`
-			thisText += `Title: ${Result.judul}`
-			thisText += `Tipe: ${Result.type}`
-			thisText += `Total Episode: ${Result.episodes}`
-			thisText += `Aired: ${Result.aired}`
-			thisText += `Produser: ${Result.producers}`
-			thisText += `Genre: ${Result.genres}`
-			thisText += `Durasi: ${Result.duration}`
-			thisText += `Studio: ${Result.studios}`
-			thisText += `Rating: ${Result.rating}`
-			thisText += `Credits: ${Result.credit}\n`
-			thisText += `Link Download dibawah ini:`
+			let thisText = `Hasil Pencarian\n`
+			thisText += `Judul: ${Result.title}\n`
+			thisText += `Japanese: ${Result.japanese}\n`
+			thisText += `Title: ${Result.judul}\n`
+			thisText += `Tipe: ${Result.type}\n`
+			thisText += `Total Episode: ${Result.episodes}\n`
+			thisText += `Aired: ${Result.aired}\n`
+			thisText += `Produser: ${Result.producers}\n`
+			thisText += `Genre: ${Result.genres}\n`
+			thisText += `Durasi: ${Result.duration}\n`
+			thisText += `Studio: ${Result.studios}\n`
+			thisText += `Rating: ${Result.rating}\n`
+			thisText += `Credits: ${Result.credit}\n\n`
+			thisText += `Link Download dibawah ini:\n`
 			let linkDownload = Result.link_dl
 			for (var link of linkDownload) {
-				thisText += `Title: ${link.title}`
+				thisText += `Title: ${link.title}\n`
 			} let linkSource = Result.link_dl.link_dl 
 				for (var sourcelink of linkSource ) {
-					thisText += `Resolution: ${sourcelink.reso}`
-					thisText += `Size: ${sourcelink.size}`
-					thisText += `Link Download:`
-					thisText += `ZippyShare: ${sourcelink.ZippyShare}`
-					thisText += `Fileism: ${sourcelink.Filesim}`
-					thisText += `LetsUp: ${sourcelink.LetsUp}`
-					thisText += `DesuFiles: ${sourcelink.DesuFiles}`
-					thisText += `Mega: ${sourcelink.Mega}`
+					thisText += `Resolution: ${sourcelink.reso}\n`
+					thisText += `Size: ${sourcelink.size}\n`
+					thisText += `Link Download:\n`
+					thisText += `ZippyShare: ${sourcelink.ZippyShare}\n`
+					thisText += `Fileism: ${sourcelink.Filesim}\n`
+					thisText += `LetsUp: ${sourcelink.LetsUp}\n`
+					thisText += `DesuFiles: ${sourcelink.DesuFiles}\n`
+					thisText += `Mega: ${sourcelink.Mega}\n`
 					thisText += `- - - - - - - - - - - - - - - - - - - - - - `
 				}
 			reply(thisText).catch((err) => { reply(lang.err())})
@@ -3046,7 +3046,7 @@ case 'shopeeproduct':{ // Search shopee product
 	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
 		async shopeeproduct => {
 			let Result = shopeeproduct.result
-				let thisText = `Hasil Pencarian`
+				let thisText = `Hasil Pencarian\n\n`
 				for (var shopee of Result) {
 					thisText += `Nama Produk: ${shopee.name}\n`
 					thisText += `Harga: ${shopee.price}\n`
@@ -3056,7 +3056,9 @@ case 'shopeeproduct':{ // Search shopee product
 					thisText += `Link: ${shopee.link_produk}\n`
 					thisText += `Gambar: ${shopee.image_cover}\n`
 					thisText += `Deskripsi Produk: ${shopee.desc}\n`
-					thisText += `- \n - - - - - - - - - - - - - -\n-`
+					thisText += `\n`
+					thisText += `- - - - - - - - - - - - - - - -`
+					thisText += `\n`
 				}
 			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
 		}
@@ -3070,7 +3072,7 @@ case 'shopee':{ // Search shopee product
 	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
 		async shopeeproduct => {
 			let Result = shopeeproduct.result
-				let thisText = `Hasil Pencarian`
+				let thisText = `Hasil Pencarian\n\n`
 				for (var shopee of Result) {
 					thisText += `Nama Produk: ${shopee.name}\n`
 					thisText += `Harga: ${shopee.price}\n`
@@ -3080,7 +3082,9 @@ case 'shopee':{ // Search shopee product
 					thisText += `Link: ${shopee.link_produk}\n`
 					thisText += `Gambar: ${shopee.image_cover}\n`
 					thisText += `Deskripsi Produk: ${shopee.desc}\n`
-					thisText += `- \n - - - - - - - - - - - - - -\n-`
+					thisText += `\n`
+					thisText += `- - - - - - - - - - - - - - - -`
+					thisText += `\n`
 				}
 			let thumb = Result[0].image_cover
 			await sendFileFromUrl(from, thumb, thisText, m).catch((err) => { reply(lang.err())})
@@ -3267,7 +3271,7 @@ case 'quotesimage':{
 /* Random text */
 
 case 'faktaunik':{
-	await fetchjson(`https://api.lolhuman.xyz/api/random/faktaunik?apikey=${lol}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/random/faktaunik?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `faktaunik`, `Fakta Unik lainnya`, m)
@@ -3276,7 +3280,7 @@ case 'faktaunik':{
 } break
 
 case 'katabijak':{
-	await fetchjson(`https://api.lolhuman.xyz/api/random/katabijak?apikey=${lol}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/random/katabijak?apikey=${lol}`)
 		.then(async ktbijak => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `katabijak`, `Kata Bijak lainnya`, m)
@@ -3285,7 +3289,7 @@ case 'katabijak':{
 } break
 
 case 'pantun':{
-	await fetchjson(`https://api.lolhuman.xyz/api/random/pantun?apikey=${lol}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/random/pantun?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `pantun`, `Pantun lainnya`, m)
@@ -3294,7 +3298,7 @@ case 'pantun':{
 } break
 
 case 'puisi':{
-	await fetchjson(`https://api.lolhuman.xyz/api/random/puisi?apikey=${lol}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/random/puisi?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `puisi`, `Puisi lainnya`, m)
@@ -3526,7 +3530,7 @@ case 'xnxx':{
 			txt += `Comment : ${datas.comment}\n`
 			txt += `Tag : ${datas.tag.join(", ")}\n`
 			txt += `Description : ${datas.description}\n`
-			txt += "Link : \n"
+			txt += "Link : \n\n"
 		let thisLink = datas.link
 		for (var x of thisLink) {
 			txt += `${x.type} - ${x.link}\n\n`
