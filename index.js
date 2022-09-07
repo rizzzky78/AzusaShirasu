@@ -63,13 +63,18 @@ lang = global.language
 moment.tz.setDefault("Asia/Jakarta").locale("id");
 
 // apikey lolhuman
-const lol = "rizzzuchi78apikey";
+const lol = 'rizzzuchi78apikey';
 
 // picture library
-const pictureMenu = [
+const blobPricture = [
 	'link',
 	'link'
 ]
+const thisBlob = blobPricture[Math.floor(Math.random()*(blobPricture.length))]
+
+// all about sawer
+const saweria = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/qrcode-saweria.png';
+const dashboardDonasi = 'https://saweria.co/overlays/leaderboard?streamKey=90ac389d2ca9bfa6d50c2ac24c7a726b&backgroundColor=%23ffffffFF&color=%23000000FF&fontWeight=500&title=Leaderboard&mode=all';
 
 // Database Game
 const hit_today = []
@@ -1116,13 +1121,13 @@ case 'changelog':{
 } break
 
 case 'donasi': case 'donate':{
-	let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/qrcode-saweria.png'
+	let thumb = saweria
 	await sendFileFromUrl(from, thumb, lang.tos(ownernomer), m)
 } break
 
 case 'boarddonasi':{
-	let thumb = 'https://saweria.co/overlays/leaderboard?streamKey=90ac389d2ca9bfa6d50c2ac24c7a726b&backgroundColor=%23ffffffFF&color=%23000000FF&fontWeight=500&title=Leaderboard&mode=all'
-let txt = `
+	let thumb = dashboardDonasi
+	let txt = `
 Dasboard Donasi
 
 Dasboard akan selalu up to date setiap kali ada yang berdonasi.
@@ -1944,7 +1949,8 @@ break
 ├ Total chats :  ${(Object.keys(db.data.chats).filter(v => v.endsWith('@s.whatsapp.net')).map(v => v).length) + (Object.keys(db.data.chats).filter(v => v.endsWith('@g.us')).map(v => v).length)} 
 ├ User In Database : ${Object.keys(global.db.data.users).length} Users
 ├ User Registered : ${(Object.values(global.db.data.users).filter(user => user.registered == true).length)}
-╰❒ Runtime : ${runtime(process.uptime())}
+├ Runtime : ${runtime(process.uptime())}
+╰❒ 
 
 ╭─❒ 「 Date Info 」 
 ├ Masehi : ${week}, ${date}
@@ -2794,33 +2800,33 @@ case 'otakudesusearch':{
 	await fetchJson(`https://api.lolhuman.xyz/api/otakudesusearch?apikey=${lol}&query=${query}`)
 		.then(async datas => {
 			let Result = datas.result
-			let thisText = `Hasil Pencarian\n`
-			thisText += `Judul: ${Result.title}\n`
-			thisText += `Japanese: ${Result.japanese}\n`
-			thisText += `Title: ${Result.judul}\n`
-			thisText += `Tipe: ${Result.type}\n`
-			thisText += `Total Episode: ${Result.episodes}\n`
-			thisText += `Aired: ${Result.aired}\n`
-			thisText += `Produser: ${Result.producers}\n`
-			thisText += `Genre: ${Result.genres}\n`
-			thisText += `Durasi: ${Result.duration}\n`
-			thisText += `Studio: ${Result.studios}\n`
-			thisText += `Rating: ${Result.rating}\n`
-			thisText += `Credits: ${Result.credit}\n\n`
-			thisText += `Link Download dibawah ini:\n`
+			let thisText = `Hasil Pencarian`
+			thisText += `Judul: ${Result.title}`
+			thisText += `Japanese: ${Result.japanese}`
+			thisText += `Title: ${Result.judul}`
+			thisText += `Tipe: ${Result.type}`
+			thisText += `Total Episode: ${Result.episodes}`
+			thisText += `Aired: ${Result.aired}`
+			thisText += `Produser: ${Result.producers}`
+			thisText += `Genre: ${Result.genres}`
+			thisText += `Durasi: ${Result.duration}`
+			thisText += `Studio: ${Result.studios}`
+			thisText += `Rating: ${Result.rating}`
+			thisText += `Credits: ${Result.credit}\n`
+			thisText += `Link Download dibawah ini:`
 			let linkDownload = Result.link_dl
 			for (var link of linkDownload) {
-				thisText += `Title: ${link.title}\n`
+				thisText += `Title: ${link.title}`
 			} let linkSource = Result.link_dl.link_dl 
 				for (var sourcelink of linkSource ) {
-					thisText += `Resolution: ${sourcelink.reso}\n`
-					thisText += `Size: ${sourcelink.size}\n`
-					thisText += `Link Download:\n`
-					thisText += `ZippyShare: ${sourcelink.ZippyShare}\n`
-					thisText += `Fileism: ${sourcelink.Filesim}\n`
-					thisText += `LetsUp: ${sourcelink.LetsUp}\n`
-					thisText += `DesuFiles: ${sourcelink.DesuFiles}\n`
-					thisText += `Mega: ${sourcelink.Mega}\n`
+					thisText += `Resolution: ${sourcelink.reso}`
+					thisText += `Size: ${sourcelink.size}`
+					thisText += `Link Download:`
+					thisText += `ZippyShare: ${sourcelink.ZippyShare}`
+					thisText += `Fileism: ${sourcelink.Filesim}`
+					thisText += `LetsUp: ${sourcelink.LetsUp}`
+					thisText += `DesuFiles: ${sourcelink.DesuFiles}`
+					thisText += `Mega: ${sourcelink.Mega}`
 					thisText += `- - - - - - - - - - - - - - - - - - - - - - `
 				}
 			reply(thisText).catch((err) => { reply(lang.err())})
@@ -3039,15 +3045,16 @@ case 'gimagesearch':{ // Search image from Google
 		await sendFileFromUrl(from, gimage, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
-case 'shopeeproduct':{ // Search shopee product	
+case 'shopee': case 'shopeeproduct':{ // Search shopee product	
 	reply(lang.wait())
 	let query = args.join(" ")
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} alat kesehatan pria`)
 	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
 		async shopeeproduct => {
 			let Result = shopeeproduct.result
-				let thisText = `Hasil Pencarian\n\n`
+				let thisText = `_Hasil Pencarian...._\n\n\n`
 				for (var shopee of Result) {
+					thisText += `\n`
 					thisText += `Nama Produk: ${shopee.name}\n`
 					thisText += `Harga: ${shopee.price}\n`
 					thisText += `Terjual: ${shopee.sold}\n`
@@ -3057,34 +3064,7 @@ case 'shopeeproduct':{ // Search shopee product
 					thisText += `Gambar: ${shopee.image_cover}\n`
 					thisText += `Deskripsi Produk: ${shopee.desc}\n`
 					thisText += `\n`
-					thisText += `- - - - - - - - - - - - - - - -`
-					thisText += `\n`
-				}
-			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
-		}
-	)
-} break
-
-case 'shopee':{ // Search shopee product	
-	reply(lang.wait())
-	let query = args.join(" ")
-	if (args.length == 0) return reply(`Contoh: ${prefix + command} alat kesehatan pria`)
-	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
-		async shopeeproduct => {
-			let Result = shopeeproduct.result
-				let thisText = `Hasil Pencarian\n\n`
-				for (var shopee of Result) {
-					thisText += `Nama Produk: ${shopee.name}\n`
-					thisText += `Harga: ${shopee.price}\n`
-					thisText += `Terjual: ${shopee.sold}\n`
-					thisText += `Stok: ${shopee.stock}\n`
-					thisText += `Lokasi Toko: ${shopee.shop_loc}\n`
-					thisText += `Link: ${shopee.link_produk}\n`
-					thisText += `Gambar: ${shopee.image_cover}\n`
-					thisText += `Deskripsi Produk: ${shopee.desc}\n`
-					thisText += `\n`
-					thisText += `- - - - - - - - - - - - - - - -`
-					thisText += `\n`
+					thisText += `- - - - - - - - - - - - - - - - - - - - \n`
 				}
 			let thumb = Result[0].image_cover
 			await sendFileFromUrl(from, thumb, thisText, m).catch((err) => { reply(lang.err())})
@@ -3183,39 +3163,39 @@ case 'searchquote':{ // Search kata bijak
 			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
 		}
 	)
-}  break
+} break
 
 /* Sticker Features */
 
 case 'stickerpatrick':{
 	reply(lang.wait())
-	let petrik = await(`https://api.lolhuman.xyz/api/sticker/patrick?apikey=${lol}`)
-	await sendFileFromUrl(from, petrik, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/patrick?apikey=${lol}`)
+		alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 case 'stickerdadu':{
-	let dadu = await(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${lol}`)
-	await sendFileFromUrl(from, dadu, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${lol}`)
+	alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 case 'stickeramongus':{
-	let amongus = await(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${lol}`)
-	await sendFileFromUrl(from, amongus, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${lol}`)
+	alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 case 'stickergawgura':{
-	let gura = await(`https://api.lolhuman.xyz/api/sticker/gawrgura?apikey=${lol}`)
-	await sendFileFromUrl(from, gura, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/gawrgura?apikey=${lol}`)
+	alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 case 'stickeranjing':{
-	let njing = await(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${lol}`)
-	await sendFileFromUrl(from, njing, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${lol}`)
+	alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 case 'stickerbucin':{
-	let bucin = await(`https://api.lolhuman.xyz/api/sticker/bucinstick?apikey=${lol}`)
-	await sendFileFromUrl(from, bucin, m).catch((err) => { reply(lang.err())})
+	let data = await(`https://api.lolhuman.xyz/api/sticker/bucinstick?apikey=${lol}`)
+	alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 } break
 
 /* Quotes */
@@ -3271,7 +3251,7 @@ case 'quotesimage':{
 /* Random text */
 
 case 'faktaunik':{
-	await fetchJson(`https://api.lolhuman.xyz/api/random/faktaunik?apikey=${lol}`)
+	await fetchjson(`https://api.lolhuman.xyz/api/random/faktaunik?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `faktaunik`, `Fakta Unik lainnya`, m)
@@ -3280,8 +3260,8 @@ case 'faktaunik':{
 } break
 
 case 'katabijak':{
-	await fetchJson(`https://api.lolhuman.xyz/api/random/katabijak?apikey=${lol}`)
-		.then(async ktbijak => {
+	await fetchjson(`https://api.lolhuman.xyz/api/random/katabijak?apikey=${lol}`)
+		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `katabijak`, `Kata Bijak lainnya`, m)
 			.catch((err) => { reply(lang.err())})
@@ -3289,7 +3269,7 @@ case 'katabijak':{
 } break
 
 case 'pantun':{
-	await fetchJson(`https://api.lolhuman.xyz/api/random/pantun?apikey=${lol}`)
+	await fetchjson(`https://api.lolhuman.xyz/api/random/pantun?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `pantun`, `Pantun lainnya`, m)
@@ -3298,7 +3278,7 @@ case 'pantun':{
 } break
 
 case 'puisi':{
-	await fetchJson(`https://api.lolhuman.xyz/api/random/puisi?apikey=${lol}`)
+	await fetchjson(`https://api.lolhuman.xyz/api/random/puisi?apikey=${lol}`)
 		.then(async data => {
 			let Result = data.result
 			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `puisi`, `Puisi lainnya`, m)
@@ -3306,22 +3286,22 @@ case 'puisi':{
 	})
 } break
 
-case 'katabucin1': case 'katabucin2':{
-	if (command === 'katabucin1') {
+case 'katabucin1':{
+	reply(lang.wait())
 		let bcn = await(`https://api.lolhuman.xyz/api/random/bucin?apikey=${lol}`)
 		await sendFileFromUrl(from, bcn, lang.ok(), m).catch((err) => { reply(lang.err())})
-	} if (command === 'katabucin2') {
+} break
+
+case 'katabucin2':{
 		let bcn1 = await(`https://api.lolhuman.xyz/api/random/katabucin?apikey=${lol}`)
 		await sendFileFromUrl(from, bcn1, lang.ok(), m).catch((err) => { reply(lang.err())})
-	}
 } break
 
 /* Islami */
 
 case 'niatsholat':{
 	let select = args[0]
-	if (!args == 'subuh'||'dzuhur'||'ashar'||'maghrib'||'isya')
-	return reply(`Contoh: ${prefix + command} available enpoint is subuh, dzuhur, ashar, maghrib, isya"\n\nContoh pengunaan: !niatsholat subuh`)
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} available enpoint is subuh, dzuhur, ashar, maghrib, isya"\n\nContoh pengunaan: !niatsholat subuh`)
 	await fetchJson(`https://api.lolhuman.xyz/api/niatsholat/${select}?apikey=${lol}`)
 		.then(async niat => {
 			let data = niat.result
@@ -3334,7 +3314,9 @@ case 'niatsholat':{
 } break
 
 case 'kisahnabi':{
-	await fetchJson(`https://api.lolhuman.xyz/api/kisahnabi/muhammad?apikey=rizzzuchi78apikey`)
+	let query = args[0]
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} isa`)
+	await fetchJson(`https://api.lolhuman.xyz/api/kisahnabi/${query}?apikey=${lol}`)
 		.then(async data => {
 			let datas = data.result
 			let txt = `Nama Nabi: ${datas.name}\n`
@@ -3372,24 +3354,24 @@ case 'fbdl2':{
 
 case 'jooxplay':{
 	reply(lang.wait())
+	let query = args.join(" ")
 	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
-    let query = args.join(" ")
-    await fetchJson(`https://api.lolhuman.xyz/api/jooxplay?apikey=${lol}&query=${query}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/jooxplay?apikey=${lol}&query=${query}`)
 	.then(async data => {
 		let datas = data.result
-		let txt = `Title ${datas.info,song}\n`
-			txt += `Artist: ${datas.info.singer}\n`
-			txt += `Druration: ${datas.info.duration}\n`
+		let txt = `Jooxplay Queue ....\n`
+			txt += `Singer: ${datas.info.singer}\n`
+			txt += `Song: ${datas.info.song}\n`
 			txt += `Album: ${datas.info.album}\n`
-			txt += `Uploaded: ${datas.info.date}\n`
-			txt += `Lirik: ${datas.info.lirik}\n`
-		let thumb = data.image
-		await sendFileFromUrl(from, thumb, txt, m)
-		await reply(`Mohon tunggu sebentar, file audio sedang dikirim...`)
-		let propSongs = datas.audio[0].link
-		alpha.sendMessage(from, {audio: {url: propSongs}, mimetype: 'audio/mpeg'}, {quoted:m})
-		.catch((err) => { reply(lang.err())})
-	})				
+			txt += `Date: ${datas.info.date}\n`
+			txt += `Duration: ${datas.info.duration}\n\n\n`
+			txt += `Details Selected Audio Song:\nBitrate: ${datas.audio[0].reso}\nSize: ${datas.audio[0].size}\n\n`
+			txt += `Lyrics:\n\n${datas.lirik}`
+		let thumb = datas.image
+			await sendFileFromUrl(from, thumb, txt, m)
+				let jooxAudio = datas.audio[0].link
+				alpha.sendMessage(from, {audio: {url: jooxAudio}, mimetype: 'audio/mpeg'}, {quoted:m})
+	})
 } break
 
 case 'spotify':{	
@@ -3408,8 +3390,7 @@ case 'spotify':{
 		await sendFileFromUrl(from, thumb, txt, m)
 		await reply(`Mohon tunggu sebentar, file audio sedang dikirim...`)
 		let propSongs = datas.link
-		alpha.sendMessage(from, {audio: {url: propSongs}, mimetype: 'audio/mpeg'}, {quoted:m})
-		.catch((err) => { reply(lang.err())})
+		alpha.sendMessage(from, {audio: {url: propSongs}, mimetype: 'audio/mpeg'}, {quoted:m}).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -3417,7 +3398,7 @@ case 'spotifysearch':{
 	reply(lang.wait())
 	let query = args.join(" ")
 	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
-	await fetchJson(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${l0lhuman}&query=${query}`)
+	await fetchJson(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lol}&query=${query}`)
 	.then(async data => {
 		let datas = data.result
 		let txt = `Hasil Pencarian...\n`
@@ -3502,7 +3483,7 @@ case 'xnxxsearch':{
 	await fetchJson(`https://api.lolhuman.xyz/api/xnxxsearch?apikey=${lol}&query=${query}`)
 	.then(async data => {
 		let datas = data.result
-		let txt = `ddd`
+		let txt = ``
 		for (var x of datas) {
 			txt += `Title : ${x.title}\n`
 			txt += `Views : ${x.views}\n`
@@ -3530,7 +3511,7 @@ case 'xnxx':{
 			txt += `Comment : ${datas.comment}\n`
 			txt += `Tag : ${datas.tag.join(", ")}\n`
 			txt += `Description : ${datas.description}\n`
-			txt += "Link : \n\n"
+			txt += "Link : \n"
 		let thisLink = datas.link
 		for (var x of thisLink) {
 			txt += `${x.type} - ${x.link}\n\n`
@@ -3589,22 +3570,29 @@ case 'xhamster':{
 
 */
 
-/*case 'ytplay2':{
+case 'ytplay3':{
+	reply(lang.wait())
 	let query = args.join(" ")
 	if (args.length == 0) return await reply(`Example: ${prefix + command} melukis senja`)
-		await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
-		.then(async(result) => {
-			await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=https://www.youtube.com/watch?v=${result.result[0].videoId}`)
-			.then(async(result) => {
-				let result = result.result
-				let caption = `❖ Title    : *${result.title}*\n`
-					caption += `❖ Size     : *${result.size}*`
-				let thumb = result.thumbnail
-				await sendFileFromUrl(from, result, caption, m).catch((err) => { reply(lang.err())})
-			})
+		await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=${lol}&query=${query}`)
+		.then(async data => {
+			let datas = data.result
+			let txt = `YoutubePlay\n\n`
+				txt += `Judul: ${datas.info.title}\n`
+				txt += `Channel: ${datas.info.channel}\n`
+				txt += `Duration: ${datas.info.duration}\n`
+				txt += `View: ${datas.info.view}\n`
+				txt += `Size Audio: ${datas.audio.size}\nBitrate: ${datas.audio.bitrate}`
+			let thumb = datas.info.thumbnail
+			await sendFileFromUrl(from, thumb, txt, m)
+			reply('Mohon tunggu sebentar, file Audio sedang dikirim...')
+				let mediaVideo = datas.audio.link
+				alpha.sendMessage(from, {audio: {url: mediaVideo}, mimetype: 'audio/mpeg'}, {quoted:m})
 		})
-} break*/
-case 'ytsearch2':{			
+} break
+
+case 'ytsearch2':{		
+	reply(lang.wait())	
 	let query = args.join(" ")
 	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
 	await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
@@ -3623,6 +3611,7 @@ case 'ytsearch2':{
 } break
 
 case 'youtubemp3':{
+	reply(lang.wait())	
 	let ini_link = args[0]
 	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
 	await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=${ini_link}`)
@@ -3639,13 +3628,14 @@ case 'youtubemp3':{
 	})
 } break
 case 'youtubemp4':{	
+	reply(lang.wait())	
 	let ini_link = args[0]	
 	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
 	await fetchJson(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lol}&url=${ini_link}`)
 	.then(async data => {
 		let dataVideo = data.result
-		let txt = `Title: ${dataVideo.title}`
-			txt += `Size: ${dataVideo.size}`
+		let txt = `Title: ${dataVideo.title}\n`
+			txt += `Size: ${dataVideo.size}\n`
 		let thumb = dataVideo.thumbnail
 			await sendFileFromUrl(from, thumb, txt, m)
 			await reply('Mohon tunggu sebentar, file video sedang dikirim...')
@@ -3654,8 +3644,129 @@ case 'youtubemp4':{
 	})
 } break
 
-/*
+/* Other */
 
+case 'shorturl1':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		datas = data.result
+		alpha.sendText(m.chat, datas, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'shorturl2':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/shortlink2?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		datas = data.result
+		alpha.sendText(m.chat, datas, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'shorturl3':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/shortlink3?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		datas = data.result
+		alpha.sendText(m.chat, datas, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'shorturl4':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/shortlink4?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		datas = data.result
+		alpha.sendText(m.chat, datas, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'shortouo':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/ouoshortlink?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		let res = data.result
+		let txt = `Link Origin: ${link}\nLink Shortened: ${res}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+}
+
+case 'ouo':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/ouo?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		let res = data.result
+		let txt = `Link Origin: ${link}\nLink Bypassed: ${res}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'filetobase64':{
+	let link = args[0]
+	fetchJson(`https://api.lolhuman.xyz/api/filetobase64?apikey=${lol}&file=${link}`)
+	.then(async dataenc => {
+		let res = dataenc.result
+		let txt = `File Link Origin:\n${link}\n\nConverted to base64:\n${res}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'texttomorse':{
+	let text = args.join(" ")
+	fetchJson(`https://api.lolhuman.xyz/api/morse/encrypt?apikey=${lol}&text=${text}`)
+	.then(async data => {
+		let res = data.result
+		let txt = `Text:\n${text}\n\nMorse:\n${res}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'morsetotext':{
+	let query = args.join(" ")
+	fetchJson(`https://api.lolhuman.xyz/api/morse/decrypt?apikey=${lol}&text=${query}`)
+	.then(async data => {
+		let res = data.result
+		let txt = `Text:\n${text}\n\nMorse:\n${res}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+
+
+
+
+
+
+
+
+
+case 'checkapikey':{
+	await fetchJson(`https://api.lolhuman.xyz/api/checkapikey?apikey=${lol}`)
+	.then(async data => {
+		let res = data.result
+		let txt = `*Dasboard API Azusa Bot*\n\n`
+			txt += `Username: ${res.username}\n`
+			txt += `Total Request: ${res.requests}\n`
+			txt += `Today Request: ${res.today}\n`
+			txt += `Account Type: ${res.account_type}\n`
+			txt += `Expired: ${res.expired}\n`
+	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+/*
+v{
+    "status": 200,
+    "message": "success",
+    "result": {
+        "username": "rizuki9957",
+        "requests": 11002,
+        "today": 138,
+        "account_type": "Premium",
+        "expired": "06-10-2022"
+    }
+}
 */
 case'budi':{
 	alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
