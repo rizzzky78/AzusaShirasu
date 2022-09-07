@@ -7,7 +7,7 @@ Change log:
 	- maybe fixed lewd feature(?)
 
 
-	Last Edited -- 26 August 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 07 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
 
@@ -1033,7 +1033,7 @@ if (!m.isGroup) return reply(lang.groupOnly())
 				}
             break
             
-            case 'quotesanime': case 'quoteanime': {
+            case 'quotesanimeeee': case 'quoteanime': {
 				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
 				/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
                 reply(lang.wait())
@@ -1109,31 +1109,30 @@ case 'ambilidarmada':{
 let iniIDArmada = "1051147"
 alpha.sendText(m.chat, iniIDArmada, m)
 } break
-			case 'nickarmada':{
-            var but = [
-					{
-					"urlButton": {
-						"displayText": "Salin ID Armada",
-						"url": "https://www.whatsapp.com/otp/copy/1051147"
-						}
-					},
-					{
-					"urlButton": {
-						"displayText": "Salin Nick Armada",
-						"url": "https://www.whatsapp.com/otp/copy/H᭄ꦿ• YourNick"
-						}
-					},
-					{
-					"urlButton": {
-						"displayText": "Salin Nama Budi",
-						"url": "https://www.whatsapp.com/otp/copy/H᭄ꦿ• Budi"
-						}
-					}
-				]
-				await alpha.sendButMessage(from, lang.armada(prefix), `© ${ownername}`, but , { userJid: m.chat, quoted: m })
-				}
-				break
-            case 'pay': case 'bayar':{
+
+case 'changelog':{
+	let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/picture/shirasu_azusa.png'
+	await sendFileFromUrl(from, thumb, lang.changelog(), m)
+} break
+
+case 'donasi': case 'donate':{
+	let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/QRsaweria.png'
+	await sendFileFromUrl(from, thumb, lang.tos(ownernomer), m)
+} break
+
+case 'boarddonasi':{
+	let thumb = 'https://saweria.co/overlays/leaderboard?streamKey=90ac389d2ca9bfa6d50c2ac24c7a726b&backgroundColor=%23ffffffFF&color=%23000000FF&fontWeight=500&title=Leaderboard&mode=all'
+let txt = `
+Dasboard Donasi
+
+Dasboard akan selalu up to date setiap kali ada yang berdonasi.
+makacihh....
+
+Regards, Azusa Bot`
+	await sendFileFromUrl(from, thumb, txt, m)
+}
+
+            case 'paaay': case 'baaaayar':{
              alpha.sendMessage(m.chat, {image: qris, caption : (db.data.settings[botNumber].captionPay || 'Payment. caption pay bisa ubah dengan command .setcaptionpay ')}, {quoted: m})
             	}
            break
@@ -1145,7 +1144,7 @@ alpha.sendText(m.chat, iniIDArmada, m)
 			alpha.sendButMessage(m.chat, lang.ok() + ' ' + command + '\n\n' + text, `© ${ownername}`, [{buttonId: 'menu', buttonText: {displayText: 'Menu'}, type: 1}], {quoted: fgif})
 			}
 			break
-            case 'donasi': case 'donate':{
+            case 'donasisss': case 'donatssse':{
             var but = [
           {
             "urlButton": {
@@ -2534,7 +2533,7 @@ await sendFileFromUrl(from, texpro, lang.ok(), m)
 /*db.data.users[m.sender].limit -= 1*/
 }
 break
-case 'chika': case 'rikagusriani':  case 'bocil': case 'geayubi': case 'santuy': case 'ukhty': case 'asupan':  case 'delvira': case 'ayu': case 'bunga': case 'aura': case 'nisa': case 'ziva': case 'yana': case 'viona': case 'syania': case 'riri': case 'syifa': case 'mama_gina': case 'alcakenya': case 'mangayutri': {
+case 'chika': case 'rikagusriani':  case 'bocil': case 'geayubi': case 'santuy': case 'ukhty':  case 'delvira': case 'ayu': case 'bunga': case 'aura': case 'nisa': case 'ziva': case 'yana': case 'viona': case 'syania': case 'riri': case 'syifa': case 'mama_gina': case 'alcakenya': case 'mangayutri': {
 				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
 /*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
 reply(lang.wait())
@@ -2619,22 +2618,24 @@ case 'menuwibu':case'menubudi': {
 		{buttonId: 'hentai4everyone', buttonText: {displayText: 'Budi Hentai'}}]) }, 11000)
 } break
 
-case 'semuamenu':
-alpha.sendText(m.chat, lang.listMenu(time, salam, pushname, prefix), m)
-break
+case 'semuamenu':{
+	reply(lang.wait())
+	let thumb = 'https://i.pximg.net/img-master/img/2022/09/03/14/44/19/100962828_p0_master1200.jpg'
+	await sendFileFromUrl(from, thumb, lang.listMenu(time, salam, pushname, prefix), m)
+} break
+
+/* API -- Lolhuman Source */
+
+/* NSFW */
 case 'randomhentai':case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'ecchi':case 'hentai':case 'ahegao':case 'hololewd':
 case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'hentaiparadise':case 'animearmpits':case 'hentaifemdom':case 'lewdanimegirls':
 case 'biganimetiddies':case 'animebellybutton':case 'hentai4everyone':case 'neko': case 'waifu':case 'loli':case 'milf':{
 	reply(lang.wait())
-	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
+	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Jangan lupa bilang makasih kack..']
 	let capt = captx[Math.floor(Math.random() * (captx.length))]
-try {
+
 	let thisLewd = await(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${lol}`)
-		await sendFileFromUrl(from, thisLewd, capt, m)
-} catch {
-	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, lewdLagi, capt, m).catch((err) => { reply(lang.err())})
-}
+		await sendFileFromUrl(from, thisLewd, capt, m).catch((err) => { reply(lang.err())})
 } break
 
 case 'randomhentai2':case 'bj':case 'ero':case 'cum':case 'feet':case 'yuri':case 'trap':case 'lewd':case 'feed':case 'eron':case 'solo':
@@ -2643,15 +2644,11 @@ case 'feetg':case 'lewdk':case 'waifu':case 'pussy':case 'femdom':case 'cuddle':
 case 'blowjob':case 'erofeet':case 'holoero':case 'classic':case 'erokemo':case 'fox_girl':case 'futanari':case 'lewdkemo':case 'wallpaper':
 case 'pussy_jpg':case 'kemonomimi':case 'nsfw_avatar':case'lewd': case'keta':case'femdom': case'futanari':case'anal':{
 	reply(lang.wait())
-	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Salam Budi']
+	let captx = ['Tuh dasar wibu sangean','Done kack','Tuh kack','Jangan lupa bilang makasih kack..']
 	let capt = captx[Math.floor(Math.random() * (captx.length))]
-try {
+
 	let thisLewd = await(`https://api.lolhuman.xyz/api/random2/${command}?apikey=${lol}`)
-		await sendFileFromUrl(from, thisLewd, capt, m)
-} catch {
-	let lewdLagi = await getBuffer(`https://api.lolhuman.xyz/api/random2/${command}?apikey=${lol}`)
-	await alpha.sendFileFromUrl(from, lewdLagi, capt, m).catch((err) => { reply(lang.err())})
-}
+	await sendFileFromUrl(from, thisLewd, capt, m).catch((err) => { reply(lang.err())})
 } break
 
 case 'waifuu':case 'art':case 'bts':case 'exo':case 'elf':case 'loli':case 'shota':case 'husbu':case 'sagiri':
@@ -2666,37 +2663,40 @@ case 'nhentaisearch':{
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} Budi`)
 	let query = args.join(" ")
 	reply(lang.wait())
-	await fetchJson(`https://api.lolhuman.xyz/api/nhentaisearch?apikey=${lol}&query=${query}`).then(async nhSearch => {
-		thisResult = nhSearch.result
-		let ini_txt = "Result : \n"
-		for (var x of thisResult) {
-			ini_txt += `Id : #${x.id}\n`
-			ini_txt += `Title English : ${x.title_english}\n`
-			ini_txt += `Title Japanese : ${x.title_japanese}\n`
-			ini_txt += `Native : ${x.title_native}\n`
-			ini_txt += `Upload : ${x.date_upload}\n`
-			ini_txt += `Page : ${x.page}\n`
-			ini_txt += `Favourite : ${x.favourite}\n\n`
-			ini_txt += `- - - \n`
-		}
-		alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
+		await fetchJson(`https://api.lolhuman.xyz/api/nhentaisearch?apikey=${lol}&query=${query}`)
+			.then(async nhSearch => {
+				thisResult = nhSearch.result
+				let ini_txt = "Result : \n"
+				for (var x of thisResult) {
+					ini_txt += `Id : #${x.id}\n`
+					ini_txt += `Title English : ${x.title_english}\n`
+					ini_txt += `Title Japanese : ${x.title_japanese}\n`
+					ini_txt += `Native : ${x.title_native}\n`
+					ini_txt += `Upload : ${x.date_upload}\n`
+					ini_txt += `Page : ${x.page}\n`
+					ini_txt += `Favourite : ${x.favourite}\n\n`
+					ini_txt += `- - - \n`
+				}
+			azusa.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
-
+/* Nhentai Scrapper -- Azusa Bot */
 case 'nhentaipdf':case'nhpdf':{
 	if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
 	reply(lang.wait())
-	let henid = args[0]
-		await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`).then(async getResult => {
-				getResult = getResult.result
+		let henid = args[0]
+			await fetchJson(`https://api.lolhuman.xyz/api/nhentaipdf/${henid}?apikey=${lol}`)
+				.then(async getResult => {
+					// async API source
+				var getResult = getResult.result
 				try {
-					await sendFileFromUrl(from, getResult, document, {filename:`${henid}.pdf`}, m)
-					reply('Done kack!')
-				} catch {
+					await sendFileFromUrl(from, getResult, { mimetype: document, filename:`${henid}.pdf`}, m)
+						reply('Done kack!')
+					} catch {
 					await sendFileFromUrl(from, getResult, m)
-					reply('Done kack!').catch((err) => { reply(lang.err())})
-				}
-		})	
+						reply('Done kack!').catch((err) => { reply(lang.err())})
+					}
+			})	
 } break
 
 case 'doujindesu':case'doudesu':{
@@ -2705,7 +2705,7 @@ case 'doujindesu':case'doudesu':{
 	reply(lang.wait())
 	let links = args[0]
 try {
-	var doudesu = await fetchJson(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
+	await fetchJson(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
 		async doudesu => {
 			let txtresult = `Title: ${doudesu.title}\n`
 			txtresult += `Link Download: ${doudesu.link_dl}`
@@ -2713,9 +2713,9 @@ try {
 		}
 	)
 } catch {
-	var doudesux = await getBuffer(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
+	await getBuffer(`https://api.lolhuman.xyz/api/doujindesu?apikey=${lol}&url=${links}`).then(
 		async doudesux => {
-			let buffer = doudesu.link_dl
+			let buffer = doudesux.link_dl
 			await sendFileFromUrl(from, buffer, m).catch((err) => { reply(lang.err())})
 		}
 	)
@@ -2773,10 +2773,12 @@ case 'neonimelatest':{
 	})
 } break
 
+/* Anime */
+
 case'storyanime':{
 	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
-		getResult = storyAnime.result
+		let getResult = storyAnime.result
 	try {
 		await sendFileFromUrl(from, getResult, lang.ok(), m)
 	} catch {
@@ -2784,6 +2786,85 @@ case'storyanime':{
 	}
 	})
 } break
+
+case 'otakudesusearch':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} classroom elite`)
+	await fetchJson(`https://api.lolhuman.xyz/api/otakudesusearch?apikey=${lol}&query=${query}`)
+		.then(async datas => {
+			let Result = datas.result
+			let thisText = `Hasil Pencarian`
+			thisText += `Judul: ${Result.title}`
+			thisText += `Japanese: ${Result.japanese}`
+			thisText += `Title: ${Result.judul}`
+			thisText += `Tipe: ${Result.type}`
+			thisText += `Total Episode: ${Result.episodes}`
+			thisText += `Aired: ${Result.aired}`
+			thisText += `Produser: ${Result.producers}`
+			thisText += `Genre: ${Result.genres}`
+			thisText += `Durasi: ${Result.duration}`
+			thisText += `Studio: ${Result.studios}`
+			thisText += `Rating: ${Result.rating}`
+			thisText += `Credits: ${Result.credit}\n`
+			thisText += `Link Download dibawah ini:`
+			let linkDownload = Result.link_dl
+			for (var link of linkDownload) {
+				thisText += `Title: ${link.title}`
+			} let linkSource = Result.link_dl.link_dl 
+				for (var sourcelink of linkSource ) {
+					thisText += `Resolution: ${sourcelink.reso}`
+					thisText += `Size: ${sourcelink.size}`
+					thisText += `Link Download:`
+					thisText += `ZippyShare: ${sourcelink.ZippyShare}`
+					thisText += `Fileism: ${sourcelink.Filesim}`
+					thisText += `LetsUp: ${sourcelink.LetsUp}`
+					thisText += `DesuFiles: ${sourcelink.DesuFiles}`
+					thisText += `Mega: ${sourcelink.Mega}`
+					thisText += `- - - - - - - - - - - - - - - - - - - - - - `
+				}
+			reply(thisText).catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'wait':{
+	reply(lang.wait())
+	let link = args[0]
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} link gambar`)
+	await fetchJson(`https://api.lolhuman.xyz/api/wait?apikey=${lol}&img=${link}`)
+		.then(async wait => {
+			let result = wait.result
+let txt = `Anilist id : ${result.anilist_id}
+MAL id : ${result.mal_id}
+Title Romaji : ${result.title_romaji}
+Title Native : ${result.title_native}
+Title English : ${result.title_english}
+at : ${result.at}
+Episode : ${result.episode}\n
+Similarity : ${result.similarity}`
+		reply(from, txt, m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'wmit':{
+	reply(lang.wait())
+	let imagelink = args[0]
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} link gambar`)
+	await(`https://api.lolhuman.xyz/api/wmit?apikey=${lol}&img=${imagelink}`)
+		.then(async data => {
+			let datas = data.result
+			let txt = `Hasil Analisis gue:...`
+			for (var thisData of datas) {
+				txt += `Title: ${thisData.title}`
+				txt += `Part: ${thisData.part}`
+				txt += `Urls: ${thisData.urls[0]}`
+				txt += `Similarity: ${thisData.similarity}`
+			}
+		reply(from, result, m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+/* Text  */
 
 case 'cerpen':{
 	await fetchJson(`https://api.lolhuman.xyz/api/cerpen?apikey=${lol}`).then(async cerpen => {
@@ -2806,68 +2887,51 @@ case 'ceritahoror':{
 	})
 } break
 
-case 'wait':{
-	let link = args[0]
-	let result = await(`https://api.lolhuman.xyz/api/wait?apikey=${lol}&img=${link}`)
-alpha.sendMessage(m.chat, { video: { url: result.video },
-caption: `Anilist id : ${result.anilist_id}\n
-MAL id : ${result.mal_id}\n
-Title Romaji : ${result.title_romaji}\n
-Title Native : ${result.title_native}\n
-Title English : ${result.title_english}\n
-at : ${result.at}\n
-Episode : ${result.episode}\n
-Similarity : ${result.similarity}
-` }, { quoted: m })
+/* Meme */
+
+case 'cmm':{ // change my mind memes
+	reply(lang.wait())
+	let query = args.join(" ")
+	let process = (`https://api.lolhuman.xyz/api/creator/changemymind?apikey=${lol}&text=${query}`)
+	await sendFileFromUrl(from, process, lang.ok(), m).catch((err) => { reply(lang.err())})	
 } break
 
-case 'wmit':{
-	let query = args[0]
-	let result = await(`https://api.lolhuman.xyz/api/wmit?apikey=${lol}&img=${query}`)
-	await reply(from, result, m)
-} break
-/*
-https://api.lolhuman.xyz/api/wmit?apikey=rizzzuchi78apikey&img=https://i.pinimg.com/736x/e7/41/e7/e741e7edf1bb992342a46e415a825338.jpg
-*/
-
-// MEME
-case'budi':{
-alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
-} break
-case 'inibudi':{
-	setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000 ) 
-	setTimeout(() => { reply('dalam waktu...') }, 3000 ) 
-		setTimeout(() => { reply('Tiga - 3') }, 5000 ) 
-			setTimeout(() => { reply('Dua - 2') }, 7000 ) 
-				setTimeout(() => { reply('Satu - 1') }, 9000 ) 
-				setTimeout(() => { reply('Lahh nungguin ye?') }, 17000 ) 
-				setTimeout(() => { reply('Mampus, mau aja gw kibulin...') }, 19000 ) 
-} break 
-case'memes':{
-let caption = '*_Memes Menu_*\n\nAPI: LoLHuman'
+case'memes':case'meme':{
+let caption = '_Memes Feature_\n\nSilahkan ketuk tombol dibawah:'
 	alpha.sendButMessage(from, caption, `© ${ownername}`,[
-		{buttonId: 'meme', buttonText: {displayText: 'Meme'}},
-		{buttonId: 'memeindo', buttonText: {displayText: 'Meme Indo'}},
-		{buttonId: 'darkjokes', buttonText: {displayText: 'Darkjokes'}}
+		{buttonId: 'thismeme', buttonText: {displayText: 'Meme'}},
+		{buttonId: 'thismemeindo', buttonText: {displayText: 'Meme Indo'}},
+		{buttonId: 'djoke', buttonText: {displayText: 'Darkjokes'}}
 	])	
 } break
-case'darkjokes':case'darkjoke':{
+case'djoke':{
 		reply(lang.wait())
 	let djokes = await (`https://api.lolhuman.xyz/api/meme/darkjoke?apikey=${lol}`)
 	await sendFileFromUrl(from, djokes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
-case'meme':{
+case'thismeme':{
 		reply(lang.wait())
 	let memes = await (`https://api.lolhuman.xyz/api/random/meme?apikey=${lol}`)
 	await sendFileFromUrl(from, memes, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
 
-case'memeindo':{
+case'thismemeindo':{
 		reply(lang.wait())
 	let memindo = await (`https://api.lolhuman.xyz/api/meme/memeindo?apikey=${lol}`)
 	await sendFileFromUrl(from, memindo, lang.ok(), m).catch((err) => { reply(lang.err())})
 } break
+
+/* Random Asupan */
+
+case 'asupan':{
+	reply(lang.wait())
+	await fetchJson(`https://api.lolhuman.xyz/api/asupan?apikey=${lol}`)
+	.then(async data => {
+		let datas = data. result
+		await sendFileFromUrl(from, datas, lang.ok(), m).catch((err) => { reply(lang.err())})
+	})
+} break 
 
 case'cecan':{
 		reply(lang.wait())
@@ -2893,6 +2957,8 @@ case'esteticpicture':{
 	await sendFileFromUrl(from, este, lang,ok(), m).catch((err) => { reply(lang.err())})
 } break			 
 
+/* Ensiklopedia */
+
 case 'wikipedia':{
 	if (args.length == 0) return reply(`Example: ${prefix + command} Tahu`)
 	let query = args.join(" ") 
@@ -2904,8 +2970,9 @@ case 'wikipedia':{
 } break
 
 case 'kbbi':{
+let query = args.join(" ")
 if (args.length == 0) return reply(`Example: ${prefix + command} kursi`)
-var get_result = await fetchJson(`https://api.lolhuman.xyz/api/kbbi?apikey=${lol}&query=${args.join(" ")}`).then(
+var get_result = await fetchJson(`https://api.lolhuman.xyz/api/kbbi?apikey=${lol}&query=${query}`).then(
 		 async get_result => {
 			let lila = get_result.result
 			let ini_txt = `\`\`\`Kata : ${lila[0].nama}\`\`\`\n`
@@ -2924,59 +2991,663 @@ var get_result = await fetchJson(`https://api.lolhuman.xyz/api/kbbi?apikey=${lol
 	)
 } break
 
-case 'ytplay':{
+/* Search */
+
+case 'kanachansearch':{ // Search image from Konachan	
+	reply(lang.wait())
+	let query = args.join(" ") 
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} azur lane`)
+	let kana = await(`https://api.lolhuman.xyz/api/konachan?apikey=${lol}&query=${query}`)
+		await sendFileFromUrl(from, kana, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case 'danboorusearch':{ // Search image from Danbooru ( NSFW )	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} azur lane`)
+	let danbooru = await(`https://api.lolhuman.xyz/api/danbooru?apikey=${lol}&query=${query}`)
+		await sendFileFromUrl(from, danbooru, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case 'walppsearch1':{ // Search image from Wallpaper Search	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} azur lane`)
+	await(`https://api.lolhuman.xyz/api/wallpaper2?apikey=${lol}&query=${query}`).then(
+		async wpp1 => {
+			Result = wpp1.result
+			await sendFileFromUrl(from, Result, lang.ok(), m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'walppsearch2':{ // Search image from Wallpaper Search	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} azur lane`)
+	await fetchJson(`https://api.lolhuman.xyz/api/wallpaper3?apikey=${lol}&query=${query}`).then(
+		async wpp1 => {
+			Result = wpp1.result
+			await sendFileFromUrl(from, Result, lang.ok(), m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'gimagesearch':{ // Search image from Google	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} lolipai gede banget`)
+	let gimage = await fetchJson(`https://api.lolhuman.xyz/api/gimage?apikey=${lol}&query=${query}`)
+		await sendFileFromUrl(from, gimage, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case 'shopeeproduct':{ // Search shopee product	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} alat kesehatan pria`)
+	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
+		async shopeeproduct => {
+			let Result = shopeeproduct.result
+				let thisText = `Hasil Pencarian`
+				for (var shopee of Result) {
+					thisText += `Nama Produk: ${shopee.name}\n`
+					thisText += `Harga: ${shopee.price}\n`
+					thisText += `Terjual: ${shopee.sold}\n`
+					thisText += `Stok: ${shopee.stock}\n`
+					thisText += `Lokasi Toko: ${shopee.shop_loc}\n`
+					thisText += `Link: ${shopee.link_produk}\n`
+					thisText += `Gambar: ${shopee.image_cover}\n`
+					thisText += `Deskripsi Produk: ${shopee.desc}\n`
+					thisText += `- \n - - - - - - - - - - - - - -\n-`
+				}
+			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+case 'shopee':{ // Search shopee product	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} alat kesehatan pria`)
+	await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=${lol}&query=${query}`).then(
+		async shopeeproduct => {
+			let Result = shopeeproduct.result
+				let thisText = `Hasil Pencarian`
+				for (var shopee of Result) {
+					thisText += `Nama Produk: ${shopee.name}\n`
+					thisText += `Harga: ${shopee.price}\n`
+					thisText += `Terjual: ${shopee.sold}\n`
+					thisText += `Stok: ${shopee.stock}\n`
+					thisText += `Lokasi Toko: ${shopee.shop_loc}\n`
+					thisText += `Link: ${shopee.link_produk}\n`
+					thisText += `Gambar: ${shopee.image_cover}\n`
+					thisText += `Deskripsi Produk: ${shopee.desc}\n`
+					thisText += `- \n - - - - - - - - - - - - - -\n-`
+				}
+			let thumb = Result[0].image_cover
+			await sendFileFromUrl(from, thumb, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+case 'pinterestsearch':{ // Search image from Pinterest	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} azur lane`)
+	await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=${lol}&query=${query}`).then(
+		async pinter => {
+			let Result = pinter.result
+			await sendFileFromUrl(from, Result, lang.ok(), m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+case 'unsplashsearch':{ // Search image from unsplash	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} skyfall`)
+	await fetchJson(`https://api.lolhuman.xyz/api/unsplash?apikey=${lol}&query=${query}`).then(
+		async unsplash => {
+			let Result = unsplash.result
+			let thisText = `Hasil Pencarian:\n\nLink:`
+			for(var x of Result) {
+				thisText =+ `${x}`
+			}
+			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+}  break
+
+case 'grubwasearch':{ // Search whatsapp group	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} forum genshin impact`)
+	await fetchJson(`https://api.lolhuman.xyz/api/groupwhatsapp2?apikey=${lol}&query=${query}`).then(
+		async gcsearch => {
+			let Result = gcsearch.result
+			let thisText = `Hasil Pencarian:\n\n`
+			for (var grub of Result) {
+				thisText += `Nama Grub: ${grub.title}\n`
+				thisText += `Link Grub: ${grub.link}\n`
+				thisText += `- - - - - - - - - - - -`
+			}
+			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+case 'searchplace':{ // Search place by name	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} yogyakarta`)
+	await fetchJson(`https://api.lolhuman.xyz/api/searchplace?apikey=${lol}&query=${query}`).then(
+		async search => {
+			let Result = search.result
+			let thisText = `Hasil Pencarian:\n\n`
+			for (var place of Result) {
+				thisText += `Nama Tempat: ${place.display_name}\n`
+				thisText += `Latitude: ${place.latitude}\n`
+				thisText += `Longitude: ${place.longitude}\n`
+				thisText += `Railway: ${place.full.railway}\n`
+				thisText += `Jalan: ${place.full.road}\n`
+				thisText += `Suburb: ${place.full.suburb}\n`
+				thisText += `Distrik: ${place.full.city_district}\n`
+				thisText += `Kota: ${place.full.city}\n`
+				thisText += `State: ${place.full.state}\n`
+				thisText += `Kode Pos: ${place.full.postcode}\n`
+				thisText += `Negara: ${place.full.country}\n`
+				thisText += `Kode Negara: ${place.full.country_code}\n`
+				thisText += `- - - - - - - - - - - - -`
+			}
+			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+} break
+
+case 'searchquote':{ // Search kata bijak	
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} patah hati`)
+	await fetchJson(`https://api.lolhuman.xyz/api/searchbijak?apikey=${lol}&query=${query}`).then(
+		async quotes => {
+			let Result = quotes.result
+			let thisText = `Hasil....\n`
+			for (var quote of Result) {
+				thisText += `Quote: ${quote.quote}\n`
+				thisText += `\n`
+				thisText += `Author: ${quote.author}`
+				thisText += `- - - - - - - - -`
+			}
+			alpha.sendText(m.chat, thisText, m).catch((err) => { reply(lang.err())})
+		}
+	)
+}  break
+
+/* Sticker Features */
+
+case 'stickerpatrick':{
+	reply(lang.wait())
+	let petrik = await(`https://api.lolhuman.xyz/api/sticker/patrick?apikey=${lol}`)
+	await sendFileFromUrl(from, petrik, m).catch((err) => { reply(lang.err())})
+} break
+
+case 'stickerdadu':{
+	let dadu = await(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${lol}`)
+	await sendFileFromUrl(from, dadu, m).catch((err) => { reply(lang.err())})
+} break
+
+case 'stickeramongus':{
+	let amongus = await(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${lol}`)
+	await sendFileFromUrl(from, amongus, m).catch((err) => { reply(lang.err())})
+} break
+
+case 'stickergawgura':{
+	let gura = await(`https://api.lolhuman.xyz/api/sticker/gawrgura?apikey=${lol}`)
+	await sendFileFromUrl(from, gura, m).catch((err) => { reply(lang.err())})
+} break
+
+case 'stickeranjing':{
+	let njing = await(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${lol}`)
+	await sendFileFromUrl(from, njing, m).catch((err) => { reply(lang.err())})
+} break
+
+case 'stickerbucin':{
+	let bucin = await(`https://api.lolhuman.xyz/api/sticker/bucinstick?apikey=${lol}`)
+	await sendFileFromUrl(from, bucin, m).catch((err) => { reply(lang.err())})
+} break
+
+/* Quotes */
+
+case 'quotes':{
+	await fetchJson(`https://api.lolhuman.xyz/api/random/quotes?apikey=${lol}`)
+		.then(async quote => {
+			let Result = quote.result
+			let thisText = `_${Result.quote}_\n\nBy: ${Result.by}`
+		alpha.send1ButMes(m.chat, `${thisText}`, `© ${ownername}`, `quotes`, `Random Quotes`, m)
+		.catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'quotesislami':{
+	await fetchJson(`https://api.lolhuman.xyz/api/quotes/islami?apikey=${lol}`)
+		.then(async quote => {
+			let Result = quote.result
+			let thisText = `_${Result}_`
+		alpha.send1ButMes(m.chat, `${thisText}`, `© ${ownername}`, `quotesislami`, `Quotes Islami`, m)
+		.catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'quotesdilan':{
+	await fetchJson(`https://api.lolhuman.xyz/api/quotes/dilan?apikey=${lol}`)
+		.then(async quote => {
+			let Result = quote.result
+			let thisText = `_${Result}_`
+		alpha.send1ButMes(m.chat, `${thisText}`, `© ${ownername}`, `quotesdilan`, `Quotes Dilan`, m)
+		.catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'quotesanime':{
+	await fetchJson(`https://api.lolhuman.xyz/api/random/quotesnime?apikey=${lol}`)
+		.then(async quote => {
+			let Result = quote.result
+			let thisText = `_${Result.quote}_\n\n\n\n`
+			thisText += `${Result.character}\n`
+			thisText += `${Result.anime}\n`
+			thisText += `${Result.episode}\n`
+		alpha.send1ButMes(m.chat, `${thisText}`, `© ${ownername}`, `quotesanime`, `Quotes Anime`, m)
+		.catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'quotesimage':{
+	let qimage = await(`https://api.lolhuman.xyz/api/random/quotesimage?apikey=${lol}`)
+	await sendFileFromUrl(from, qimage, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+/* Random text */
+
+case 'faktaunik':{
+	await fetchjson(`https://api.lolhuman.xyz/api/random/faktaunik?apikey=${lol}`)
+		.then(async data => {
+			let Result = data.result
+			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `faktaunik`, `Fakta Unik lainnya`, m)
+			.catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'katabijak':{
+	await fetchjson(`https://api.lolhuman.xyz/api/random/katabijak?apikey=${lol}`)
+		.then(async ktbijak => {
+			let Result = data.result
+			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `katabijak`, `Kata Bijak lainnya`, m)
+			.catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'pantun':{
+	await fetchjson(`https://api.lolhuman.xyz/api/random/pantun?apikey=${lol}`)
+		.then(async data => {
+			let Result = data.result
+			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `pantun`, `Pantun lainnya`, m)
+			.catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'puisi':{
+	await fetchjson(`https://api.lolhuman.xyz/api/random/puisi?apikey=${lol}`)
+		.then(async data => {
+			let Result = data.result
+			alpha.send1ButMes(m.chat, `${Result}`,`© ${ownername}`, `puisi`, `Puisi lainnya`, m)
+			.catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'katabucin1': case 'katabucin2':{
+	if (command === 'katabucin1') {
+		let bcn = await(`https://api.lolhuman.xyz/api/random/bucin?apikey=${lol}`)
+		await sendFileFromUrl(from, bcn, lang.ok(), m).catch((err) => { reply(lang.err())})
+	} if (command === 'katabucin2') {
+		let bcn1 = await(`https://api.lolhuman.xyz/api/random/katabucin?apikey=${lol}`)
+		await sendFileFromUrl(from, bcn1, lang.ok(), m).catch((err) => { reply(lang.err())})
+	}
+} break
+
+/* Islami */
+
+case 'niatsholat':{
+	let select = args[0]
+	if (!args == 'subuh'||'dzuhur'||'ashar'||'maghrib'||'isya')
+	return reply(`Contoh: ${prefix + command} available enpoint is subuh, dzuhur, ashar, maghrib, isya"\n\nContoh pengunaan: !niatsholat subuh`)
+	await fetchJson(`https://api.lolhuman.xyz/api/niatsholat/${select}?apikey=${lol}`)
+		.then(async niat => {
+			let data = niat.result
+			let txt = `${data.name}\n`
+			txt += `Niat: ${data.ar}\n`
+			txt += `Latin: ${data.latin}\n`
+			txt += `Arti: ${data.id}\n`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+case 'kisahnabi':{
+	await fetchJson(`https://api.lolhuman.xyz/api/kisahnabi/muhammad?apikey=rizzzuchi78apikey`)
+		.then(async data => {
+			let datas = data.result
+			let txt = `Nama Nabi: ${datas.name}\n`
+				txt += `Tahun Kelahiran: ${datas.thn_kelahiran}\n`
+				txt += `Umur: ${datas.age}\n`
+				txt += `Tempat: ${datas.place}\n\n`
+				txt += `Story: ${datas.story}`
+		alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+		})
+} break
+
+/* Downloader */
+
+case 'fbdl1':{
+	reply(lang.wait())
+	let link = args[0]
+	if (args.length == 0) return reply(`${command} https://web.facebook.com/watch/?v=892725951575913`)
+	await fetchJson(`https://api.lolhuman.xyz/api/facebook?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		let datas = data.result
+		await sendFileFromUrl(from, datas, lang.ok(), m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'fbdl2':{
+	reply(lang.wait())
+	let link = args[0]
+	if (args.length == 0) return reply(`${command} https://web.facebook.com/watch/?v=892725951575913`)
+	await fetchJson(`https://api.lolhuman.xyz/api/facebook2?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		let datas = data.result
+		await sendFileFromUrl(from, datas, lang.ok(), m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'jooxplay':{
+	reply(lang.wait())
+	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+    let query = args.join(" ")
+    await fetchJson(`https://api.lolhuman.xyz/api/jooxplay?apikey=${lol}&query=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Title ${datas.info,song}\n`
+			txt += `Artist: ${datas.info.singer}\n`
+			txt += `Druration: ${datas.info.duration}\n`
+			txt += `Album: ${datas.info.album}\n`
+			txt += `Uploaded: ${datas.info.date}\n`
+			txt += `Lirik: ${datas.info.lirik}\n`
+		let thumb = data.image
+		await sendFileFromUrl(from, thumb, txt, m)
+		await reply(`Mohon tunggu sebentar, file audio sedang dikirim...`)
+		let propSongs = datas.audio[0].link
+		alpha.sendMessage(from, {audio: {url: propSongs}, mimetype: 'audio/mpeg'}, {quoted:m})
+		.catch((err) => { reply(lang.err())})
+	})				
+} break
+
+case 'spotify':{	
+	reply(lang.wait())		
+	let url = args[0]
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
+	await fetchJson(`https://api.lolhuman.xyz/api/spotify?apikey=${lol}&url=${url}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Title : ${datas.title}\n`
+			txt += `Artists : ${datas.artists}\n`
+			txt += `Duration : ${datas.duration}\n`
+			txt += `Popularity : ${datas.popularity}\n`
+			txt += `Preview : ${datas.preview_url}\n`
+		let thumb = datas.thumbnail
+		await sendFileFromUrl(from, thumb, txt, m)
+		await reply(`Mohon tunggu sebentar, file audio sedang dikirim...`)
+		let propSongs = datas.link
+		alpha.sendMessage(from, {audio: {url: propSongs}, mimetype: 'audio/mpeg'}, {quoted:m})
+		.catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'spotifysearch':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+	await fetchJson(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${l0lhuman}&query=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Hasil Pencarian...\n`
+		for (var x of datas) {
+			txt += `Title : ${x.title}\n`
+			txt += `Artists : ${x.artists}\n`
+			txt += `Duration : ${x.duration}\n`
+			txt += `Link : ${x.link}\n`
+			txt += `Preview : ${x.preview_url}\n\n\n`
+		}
+	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'twtimage':{
+	reply(lang.wait())
+	let query = args[0]
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://twitter.com/memefess/status/1385161473232543747`)
+	await fetchJson(`https://api.lolhuman.xyz/api/twitterimage?apikey=${lol}&url=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Nama: ${datas.user.name}\n`
+			txt += `Username: ${datas.user.username}\n`
+			txt += `Photo: ${datas.user.photo}\n`
+			txt += `Title: ${datas.title}\n`
+			txt += `Publish on: ${datas.publish}\n`
+			txt += `Link: ${datas.link}\n`
+		let resultImg = datas.link
+		await sendFileFromUrl(from, resultImg, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'twtvideo':{
+	reply(lang.wait())
+	let query = args[0]
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://twitter.com/memefess/status/1385161473232543747`)
+	await fetchJson(`https://api.lolhuman.xyz/api/twitter?apikey=${lol}&url=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Title: ${datas.title}\n`
+			txt += `Link:\n`
+			let thisLink = datas.link
+			for(var varyLink of thisLink) {
+				txt += `Media Type: ${varyLink.type}\n`
+				txt += `Media Resolution: ${varyLink.resolution}\n`
+				txt += `Media Link: ${varyLink.link}\n\n`
+			}
+				txt += `Untuk mendownload silahkan menggunakan command !twtvideodl link_video_twiter_diatas`
+	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'twtvideodl':{
+	reply(lang.wait())
+	let link = args[0]
+	if (args.length == 0) return reply(`Silahkan menggunakan command !twtvideo untuk mendapatkan link_video`)
+	let thisQuery = (`${link}`)
+	await sendFileFromUrl(from, thisQuery, lang.ok(), m).catch((err) => { reply(lang.err())})
+} break
+
+case 'insta_gram':{
+	reply(lang.wait())
+	let link = args[0]
+	if (args.length == 0) return reply(`Example: ${command} https://www.instagram.com/p/CU0MhPjBZO2/`)
+	await fetchJson(`https://api.lolhuman.xyz/api/instagram?apikey=${lol}&url=${link}`)
+	.then(async data => {
+		let datas = data.result
+		let result = datas[0]
+		let moreResult = datas[1]
+	try {
+		await sendFileFromUrl(from, result, lang.ok(), m)
+	} catch {
+		await sendFileFromUrl(from, moreResult, lang.ok(), m).catch((err) => { reply(lang.err())})
+	}
+	})
+} break
+
+case 'xnxxsearch':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Example: ${prefix + command} Japanese`)
+	await fetchJson(`https://api.lolhuman.xyz/api/xnxxsearch?apikey=${lol}&query=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `ddd`
+		for (var x of datas) {
+			txt += `Title : ${x.title}\n`
+			txt += `Views : ${x.views}\n`
+			txt += `Duration : ${x.duration}\n`
+			txt += `Uploader : ${x.uploader}\n`
+			txt += `Link : ${x.link}\n`
+			txt += `Thumbnail : ${x.thumbnail}\n\n`
+		}
+	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+case 'xnxx':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.xnxx.com/video-uy5a73b/mom_is_horny_-_brooklyn`)
+	await fetchJson(`https://api.lolhuman.xyz/api/xnxx?apikey=${lol}&url=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Title : ${datas.title}\n`
+			txt += `Duration : ${datas.duration}\n`
+			txt += `View : ${datas.view}\n`
+			txt += `Rating : ${datas.rating}\n`
+			txt += `Like : ${datas.like}\n`
+			txt += `Dislike : ${datas.dislike}\n`
+			txt += `Comment : ${datas.comment}\n`
+			txt += `Tag : ${datas.tag.join(", ")}\n`
+			txt += `Description : ${datas.description}\n`
+			txt += "Link : \n"
+		let thisLink = datas.link
+		for (var x of thisLink) {
+			txt += `${x.type} - ${x.link}\n\n`
+		}
+		let thumb = datas.thumbnail
+		await sendFileFromUrl(from, thumb, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'xhamstersearch':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Example: ${prefix + command} Japanese`)
+	await fetchJson(`https://api.lolhuman.xyz/api/xhamstersearch?apikey=${lol}&query=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Hasil Pencarian...\n\n`
+		for (var x of datas) {
+			txt += `Title : ${x.title}\n`
+			txt += `Views : ${x.views}\n`
+			txt += `Duration : ${x.duration}\n`
+			txt += `Link : ${x.link}\n\n`
+		}
+	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+case 'xhamster':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://xhamster.com/videos/party-with-friends-end-in-awesome-fucking-5798407`)
+	await fetchJson(`https://api.lolhuman.xyz/api/xhamster?apikey=${lol}&url=${query}`)
+	.then(async data => {
+		let datas = data.result
+		let txt = `Results...`
+			txt = `Title : ${datas.title}\n`
+			txt += `Duration : ${datas.duration}\n`
+			txt += `Uploader : ${datas.author}\n`
+			txt += `Upload : ${datas.upload}\n`
+			txt += `View : ${datas.views}\n`
+			txt += `Rating : ${datas.rating}\n`
+			txt += `Like : ${datas.likes}\n`
+			txt += `Dislike : ${datas.dislikes}\n`
+			txt += `Comment : ${datas.comments}\n`
+			txt += "Link : \n"
+		let thisLink = datas.link
+			for (var x of thisLink) {
+				txt += `${x.type} - ${x.link}\n\n`
+			}
+		let thumb = datas.thumbnail
+		await sendFileFromUrl(from, thumb, txt, m).catch((err) => { reply(lang.err())})
+	})
+} break
+
+/*
+
+*/
+
+case 'ytplay2':{
+	let query = args.join(" ")
 	if (args.length == 0) return await reply(`Example: ${prefix + command} melukis senja`)
-		await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${args.join(" ")}`).then(async(result) => {
-			await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=https://www.youtube.com/watch?v=${result.result[0].videoId}`).then(async(result) => {
-				result = result.result
+		await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
+		.then(async(result) => {
+			await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=https://www.youtube.com/watch?v=${result.result[0].videoId}`)
+			.then(async(result) => {
+				let result = result.result
 				let caption = `❖ Title    : *${result.title}*\n`
-				caption += `❖ Size     : *${result.size}*`
-					ini_buffer = await getBuffer(result.thumbnail)
-						await sendFileFromUrl(from, ini_buffer, caption, m)
-							get_audio = await getBuffer(result.link)
-								await sendFileFromUrl(from, get_audio, { mimetype: 'audio/mp4', filename: `${result.title}.mp3` }, m)
+					caption += `❖ Size     : *${result.size}*`
+				let thumb = result.thumbnail
+				await sendFileFromUrl(from, result, caption, m).catch((err) => { reply(lang.err())})
 			})
 		})
 } break
-case 'ytcari':{			
-	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+case 'ytsearch2':{			
 	let query = args.join(" ")
-	get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
-	get_result = get_result.result
-	ini_txt = ""
-	for (var x of get_result) {
-		ini_txt += `Title : ${x.title}\n`
-		ini_txt += `Views : ${x.views}\n`
-		ini_txt += `Published : ${x.published}\n`
-		ini_txt += `Thumbnail : ${x.thumbnail}\n`
-		ini_txt += `Link : https://www.youtube.com/watch?v=${x.videoId}\n\n`
-	}
-	reply(ini_txt)
+	if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+	await fetchJson(`https://api.lolhuman.xyz/api/ytsearch?apikey=${lol}&query=${query}`)
+	.then(async data => {
+		let dataVideo = data.result
+		let ini_txt = ""
+		for (var x of dataVideo) {
+			ini_txt += `Title : ${x.title}\n`
+			ini_txt += `Views : ${x.views}\n`
+			ini_txt += `Published : ${x.published}\n`
+			ini_txt += `Thumbnail : ${x.thumbnail}\n`
+			ini_txt += `Link : https://www.youtube.com/watch?v=${x.videoId}\n\n`
+		}
+	alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
+	})
 } break
+
 case 'youtubemp3':{
-	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
-	await reply(`${queryWait}`)
 	let ini_link = args[0]
-	get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=${ini_link}`)
-	get_result = get_result.result
-	caption = `❖ Title    : *${result.title}*\n`
-	caption += `❖ Size     : *${result.size}*`
-		ini_buffer = await getBuffer(get_result.thumbnail)
-		await sendFileFromUrl(from, ini_buffer, ini_txt, m)
-			get_audio = await getBuffer(get_result.link)
-			await sendFileFromUrl(from, get_audio, { mimetype: 'audio/mp4', filename: `${get_result.title}.mp3`}, m)
+	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
+	await fetchJson(`https://api.lolhuman.xyz/api/ytaudio2?apikey=${lol}&url=${ini_link}`)
+	.then(async data => {
+		let dataAudio = data.result
+		let caption = `❖ Title    : *${dataAudio.title}*\n`
+			caption += `❖ Size     : *${dataAudio.size}*`
+		let thumb = dataAudio.thumbnail
+		await sendFileFromUrl(from, thumb, caption, m)
+		await reply('Mohon tunggu sebentar, file audio sedang dikirim...')
+		let thisAudio = dataAudio.link
+		alpha.sendMessage(from, {audio: {url: thisAudio}, mimetype: 'audio/mpeg'}, {quoted:m})
+		.catch((err) => { reply(lang.err())})
+	})
 } break
-case 'youtubemp4':{		
+case 'youtubemp4':{	
+	let ini_link = args[0]	
 	if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
-	await reply(`${queryWait}`)
-	let ini_link = args[0]
-	get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lol}&url=${ini_link}`)
-	get_result = get_result.result
-	ini_txt = `${get_result.title} - ${get_result.size}`
-		ini_buffer = await getBuffer(get_result.thumbnail)
-		await sendFileFromUrl(from, ini_buffer, ini_txt, m)
-		get_audio = await getBuffer(get_result.link)
-		await sendFileFromUrl(from, get_audio, { mimetype: 'video/mp4', filename: `${get_result.title}.mp4` }, m)
+	await fetchJson(`https://api.lolhuman.xyz/api/ytvideo2?apikey=${lol}&url=${ini_link}`)
+	.then(async data => {
+		let dataVideo = data.result
+		let txt = `Title: ${dataVideo.title}`
+			txt += `Size: ${dataVideo.size}`
+		let thumb = dataVideo.thumbnail
+			await sendFileFromUrl(from, thumb, txt, m)
+			await reply('Mohon tunggu sebentar, file video sedang dikirim...')
+		let video = dataVideo.link
+			await sendFileFromUrl(from, video, txt, m).catch((err) => { reply(lang.err())})
+	})
 } break
 
 /*
@@ -2993,7 +3664,18 @@ var asma = await fetchJson(api('alfa', '/api/islam/'+command, {}, 'apikey'))
 reply(lang.err())
 })
 */
-
+case'budi':{
+	alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
+	} break
+	case 'inibudi':{
+		setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000 ) 
+		setTimeout(() => { reply('dalam waktu...') }, 3000 ) 
+			setTimeout(() => { reply('Tiga - 3') }, 5000 ) 
+				setTimeout(() => { reply('Dua - 2') }, 7000 ) 
+					setTimeout(() => { reply('Satu - 1') }, 9000 ) 
+					setTimeout(() => { reply('Lahh nungguin ye?') }, 20000 ) 
+					setTimeout(() => { reply('Mampus, mau aja gw kibulin...') }, 23000 ) 
+} break 
 
 //sound
 case 'sound71': case 'sound72': case 'sound73': case 'sound74': case 'sound75': case 'sound1': case 'sound2': case 'sound3': case 'sound4': case 'sound5': case 'sound6': case 'sound7': case 'sound8': case 'sound9': case 'sound10': case 'sound11': case 'sound12': case 'sound13': case 'sound14': case 'sound15': case 'sound16': case 'sound17': case 'sound18 ': case 'sound19': case 'sound20': case 'sound21': case 'sound22': case 'sound23': case 'sound24': case 'sound25': case 'sound26': case 'sound27': case 'sound28': case 'sound29': case 'sound30': case 'sound31': case 'sound32': case 'sound33': case 'sound34': case 'sound35': case 'sound36': case 'sound37': case 'sound38': case 'sound39': case 'sound40': case 'sound41': case 'sound42': case 'sound43': case 'sound44': case 'sound45': case 'sound46': case 'sound47': case 'sound48': case 'sound49': case 'sound50': case 'sound51': case 'sound52': case 'sound53': case 'sound54': case 'sound55': case 'sound56': case 'sound57': case 'sound58': case 'sound59': case 'sound60': case 'sound61': case 'sound62': case 'sound63': case 'sound64': case 'sound65': case 'sound66': case 'sound67': case 'sound68': case 'sound69': case 'sound70':{
@@ -5203,7 +5885,6 @@ console.log(err)
 }
 }
 
-
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
@@ -5211,3 +5892,6 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+
+/* this is the end of code 
+	last updated: ... */
