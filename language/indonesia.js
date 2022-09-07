@@ -668,8 +668,11 @@ exports.notNum = (q) => {
     return `"${q}", bukan angka!`
 }
 exports.menunya = (salam, pushname, botname) =>{
-	return`Hai kak ${pushname} 👋 selamat ${salam} , 
-saya ${botname}, bot ini adalah Beta Multi-Device Whatsapp.
+	return`Hai kak ${pushname} 👋 selamat ${salam}
+
+Aku ${botname}, Bot ini adalah Beta Multi-Device Whatsapp.
+
+Ada yang bisa Aku bantu?
 `
 }
 exports.listMenu = (time, salam, pushname, prefix) => {
@@ -753,7 +756,7 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}done
 ╰❒ 
 
-╭─❒ 「 Anonymous 」
+╭─❒ 「 Anonymous Chat 」
 ├ ${prefix}anonymous 
 ├ ${prefix}start
 ├ ${prefix}skip [daerah]
@@ -861,12 +864,15 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ╰❒ 
 
 ╭─❒ 「 Anime 」
-├ ${prefix}neonimelatest
-├ ${prefix}storyanime 
-├ ${prefix}quotesanime
-├ ${prefix}anime [query]
-├ ${prefix}manga [query]
-├ ${prefix}character [query]
+├ ${prefix}wait [link gambar] _what anime is that?_
+├ ${prefix}wmit [link gambar] _what manga is that?_
+├ ${prefix}otakudesusearch _search anime from web Otakudesu_
+├ ${prefix}neonimelatest _get latest update from Neonime_
+├ ${prefix}storyanime _short video about anime_
+├ ${prefix}quotesanime _some quotes from anime character_
+├ ${prefix}anime [query] _search anime_
+├ ${prefix}manga [query] _search manga_
+├ ${prefix}character [query] _search character anime_
 ╰❒ 
 
 ╭─❒ 「 Tag 」 
@@ -884,15 +890,27 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 
 
 ╭─❒ 「 Search 」 
+├ ${prefix}wikipedia [query]
+├ ${prefix}kbbi [query]
+├ ${prefix}kanachansearch [query]
+├ ${prefix}danboorusearch [query]
+├ ${prefix}walppsearch1 [query]
+├ ${prefix}walppsearch2 [query]
+├ ${prefix}gimagesearch [query]
+├ ${prefix}shopeeproduct [query]
+├ ${prefix}pinterestsearch [query]
+├ ${prefix}unsplashsearch [query]
+├ ${prefix}grubwasearch [query]
+├ ${prefix}searchplace [query]
+├ ${prefix}searchquote [query]
 ├ ${prefix}ytsearch [query]
 ├ ${prefix}wallpaper [query]
 ├ ${prefix}google [query]
 ├ ${prefix}wikimedia [query]
-├ ${prefix}hentai
 ├ ${prefix}wattpad [query]
 ├ ${prefix}webtoons [query]
 ├ ${prefix}drakor [query]
-├ ${prefix}pinterest [query]
+├ ${prefix}ytsearch2 [query] _alternative feature_
 ╰❒ 
 
 
@@ -997,6 +1015,18 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}gitrepo [username repo branch]
 ├ ${prefix}mediafire [link]
 ├ ${prefix}twitter link
+├ ${prefix}fbdl1 [link] _download facebook content_
+├ ${prefix}fbdl2 [link] _download facebook content_
+├ ${prefix}jooxplay [query] _play some songs with lyrics_
+├ ${prefix}spotify [link] _play some song_
+├ ${prefix}spotifysearch [query] _search song_
+├ ${prefix}twtimage [link] _download picture from twitter link_
+├ ${prefix}twtvideo [link]  _choose media download video from twitter link_
+├ ${prefix}twtvideodl [link] _download video from selected twitter link_
+├ ${prefix}insta_gram [link]  _Instagram downloader (igtv, post, video, reel, etc)_
+├ ${prefix}ytplay2 [query] _alternative feature_
+├ ${prefix}youtubemp3 [link] _alternative feature_
+├ ${prefix}youtubemp4 [link] _alternative feature_
 ╰❒ 
 
 ╭─❒ 「 Primbon 」
@@ -1107,6 +1137,10 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}doujindesusearch [query]
 ├ ${prefix}nhentaisearch [query]
 ├ ${prefix}nhentaipdf [query]
+├ ${prefix}xnxxsearch [query]
+├ ${prefix}xnxx [link]
+├ ${prefix}xhamstersearch [query]
+├ ${prefix}xhamster [link]
 ├ ${prefix}randomhentai
 ├ ${prefix}chiisaihentai
 ├ ${prefix}trap
@@ -1445,6 +1479,12 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ├ ${prefix}smeme [text]
 ├ ${prefix}smeme2 [text|text]
 ├ ${prefix}memegen [text|text]
+├ ${prefix}stickerpatrick
+├ ${prefix}stickerdadu
+├ ${prefix}stickeramongus
+├ ${prefix}stickergawgura
+├ ${prefix}stickeranjing
+├ ${prefix}stickerbucin
 ╰❒
 
 ╭─❒ 「 Game Menu 」
@@ -1465,6 +1505,12 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 
 
 ╭─❒ 「 Asupan Menu 」
+├ ${prefix}asupan
+├ ${prefix}cecan
+├ ${prefix}cogan
+├ ${prefix}ppcouple
+├ ${prefix}esteticpicture
+├ ${prefix}quotesimage
 ├ ${prefix}chika
 ├ ${prefix}delvira
 ├ ${prefix}ayu
@@ -1597,6 +1643,8 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 
 
 ╭─❒ 「 Islamic Menu 」
+├ ${prefix}niatsholat [select query]
+├ ${prefix}kisahnabi [query]
 ├ ${prefix}asmaulhusna
 ├ ${prefix}kisahnabi [nabi]
 ├ ${prefix}jadwalshalat [daerah]
@@ -1608,7 +1656,7 @@ exports.listMenu = (time, salam, pushname, prefix) => {
 ╰❒ 
 
 ╭─❒ 「 Sound Menu 」
-├ ${prefix}sound 1-70
+├ ${prefix}sound [pilih 1 - 70]
 ╰❒ 
 
 ╭─❒ 「 TqTo 」 
@@ -1675,12 +1723,6 @@ return`
  「 Bundle Sewa Bot Price List 」
 
 ╭─❒ 
-├ Price: 15K IDR
-├ Grub WA join: include 1 Group
-├ Valid: 30day
-╰❒
-
-╭─❒ 
 ├ Price: 10K IDR
 ├ Grub WA join: include 1 Group
 ├ Valid: 14 day
@@ -1691,6 +1733,7 @@ return`
 ├ Grub WA join: include 1 Group
 ├ Valid: 7day
 ╰❒
+
 
 
 *Payment*
@@ -1730,26 +1773,29 @@ Recode : -
 exports.tos = (ownernomer) => {
     return `
 *-------「 DONATE 」 -------*
-*note QRIS diatas sudah tidak dipakai lagi
-silahkan chat Owner, nomor dibawah
 
-or:
-GoPay : 081329585825
+GoPay:
+081329585825
+
+or
+
+Saweria:
+https://saweria.co/rizzzky
+
+or Scan QR diatas
+
 
 
 Hai kak ☺️ 
-Kalian bisa mendukung saya agar bot ini tetap up to date dengan cara donasi
-
+Kalian bisa mendukung Saya agar bot ini tetap hidup dan up to date dengan cara berdonasi
 Berapapun donasi kalian akan sangat berarti 👍
-Buat kalian yang sudah donasi bisa kirim bukti
-donasi ke owner agar bisa di masukkan ke list donasi
+
+Buat yang udah donasi bisa kirim bukti/nama atau alias di Saweria agar bisa di masukkan ke dashboard Donasi.
 
 Thanks!
 
 Contact person Owner:
-wa.me/${ownernomer}
-
-    `
+wa.me/${ownernomer}`
 }
 
 exports.info = (prefix) =>{
@@ -1863,12 +1909,16 @@ exports.group = (prefix) =>{
 
 exports.anime = (prefix) =>{
 	return`╭─❒ 「 Anime 」
-├ ${prefix}neonimelatest
-├ ${prefix}storyanime  
-├ ${prefix}quotesanime
-├ ${prefix}anime [query]
-├ ${prefix}manga [query]
-╰❒ ${prefix}character [query]
+├ ${prefix}wait [link gambar] _what anime is that?_
+├ ${prefix}wmit [link gambar] _what manga is that?_
+├ ${prefix}otakudesusearch _search anime from web Otakudesu_
+├ ${prefix}neonimelatest _get latest update from Neonime_
+├ ${prefix}storyanime _short video about anime_
+├ ${prefix}quotesanime _some quotes from anime character_
+├ ${prefix}anime [query] _search anime_
+├ ${prefix}manga [query] _search manga_
+├ ${prefix}character [query] _search character anime_
+╰❒ 
 `}
 
 exports.tag = (prefix) =>{
@@ -1888,16 +1938,28 @@ exports.stalk = (prefix) =>{
 
 exports.search = (prefix) =>{
 	return`╭─❒ 「 Search 」 
+├ ${prefix}wikipedia [query]
+├ ${prefix}kbbi [query]
+├ ${prefix}kanachansearch [query]
+├ ${prefix}danboorusearch [query]
+├ ${prefix}walppsearch1 [query]
+├ ${prefix}walppsearch2 [query]
+├ ${prefix}gimagesearch [query]
+├ ${prefix}shopeeproduct [query]
+├ ${prefix}pinterestsearch [query]
+├ ${prefix}unsplashsearch [query]
+├ ${prefix}grubwasearch [query]
+├ ${prefix}searchplace [query]
+├ ${prefix}searchquote [query]
 ├ ${prefix}ytsearch [query]
 ├ ${prefix}wallpaper [query]
 ├ ${prefix}google [query]
-├ ${prefix}kbbi [query]
-├ ${prefix}wikipedia [query]
 ├ ${prefix}wikimedia [query]
 ├ ${prefix}wattpad [query]
 ├ ${prefix}webtoons [query]
 ├ ${prefix}drakor [query]
-╰❒ ${prefix}pinterest [query]
+├ ${prefix}ytsearch2 [query] _alternative feature_
+╰❒ 
 `}
 
 exports.converter = (prefix) =>{
@@ -2003,12 +2065,34 @@ return`╭─❒ 「 Download 」
 ├ ${prefix}gitclone [link repo]
 ├ ${prefix}gitrepo [username repo branch]
 ├ ${prefix}mediafire [link]
-╰❒ ${prefix}twitter link
+├ ${prefix}twitter link
+├ ${prefix}fbdl1 [link] _download facebook content_
+├ ${prefix}fbdl2 [link] _download facebook content_
+├ ${prefix}jooxplay [query] _play some songs with lyrics_
+├ ${prefix}spotify [link] _play some song_
+├ ${prefix}spotifysearch [query] _search song_
+├ ${prefix}twtimage [link] _download picture from twitter link_
+├ ${prefix}twtvideo [link]  _choose media download video from twitter link_
+├ ${prefix}twtvideodl [link] _download video from selected twitter link_
+├ ${prefix}insta_gram [link]  _Instagram downloader (igtv, post, video, reel, etc)_
+├ ${prefix}ytplay2 [query] _alternative feature_
+├ ${prefix}youtubemp3 [link] _alternative feature_
+├ ${prefix}youtubemp4 [link] _alternative feature_
+╰❒ 
 `
 }
 
 exports.ranime = (prefix) =>{
 	return`╭─❒ 「 Random Anime 」
+├ ${prefix}waifuu
+├ ${prefix}art
+├ ${prefix}elf
+├ ${prefix}shota
+├ ${prefix}husbu
+├ ${prefix}sagiri
+├ ${prefix}shinobu
+├ ${prefix}megumin
+├ ${prefix}wallnime
 ├ ${prefix}loli
 ├ ${prefix}neko
 ├ ${prefix}waifu
@@ -2050,6 +2134,10 @@ exports.nsfw = (prefix) =>{
 ├ ${prefix}doujindesusearch [query]
 ├ ${prefix}nhentaisearch [query]
 ├ ${prefix}nhentaipdf [query]
+├ ${prefix}xnxxsearch [query]
+├ ${prefix}xnxx [link]
+├ ${prefix}xhamstersearch [query]
+├ ${prefix}xhamster [link]
 ├ ${prefix}randomhentai
 ├ ${prefix}chiisaihentai
 ├ ${prefix}trap
@@ -2302,6 +2390,12 @@ exports.textpro = (prefix) =>{
 
 exports.other = (prefix) =>{
 return`╭─❒ 「 Others 」
+├ ${prefix}stickerpatrick
+├ ${prefix}stickerdadu
+├ ${prefix}stickeramongus
+├ ${prefix}stickergawgura
+├ ${prefix}stickeranjing
+├ ${prefix}stickerbucin
 ├ ${prefix}cerpen
 ├ ${prefix}ceritahoror
 ├ ${prefix}esteticpicture
@@ -2335,9 +2429,12 @@ return`╭─❒ 「 Game Menu 」
 }
 exports.asupan = (prefix) =>{
 return`╭─❒ 「 Asupan Menu 」
+├ ${prefix}asupan
 ├ ${prefix}cecan
 ├ ${prefix}cogan
 ├ ${prefix}ppcouple
+├ ${prefix}esteticpicture
+├ ${prefix}quotesimage
 ├ ${prefix}chika
 ├ ${prefix}delvira
 ├ ${prefix}ayu
@@ -2451,6 +2548,12 @@ exports.stcmenu = (prefix) =>{
 ├ ${prefix}popoci
 ├ ${prefix}sponsbob
 ├ ${prefix}kawan_sponsbob
+├ ${prefix}stickerpatrick
+├ ${prefix}stickerdadu
+├ ${prefix}stickeramongus
+├ ${prefix}stickergawgura
+├ ${prefix}stickeranjing
+├ ${prefix}stickerbucin
 ╰❒ ${prefix}tyni
 `}
 
@@ -2616,6 +2719,8 @@ exports.logomenu = (prefix) =>{
 
 exports.islammenu = (prefix) =>{
 	return`╭─❒ 「 Islamic Menu 」
+├ ${prefix}niatsholat [select query]
+├ ${prefix}kisahnabi [query]
 ├ ${prefix}asmaulhusna
 ├ ${prefix}kisahnabi [nabi]
 ├ ${prefix}jadwalshalat [daerah]
@@ -2627,7 +2732,7 @@ exports.islammenu = (prefix) =>{
 `
 }
 exports.anonchat = (prefix) =>{
-	return`╭─❒ 「 Anonymous 」
+	return`╭─❒ 「 Anonymous Chat 」
 ├ ${prefix}anonymous 
 ├ ${prefix}start
 ├ ${prefix}skip [daerah]
@@ -2806,5 +2911,110 @@ return`╭─❒ 「 Sound Menu 」
 ├ ${prefix}sound68
 ├ ${prefix}sound69
 ╰❒ ${prefix}sound70
+`
+}
+
+exports.changelog = () => {
+return `
+*_CHANGELOG_*
+
+
+*Support Oowner/Maintainer Bot dengan cara berdonasi agar Bot tetap hidup*
+*tanpa pemasukan, Bot tidak akan bertahan lama melayani User-sama*
+
+*_CHANGE FEATURES_*
+donasi -> replace deprecated QRIS to Saweria
+
+
+*_ADDED NEW FEATURES_*
+_last updated deployment: 7 sept 2022_
+
+semuamenu _get all list menu_
+
+- NSFW
+nhentaisearch
+nhentaipdf
+doujindesu
+doujindesulatest
+doujindesusearch
+xnxxsearch [query]
+xnxx [link]
+xhamstersearch [query]
+xhamster [link]
+
+- ANIMANGA
+neonimelatest
+storyanime
+otakudesusearch [query]
+wait [link image] _what anime is that?_
+wmit [link image] _what manga is that?_
+
+- RANDOM TEXT
+cerpen
+ceritahoror
+faktaunik
+katabijak
+pantun
+puisi
+katabucin1
+katabucin2
+quotes
+quotesislami
+quotesdilan
+quotesanime
+
+- MEMES
+cmm [query] _change my mind memes_
+memes [select button]
+
+- RANDOM ASUPAN/IMAGE
+asupan
+cecan
+cogan
+ppcouple
+esteticpicture
+quotesimage
+
+- SEARCH
+wikipedia [query]
+kbbi [query]
+kanachansearch [query]
+danboorusearch [query]
+walppsearch1 [query]
+walppsearch2 [query]
+gimagesearch [query]
+shopeeproduct [query]
+pinterestsearch [query]
+unsplashsearch [query]
+grubwasearch [query]
+searchplace [query]
+searchquote [query]
+ytsearch2 [query] _alternative feature_
+
+- STICKER
+stickerpatrick
+stickerdadu
+stickeramongus
+stickergawgura
+stickeranjing
+stickerbucin
+
+- ISLAMI
+niatsholat [select query]
+kisahnabi [query]
+
+- DOWNLOADER
+fbdl1 [link] _download facebook content_
+fbdl2 [link] _download facebook content_
+jooxplay [query] _play some songs with lyrics_
+spotify [link] _play some song_
+spotifysearch [query] _search song_
+twtimage [link] _download picture from twitter link_
+twtvideo [link]  _choose media download video from twitter link_
+twtvideodl [link] _download video from selected twitter link_
+insta_gram [link]  _Instagram downloader (igtv, post, video, reel, etc)_
+ytplay2 [query] _alternative feature_
+youtubemp3 [link] _alternative feature_
+youtubemp4 [link] _alternative feature_
 `
 }
