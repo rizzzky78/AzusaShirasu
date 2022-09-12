@@ -7,7 +7,7 @@ Change log:
 	- maybe fixed lewd feature(?)
 
 
-	Last Edited -- 07 Sept 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 12 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
 
