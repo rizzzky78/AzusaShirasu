@@ -1328,9 +1328,9 @@ break
                 })
                 /*db.data.users[m.sender].limit -= 1*/
             break
-            case 'anime':{
-				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
-			/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
+            /*case 'anime':{
+				if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+			if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)
                 if (!text) return reply(lang.KisahNabi(prefix, command, 'naruto'))
                 await reply(lang.wait())
                 zee.Anime(q).then(async data => {
@@ -1353,12 +1353,12 @@ break
                 .catch((err) => {
                     reply(lang.err())
                 })
-                /*db.data.users[m.sender].limit -= 1*/
+                db.data.users[m.sender].limit -= 1
                 }
-            break
+            break 
             case 'character': case 'karakter':{
-				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
-				/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
+				if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+				if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)
                 if (!text) return reply(lang.KisahNabi(prefix, command, 'naruto'))
                 await reply(lang.wait())
                 zee.Character(q).then(async data => {
@@ -1381,12 +1381,12 @@ break
                 .catch((err) => {
                     reply(lang.err())
                 })
-                /*db.data.users[m.sender].limit -= 1*/
+                db.data.users[m.sender].limit -= 1
                 }
-            break
+            break 
             case 'manga':
-				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
-				/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
+				if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
+				if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)
                 if (!text) return reply(lang.KisahNabi(prefix, command, 'naruto'))
                 await reply(lang.wait())
                 zee.Manga(`${text}`).then(async data => {
@@ -1409,8 +1409,8 @@ break
                 .catch((err) => {
                     reply(lang.err())
                 })
-		/*db.data.users[m.sender].limit -= 1*/           
-		break
+		db.data.users[m.sender].limit -= 1          
+		break */
             case 'soundcloud':{
  				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
 			/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
@@ -2781,6 +2781,55 @@ case 'neonimelatest':{
 
 /* Anime */
 
+case 'anime': case 'animesearch': case 'searchanime':{
+	reply(lang.wait())
+	let query = args.join(" ")
+	if (args.length == 0) return reply(`Contoh: ${prefix + command} classroom elite`)
+	await fetchJson(`https://api.lolhuman.xyz/api/anime?apikey=${lol}&query=g${query}`)
+		.then(async data => {
+			let datas = data.result
+			let txt = `Hasil Pencarian...\n\n`
+					txt += `*Judul Anime*\n`
+					txt += `*ID MAL*: ${datas.idMal}\n\n`
+					txt += `*Score*: ${datas.averageScore}\n\n`
+					txt += `Romaji : ${datas.title.romaji}\n\n`
+					txt += `English : ${datas.title.english}\n\n`
+					txt += `Japan : ${datas.title.native}\n\n`
+					txt += `*Anime Details*\n`
+					txt += `Rilis : ${datas.format}\n`
+					txt += `Episode : ${datas.episodes}\n`
+					txt += `Durasi : ${datas.duration} m/j\n`
+					txt += `Status : ${datas.status}\n`
+					txt += `Musim : ${datas.season}\n`
+					txt += `Tahun Musim : ${datas.seasonYear}\n`
+					txt += `Sumber Adaptasi : ${datas.source}\n`
+					txt += `Genre`
+							let thisGenre = datas.genres
+							for(var x of thisGenre) {
+								txt += `- ${x}\n`
+							}
+					txt += `Tahun Rilis:\n${datas.startDate.year} ${datas.startDate.month} ${datas.startDate.day}\n`
+					txt += `Tahun Selesai:\n${datas.endDate.year} ${datas.endDate.month} ${datas.endDate.day}\n`
+					txt += `\n\n`
+					txt += `*Sinopsis:*\n${datas.description}\n\n`
+					txt += `*Karakter:*\n`
+							let chara = datas.characters.nodes
+							for(var char of chara) {
+								txt += `Karakter ID : ${char.id}\n`
+								txt += `- ${char.name.full}\n`
+								txt += `- ${char.name.native}\n`
+								txt += `- - - - - - - - - - - - -\n`
+							}
+					txt += `\n\n`
+					txt += `Next Season : ${datas.nextAiringEpisode}`
+					txt += `\n\n\n`
+					txt += `*_Anime Search By Azusa Bot_* :)`
+
+					let thumb = datas.coverImage.large
+					await sendFileFromUrl(from, thumb, txt, m)
+		})
+} break
+
 case'storyanime':{
 	reply(lang.wait())
 	await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
@@ -3359,18 +3408,18 @@ case 'jooxplay':{
 	await fetchJson(`https://api.lolhuman.xyz/api/jooxplay?apikey=${lol}&query=${query}`)
 	.then(async data => {
 		let datas = data.result
-		let txt = `Jooxplay Queue ....\n`
-			txt += `Singer: ${datas.info.singer}\n`
-			txt += `Song: ${datas.info.song}\n`
-			txt += `Album: ${datas.info.album}\n`
-			txt += `Date: ${datas.info.date}\n`
-			txt += `Duration: ${datas.info.duration}\n\n\n`
-			txt += `Details Selected Audio Song:\nBitrate: ${datas.audio[0].reso}\nSize: ${datas.audio[0].size}\n\n`
-			txt += `Lyrics:\n\n${datas.lirik}`
+		let txt = `Jooxplay Queue ...\n_By Azusa Bot_\n\n`
+			txt += `*Singer*:\n${datas.info.singer}\n\n`
+			txt += `*Song:*\n${datas.info.song}\n\n`
+			txt += `*Album:*\n${datas.info.album}\n\n`
+			txt += `*Date:*\n${datas.info.date}\n\n`
+			txt += `*Duration:*\n${datas.info.duration}\n\n`
+			txt += `*Details Selected Audio Song:*\n_Bitrate: ${datas.audio[0].reso}_\n_Size: ${datas.audio[0].size} kb_\n\n`
+			txt += `*Lyrics:*${datas.lirik}`
 		let thumb = datas.image
 			await sendFileFromUrl(from, thumb, txt, m)
 				let jooxAudio = datas.audio[0].link
-				alpha.sendMessage(from, {audio: {url: jooxAudio}, mimetype: 'audio/mpeg'}, {quoted:m})
+				alpha.sendMessage(from, {audio: {url: jooxAudio}, mimetype: 'audio/mpeg'}, {quoted:m}).catch((err) => { reply(lang.err())})
 	})
 } break
 
@@ -3381,11 +3430,11 @@ case 'spotify':{
 	await fetchJson(`https://api.lolhuman.xyz/api/spotify?apikey=${lol}&url=${url}`)
 	.then(async data => {
 		let datas = data.result
-		let txt = `Title : ${datas.title}\n`
-			txt += `Artists : ${datas.artists}\n`
-			txt += `Duration : ${datas.duration}\n`
-			txt += `Popularity : ${datas.popularity}\n`
-			txt += `Preview : ${datas.preview_url}\n`
+		let txt = `Spotify Queue ...\n_By Azusa Bot_\n\n`
+			txt += `_Artists :_ ${datas.artists}\n\n`
+			txt += `_Duration :_ ${datas.duration}\n\n`
+			txt += `_Popularity :_ ${datas.popularity}\n\n`
+			txt += `_Preview :_ ${datas.preview_url}\n`
 		let thumb = datas.thumbnail
 		await sendFileFromUrl(from, thumb, txt, m)
 		await reply(`Mohon tunggu sebentar, file audio sedang dikirim...`)
@@ -3401,14 +3450,16 @@ case 'spotifysearch':{
 	await fetchJson(`https://api.lolhuman.xyz/api/spotifysearch?apikey=${lol}&query=${query}`)
 	.then(async data => {
 		let datas = data.result
-		let txt = `Hasil Pencarian...\n`
+		let txt = `Hasil Pencarian...\n\n`
 		for (var x of datas) {
-			txt += `Title : ${x.title}\n`
-			txt += `Artists : ${x.artists}\n`
-			txt += `Duration : ${x.duration}\n`
-			txt += `Link : ${x.link}\n`
-			txt += `Preview : ${x.preview_url}\n\n\n`
+			txt += `Title : ${x.title}\n\n`
+			txt += `Artists : ${x.artists}\n\n`
+			txt += `Duration : ${x.duration}\n\n`
+			txt += `Link Spotify :\n${x.link}\n\n`
+			txt += `- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n`
 		}
+		txt += `\n`
+		txt += `_Silahkan copy/salin Link Spotify yang dipilih, kemudian gunakan perintah " !spotify link-spotify " untuk mendownload audio/musik Spotify_`
 	alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err())})
 	})
 } break
@@ -3577,12 +3628,13 @@ case 'ytplay3':{
 		await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=${lol}&query=${query}`)
 		.then(async data => {
 			let datas = data.result
-			let txt = `YoutubePlay\n\n`
-				txt += `Judul: ${datas.info.title}\n`
-				txt += `Channel: ${datas.info.channel}\n`
-				txt += `Duration: ${datas.info.duration}\n`
-				txt += `View: ${datas.info.view}\n`
-				txt += `Size Audio: ${datas.audio.size}\nBitrate: ${datas.audio.bitrate}`
+			let txt = `*_YoutubePlay_*\n\n`
+				txt += `*Sumber:*\n${query}\n\n- - - - - - - - - - - - - - - - - -`
+				txt += `*Judul:*\n${datas.info.title}\n\n`
+				txt += `*Channel:*\n${datas.info.channel}\n\n`
+				txt += `*Duration:*\n${datas.info.duration}\n\n`
+				txt += `*Viewers:*\n${datas.info.view}\n\n`
+				txt += `*Size Audio:* ${datas.audio.size}\nBitrate: ${datas.audio.bitrate}\n- - - - - - - - - - - - - - - - - -`
 			let thumb = datas.info.thumbnail
 			await sendFileFromUrl(from, thumb, txt, m)
 			reply('Mohon tunggu sebentar, file Audio sedang dikirim...')
@@ -3600,11 +3652,12 @@ case 'ytsearch2':{
 		let dataVideo = data.result
 		let ini_txt = ""
 		for (var x of dataVideo) {
-			ini_txt += `Title : ${x.title}\n`
-			ini_txt += `Views : ${x.views}\n`
-			ini_txt += `Published : ${x.published}\n`
-			ini_txt += `Thumbnail : ${x.thumbnail}\n`
-			ini_txt += `Link : https://www.youtube.com/watch?v=${x.videoId}\n\n`
+			ini_txt += `*Title :* ${x.title}\n\n`
+			ini_txt += `*Views :* ${x.views}\n\n`
+			ini_txt += `*Published :* ${x.published}\n\n`
+			ini_txt += `*Thumbnail :* ${x.thumbnail}\n\n`
+			ini_txt += `*Link :* https://www.youtube.com/watch?v=${x.videoId}\n\n`
+			ini_txt += `- - - - - - - - - - - - - - - - - - -`
 		}
 	alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err())})
 	})
