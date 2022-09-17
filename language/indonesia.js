@@ -2916,7 +2916,7 @@ return`╭─❒ 「 Sound Menu 」
 
 exports.changelog = () => {
 return `
-*_CHANGELOG_*
+*_CHANGELOG BOT_*
 
 
 *Support Oowner/Maintainer Bot dengan cara berdonasi agar Bot tetap hidup*
@@ -2930,6 +2930,8 @@ donasi -> replace deprecated QRIS to Saweria
 _last updated deployment: 7 sept 2022_
 
 semuamenu _get all list menu_
+
+*_PATCH 07 SEPTEMBER 2022_*
 
 - NSFW
 nhentaisearch
@@ -2945,6 +2947,8 @@ xhamster [link]
 - ANIMANGA
 neonimelatest
 storyanime
+anime
+animesearch
 otakudesusearch [query]
 wait [link image] _what anime is that?_
 wmit [link image] _what manga is that?_
@@ -3016,5 +3020,31 @@ insta_gram [link]  _Instagram downloader (igtv, post, video, reel, etc)_
 ytplay2 [query] _alternative feature_
 youtubemp3 [link] _alternative feature_
 youtubemp4 [link] _alternative feature_
+
+
+*_PATCH 17 SEPTEMBER 2022_*
+
+OTHER
+shorturl1
+shorturl2
+shorturl3
+shorturl4
+shortouo
+ouo
+filetobase64
+texttomorse
+morsetotext
+ransoomer
+
+DOWNLOADER
+zippyshare
+apkdownloader
+
+MOVIE & STORY
+filmapik
+drakorsearch
+drakorongoing
+cerpen
+ceritahoror
 `
 }
