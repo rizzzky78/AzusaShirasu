@@ -1558,7 +1558,7 @@ break */
 			}
 				break
 			case 'join': {
-				if (!isCreator) return reply(lang.ownerOnly())
+				if (!isCreator) return reply('Mau masukin Bot ke Grup?, Silahkan Chat Owner...\nwa.me/6281329585825')
 				//if (!text) return reply(lang.JoinGc())
 				//if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(lang.erorLink())
 				reply(lang.wait())
