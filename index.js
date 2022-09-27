@@ -4,10 +4,12 @@
 Change log:
 	- removed must be registered when using commands
 	- Major bug fixes(maybe?)
+	- added modular strings for data txt
 
-	Last Edited -- 17 Sept 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 27 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
+import { __userGuide, __myDonationsBoards } from './textData'
 
 require('./settings')
 const { default: makeWASocket, BufferJSON, WAMessageStubType, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia , generateWAMessage, areJidsSameUser, makeInMemoryStore} = require('@adiwajshing/baileys')
@@ -1098,7 +1100,7 @@ Info: *bold* hash is Locked
 			//
 			case 'nick': {
 				try {
-					alpha.sendButMessage(from, 'WHY BUDI?,\n\nBECAUSE BUDI IS BUDI :<\n\n\nSALAM BUDI', `© ${ownername}`, [
+					alpha.sendButMessage(from, 'Silahkan ketuk tombol di bawah\nBuat yg udh pake nick dan udh ngajuin, nanti otomatis di acc sama vice/admiral\n\njgn lupass profil kirim ke grub stlh pake nick ya.. kalo enggak nanti mimpimu disepong Dina chan sampe kering... hihihi', `© ${ownername}`, [
 						{ buttonId: 'ambilidarmada', buttonText: { displayText: 'Salin ID Armada' } },
 						{ buttonId: 'ambilnick', buttonText: { displayText: 'Salin Nick' } }])
 				} catch {
@@ -1124,7 +1126,10 @@ Info: *bold* hash is Locked
 
 			case 'donasi': case 'donate': {
 				let thumb = saweria
-				await sendFileFromUrl(from, thumb, lang.tos(ownernomer), m)
+				let text1 = lang.tos(ownernomer)
+				let text2 = __myDonationsBoards
+				let finalText = text1 + '\n\n' + text2
+				await sendFileFromUrl(from, thumb, finalText, m)
 			} break
 
 			case 'boarddonasi': {
@@ -1137,7 +1142,7 @@ makacihh....
 
 Regards, Azusa Bot`
 				await sendFileFromUrl(from, thumb, txt, m)
-			}
+			} break
 
 			case 'paaay': case 'baaaayar': {
 				alpha.sendMessage(m.chat, { image: qris, caption: (db.data.settings[botNumber].captionPay || 'Payment. caption pay bisa ubah dengan command .setcaptionpay ') }, { quoted: m })
@@ -1907,6 +1912,14 @@ delete caklontong[m.sender.split('@')[0]]
 				}
 			}
 				break
+			
+			case 'guide': case 'panduan': {
+				reply(lang.wait())
+				let txt = __userGuide
+				let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/profile/azusa-main.jpg'
+				await sendFileFromUrl(from, thumb, txt, m)
+			} break
+
 			case 'help': case 'panel': case 'menu': {
 				try {
 					hit_total = await fetchJson('https://api.countapi.xyz/hit/api-alphabot.herokuapp.com/visits')
@@ -1973,6 +1986,7 @@ delete caklontong[m.sender.split('@')[0]]
 ╭─❒ 「 Additional Info 」 
 ├ *Cek Menu Tambahan di
 ├ !semuamenu
+├ untuk lihat panduan menggunakan Bot, ketik !panduan
 ╰❒
 `
 				const buttojns = [
@@ -2695,7 +2709,7 @@ delete caklontong[m.sender.split('@')[0]]
 						azusa.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err()) })
 					})
 			} break
-			/* Nhentai Scrapper -- Azusa Bot */
+
 			case 'nhentaipdf': case 'nhpdf': {
 				if (args.length == 0) return reply(`Contoh: ${prefix + command} 12345`)
 				reply(lang.wait())
@@ -2746,8 +2760,8 @@ delete caklontong[m.sender.split('@')[0]]
 						ini_txt += `Title : #${x.title}\n`
 						ini_txt += `Link : ${x.link}\n`
 						ini_txt += `Thumbnail : ${x.thumbnail}\n`
-						ini_txt += `Episode : ${x.episode}\n`
-						ini_txt += `- - - \n`
+						ini_txt += `Episode : ${x.episode}\n\n`
+						ini_txt += `- - - - - - - - - - - - - - - - - - - - - - - - \n`
 					}
 					alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err()) })
 				})
@@ -2781,8 +2795,8 @@ delete caklontong[m.sender.split('@')[0]]
 						ini_txt += `Thumbnail : ${x.thumbnail}\n`
 						ini_txt += `Episode : ${x.episode}\n`
 						ini_txt += `Date : ${x.date}\n`
-						ini_txt += `Description : ${x.desc}\n`
-						ini_txt += `- - - \n`
+						ini_txt += `Description : ${x.desc}\n\n`
+						ini_txt += `- - - - - - - - - - - - - - - - - - - - - - - - \n\n`
 					}
 					alpha.sendText(m.chat, ini_txt, m).catch((err) => { reply(lang.err()) })
 				})
@@ -2834,7 +2848,69 @@ delete caklontong[m.sender.split('@')[0]]
 						txt += `*_Anime Search By Azusa Bot_* :)`
 
 						let thumb = datas.coverImage.large
-						await sendFileFromUrl(from, thumb, txt, m)
+						await sendFileFromUrl(from, thumb, txt, m).catch((err) => { reply(lang.err()) })
+					})
+			} break
+
+			case 'manga': case 'mangasearch': {
+				reply(lang.wait())
+				let query = args.join(" ")
+				if (args.length == 0) return reply(`Contoh: ${prefix + command} classroom elite`)
+				await fetchJson(`https://api.lolhuman.xyz/api/manga?apikey=${lol}&query=${query}`)
+					.then(async data => {
+						let datas = data.result
+						let txt = `_Hasil Pencarian..._\n\n`
+								txt += `ID Manga / MAL : ${datas.id} / ${datas.idMal}\n`
+								txt += `Average Score on MAL : ${datas.averageScore}`
+								txt += `Judul Manga :\n`
+								txt += `Romaji : ${datas.title.romaji}\n`
+								txt += `English : ${datas.title.english}\n`
+								txt += `Romaji : ${datas.title.native}\n`
+								txt += `Type : ${datas.format}\n`
+								txt += `Chapters : ${datas.chapters}`
+								txt += `Volumes : ${datas.volumes}\n`
+								txt += `Status : ${datas.status}\n`
+								txt += `Source : ${datas.source}\n`
+								txt += `Genre :\n`
+								let Genres = datas.genres
+								for (var gen of Genres) {
+									txt += `- ${gen}\n`
+								}
+								txt += `Start Date :\n`
+								txt += `${datas.startDate.day} - ${datas.startDate.month} ${datas.startDate.year}\n`
+								txt += `End Date :\n`
+								txt += `${datas.endDate.day} - ${datas.endDate.month} ${datas.endDate.year}\n`
+								txt += `Description :\n`
+								txt += `${datas.description}\n\n`
+								txt += `Character :\n`
+								let characterManga = datas.characters.nodes
+								for (var karakter of characterManga) {
+									txt `- ${karakter.name.full}\n`
+									txt `- ${karakter.name.native}\n\n`
+								}
+								txt += `..\n\n\n`
+								txt += `*_Manga Search By Azusa Bot_*`
+								let thumb = datas.coverImage.large
+								await sendFileFromUrl(from, thumb, txt, m).catch((err) => { reply(lang.err()) })
+					})
+			} break
+
+			case 'charactersearch': case 'character': case 'karakter': {
+				reply(lang.wait())
+				let query = args.join(" ")
+				if (args.length == 0) return reply(`Contoh: ${prefix + command} naruto`)
+				await fetchJson(`https://api.lolhuman.xyz/api/character?apikey=${lol}&query=${query}`)
+					.then(async data => {
+						let datas = data.result
+						let txt = `_Hasil Pencarian..._\n\n`
+								txt += `ID character: ${datas.id}\n`
+								txt += `Karakter poll favorit: ${datas.favourites}\n\n`
+								txt += `Nama : ${datas.name.full}\n`
+								txt += `Native : ${datas.name.native}\n\n`
+								txt += `Deskripsi Karakter:\n`
+								txt += `${datas.description}`
+						let thumb = datas.image.medium
+						await sendFileFromUrl(from, thumb, txt, m).catch((err) => { reply(lang.err()) })
 					})
 			} break
 
@@ -3060,7 +3136,7 @@ Similarity : ${result.similarity}`
 				await sendFileFromUrl(from, process, lang.ok(), m).catch((err) => { reply(lang.err()) })
 			} break
 
-			case 'memes': case 'meme': {
+			case 'memes': {
 				let caption = '_Memes Feature_\n\nSilahkan ketuk tombol dibawah:'
 				alpha.sendButMessage(from, caption, `© ${ownername}`, [
 					{ buttonId: 'meme', buttonText: { displayText: 'Meme' } },
@@ -3506,22 +3582,19 @@ Similarity : ${result.similarity}`
 				reply(lang.wait())
 				let link = args[0]
 				if (args.length == 0) return reply(`${command} https://web.facebook.com/watch/?v=892725951575913`)
-				await fetchJson(`https://api.lolhuman.xyz/api/facebook?apikey=${lol}&url=${link}`)
+					try {
+						await fetchJson(`https://api.lolhuman.xyz/api/facebook?apikey=${lol}&url=${link}`)
 					.then(async data => {
 						let datas = data.result
 						await sendFileFromUrl(from, datas, lang.ok(), m).catch((err) => { reply(lang.err()) })
 					})
-			} break
-
-			case 'fbdl2': {
-				reply(lang.wait())
-				let link = args[0]
-				if (args.length == 0) return reply(`${command} https://web.facebook.com/watch/?v=892725951575913`)
-				await fetchJson(`https://api.lolhuman.xyz/api/facebook2?apikey=${lol}&url=${link}`)
+					} catch {
+						await fetchJson(`https://api.lolhuman.xyz/api/facebook2?apikey=${lol}&url=${link}`)
 					.then(async data => {
 						let datas = data.result
 						await sendFileFromUrl(from, datas, lang.ok(), m).catch((err) => { reply(lang.err()) })
 					})
+					}
 			} break
 
 			case 'jooxplay': {
@@ -4000,8 +4073,9 @@ Similarity : ${result.similarity}`
 				setTimeout(() => { reply('Tiga - 3') }, 5000)
 				setTimeout(() => { reply('Dua - 2') }, 7000)
 				setTimeout(() => { reply('Satu - 1') }, 9000)
-				setTimeout(() => { reply('Lahh nungguin ye?') }, 20000)
-				setTimeout(() => { reply('Mampus, mau aja gw kibulin...') }, 23000)
+				setTimeout(() => { reply('UDAH MUAK GW ANJG') }, 20000)
+				setTimeout(() => { reply('Ato elu aja yg mau gw kick hah?') }, 23000)
+				setTimeout(() => { reply('Bbb... bukannya aku marah yah, ttt...tapi kalo kamu kaya gitu terus, aku juga ga mw...\n...humphh >///<') }, 25000)
 			} break
 
 			//sound
@@ -6127,7 +6201,8 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 			default:
 
 				if (budy.includes(`6281329585825` || `081329585825` || `+6281329585825`)) {
-					const pesanOwner = ["Hayoloo mo ngapain tag Owner gua?",
+					const pesanOwner = [
+						"Hayoloo mo ngapain tag Owner gua?",
 						"Mau ngapain Kak?",
 						"Hmmm... masih Saya pantau :)",
 						"Arek keperluan nopo lek?, gak iso karo aku wae po?",
@@ -6137,9 +6212,25 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 						"Lagi bertapa kak, berharap kehidupan ini agar lebih baik lagi :)",
 						"Jangan di tag kak, sedang memikirkan masa depan..",
 						"Mo nagapain su",
-						"Tchh, nandayo koitse"]
+						"Arep ngopo to maseh?"
+					]
 					const thisMess = pesanOwner[Math.floor(Math.random() * (pesanOwner.length))]
 					reply(thisMess)
+				}
+
+				if (budy.includes('628988469196'||'+628988469196')) {
+					const pesanBudi = [
+						"Gimana?, ada perlu apa sama Budi Kak?\nhayooloo mo ngapain... pasti nganu ya 😱",
+						"Budi lagi makan kak, jangan diganggu!",
+						"Budi katanya lagi ada kencan sama Lort Dina Kak!",
+						"Si Budi lagi coli kak, jangan di tag",
+						"Si Budi habis putus cinta, jangan kasih dia harapan palsu lagi kak",
+						"Budi lagi gua suruh beli es teh ke warung sebelah kak",
+						"Jangan di tag Kak, dia nyesel kemarin habis coly",
+						"Wonge lagi madang su, ojo di tag"
+					]
+					const balasBudi = pesanBudi[Math.floor(Math.random() * (pesanBudi.length))]
+					reply(balasBudi)
 				}
 
 				if (budy.startsWith('=>')) {
