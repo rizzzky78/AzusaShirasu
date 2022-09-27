@@ -1,7 +1,7 @@
 
 /* Used for Guides */
 
-export const __userGuide = `
+const __userGuide = `
 *_Azusa Bot -- Shirasu Azusa Bot_*
 _a successor of shoujo bot, who predecessor of shiroko bot and deprecated of kei bot_
 
@@ -111,7 +111,7 @@ fourth, ada problem di production App Bot nya... chat owner semisal nemu problem
 ...thankyou for reading till end :)
 `
 
-export const __myDonationsBoards = `
+const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
 
  - _patch Azusa Bot_
@@ -136,3 +136,5 @@ export const __myDonationsBoards = `
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 ┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━`
+
+export { __userGuide, __userGuide };
