@@ -3,7 +3,7 @@
 
 const __userGuide = `
 *_Azusa Bot -- Shirasu Azusa Bot_*
-_a successor of shoujo bot, who predecessor of shiroko bot and deprecated of kei bot_
+_a successor of shoujo bot, who is predecessor of shiroko bot and deprecated of kei bot_
 
 
 
@@ -114,12 +114,14 @@ fourth, ada problem di production App Bot nya... chat owner semisal nemu problem
 const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
 
- - _patch Azusa Bot_
-┃ ♔ Budi ➛ 10+8 💎 _updated_
+ - _patch of Azusa Bot, end of jul ~ sep_
+┃ ♔ Budi ➛ 18 (+8) 💎 _updated_
+┃ ♔ Rry Kaslana ➛ 10 💎 _updated_
 ┃ ♔ Ikki ➛ 2 💎 _updated_
+┃ ♔ Rizal ➛ 2 💎 _updated_
 ┃ ♔ viky ➛ 1 💎 _updated_
 
- - _patch Shoujo Bot_
+ - _patch of Shoujo Bot ~ Kei Bot_
 ┃ ♔ Faiz ➛ 5 💎
 ┃ ♔ Allen ➛ 2 💎
 ┃ ♔ Dio ➛ 2 💎
@@ -137,4 +139,4 @@ const __myDonationsBoards = `
 
 ┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━`
 
-module.exports = { __userGuide, __userGuide };
+module.exports = { __userGuide, __myDonationsBoards };
