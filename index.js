@@ -76,6 +76,19 @@ const thisBlob = blobPricture[Math.floor(Math.random()*(blobPricture.length))]
 const saweria = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/qrcode-saweria.png';
 const dashboardDonasi = 'https://saweria.co/overlays/leaderboard?streamKey=90ac389d2ca9bfa6d50c2ac24c7a726b&backgroundColor=%23ffffffFF&color=%23000000FF&fontWeight=500&title=Leaderboard&mode=all';
 
+// timer random num
+let arrTimer = [
+  setTimeout(() => { reply('Random Number -- diantara angka 0 sampai ..') }, 3000),
+  setTimeout(() => { reply('Angka akan muncul dalam waktu...') }, 6000),
+  setTimeout(() => { reply('Kurang dari ... 5 detik') }, 9000),
+  setTimeout(() => { reply('Kurang dari ... 4 detik') }, 12000),
+  setTimeout(() => { reply('Kurang dari ... 3 detik') }, 15000),
+  setTimeout(() => { reply('Kurang dari ... 2 detik') }, 18000),
+  setTimeout(() => { reply('Kurang dari ... 1 detik') }, 21000),
+  setTimeout(() => { reply('Angka yang muncul adalah angka...') }, 24000)
+]
+let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintan random number lagi.'
+
 // Database Game
 const hit_today = []
 const kuismath = db.data.game.math = {}
@@ -1125,22 +1138,19 @@ Info: *bold* hash is Locked
 			} break
 
 			case 'donasi': case 'donate': {
+				reply(lang.wait())
 				let thumb = saweria
-				let text1 = lang.tos(ownernomer)
-				let text2 = __myDonationsBoards
-				let finalText = text1 + '\n\n' + text2
-				await sendFileFromUrl(from, thumb, finalText, m)
+				await sendFileFromUrl(from, thumb, lang.tos(ownernomer), m)
+				setTimeout(() => {
+					alpha.send1ButMes(m.chat, 'Dashboard Donasi\nLihat siapa saja yang sudah mendukung Bot ini\nTengkiu,...',
+					`© ${ownername}`, `dashboarddonasi`, `Supporter Bot`, m)
+				}, 4000)
 			} break
 
-			case 'boarddonasi': {
-				let thumb = dashboardDonasi
-				let txt = `
-Dasboard Donasi
-
-Dasboard akan selalu up to date setiap kali ada yang berdonasi.
-makacihh....
-
-Regards, Azusa Bot`
+			case 'dashboarddonasi': case 'boarddonasi': case 'listdonasi':{
+				reply(lang.wait())
+				let thumb = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/profile/azusa-main.jpg'
+				let txt = __myDonationsBoards
 				await sendFileFromUrl(from, thumb, txt, m)
 			} break
 
@@ -4015,6 +4025,9 @@ Similarity : ${result.similarity}`
 					})
 			} break
 
+			/* Azusa Bot New Patch 
+				added some features & guide / panduan untuk user awam alias gaptek :) */
+
 			case 'ransoomer': case 'rangkum': case 'ringkasan':{
 				reply(lang.wait())
 				let query = args.join(" ")
@@ -4027,14 +4040,40 @@ Similarity : ${result.similarity}`
 						alpha.sendText(m.chat, txt, m).catch((err) => { reply(lang.err()) })
 					})
 			} break
+				/* total arrayTimer is 8 arr strings, will make sure the number doesn't < 1 == 0 
+				lumayan buat acara giveaway, jadinya dag dig dug serrr...., code ori buat sndiri :v*/
+			case 'random50':{ 
+				let ran50 = Math.floor((Math.random() * 50) + 1);
+					arrTimer.map( (keyTimer) => (keyTimer) );
+					let txt = `Angka *${ran50}*`
+					setTimeout(() => { 
+						reply(txt)}, 27000);
+						setTimeout(() => { 
+							reply(timerSay)}, 28000);
+			} break
+			case 'random100':{
+				let ran100 = Math.floor((Math.random() * 100) + 1);
+				arrTimer.map( (keyTimer) => (keyTimer) );
+					let txt = `Angka *${ran100}*`
+					setTimeout(() => { 
+						reply(txt)}, 27000);
+						setTimeout(() => { 
+							reply(timerSay)}, 28000);
+			} break
+			case 'random200':{
+				let ran200 = Math.floor((Math.random() * 200) + 1);
+				arrTimer.map( (keyTimer) => (keyTimer) );
+					let txt = `Angka *${ran200}*`
+					setTimeout(() => { 
+						reply(txt)}, 27000);
+						setTimeout(() => { 
+							reply(timerSay)}, 28000);
+			} break
 
-
-
-
-
-
-
-
+			/*
+					tetap dukung Bot dgn cara berdonasi
+					agar Bot tetap hidup.., makasi jg yg udh donasi  :)
+																								*/
 
 
 			case 'checkapikey': {
