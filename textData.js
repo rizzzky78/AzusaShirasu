@@ -137,4 +137,4 @@ const __myDonationsBoards = `
 
 ┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━`
 
-export { __userGuide, __userGuide };
+module.exports = { __userGuide, __userGuide };
