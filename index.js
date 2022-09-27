@@ -9,7 +9,7 @@ Change log:
 	Last Edited -- 27 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
-import { __userGuide, __myDonationsBoards } from './textData'
+const { __userGuide, __myDonationsBoards } = require('./textData')
 
 require('./settings')
 const { default: makeWASocket, BufferJSON, WAMessageStubType, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia , generateWAMessage, areJidsSameUser, makeInMemoryStore} = require('@adiwajshing/baileys')
