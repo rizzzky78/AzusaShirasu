@@ -9,7 +9,7 @@ Change log:
 	Last Edited -- 27 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
-// import { __userGuide, __myDonationsBoards } from './textData'
+
 const { __userGuide, __myDonationsBoards } = require('./textData')
 
 require('./settings')
@@ -2827,7 +2827,7 @@ delete caklontong[m.sender.split('@')[0]]
 						txt += `Musim : ${datas.season}\n`
 						txt += `Tahun Musim : ${datas.seasonYear}\n`
 						txt += `Sumber Adaptasi : ${datas.source}\n`
-						txt += `Genre`
+						txt += `Genre\n`
 						let thisGenre = datas.genres
 						for (var x of thisGenre) {
 							txt += `- ${x}\n`
@@ -3305,6 +3305,22 @@ Similarity : ${result.similarity}`
 						await sendFileFromUrl(from, thumb, thisText, m).catch((err) => { reply(lang.err()) })
 					}
 				)
+			} break
+
+			case 'pixiv': case 'pixivsearch': {
+				reply(lang.wait())
+				let query = args.join(" ")
+				if (args.length == 0) return reply(`Contoh: ${command} pixiv raiden shogun`)
+				let pixiv = await (`https://api.lolhuman.xyz/api/pixiv?apikey=${lol}&query=${query}`)
+					await sendFileFromUrl(from, pixiv, lang.ok(), m).catch((err) => { reply(lang.err()) })
+			} break
+
+			case 'pixivid': {
+				reply(lang.wait())
+				let query = args[0]
+				if (args.length == 0) return reply(`Contoh: ${command} 12345`)
+				let pixivid = await (`https://api.lolhuman.xyz/api/pixivdl/${query}?apikey=${lol}`)
+					await sendFileFromUrl(from, pixivid, lang.ok(), m).catch((err) => { reply(lang.err()) })
 			} break
 
 			case 'pinterestsearch': { // Search image from Pinterest	
@@ -4034,7 +4050,7 @@ Similarity : ${result.similarity}`
 
 			case 'random50':{ 
 				let ran50 = Math.floor((Math.random() * 50) + 1);
-				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintan random number lagi.'
+				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintah random number lagi.'
 						setTimeout(() => { reply('Random Number -- diantara angka 0 sampai ..') }, 3000);
 						setTimeout(() => { reply('Angka akan muncul dalam waktu...') }, 6000);
 						setTimeout(() => { reply('Kurang dari ... 5 detik') }, 9000);
@@ -4051,7 +4067,7 @@ Similarity : ${result.similarity}`
 			} break
 			case 'random100':{
 				let ran100 = Math.floor((Math.random() * 100) + 1);
-				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintan random number lagi.'
+				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintah random number lagi.'
 						setTimeout(() => { reply('Random Number -- diantara angka 0 sampai ..') }, 3000);
 						setTimeout(() => { reply('Angka akan muncul dalam waktu...') }, 6000);
 						setTimeout(() => { reply('Kurang dari ... 5 detik') }, 9000);
@@ -4068,7 +4084,7 @@ Similarity : ${result.similarity}`
 			} break
 			case 'random200':{
 				let ran200 = Math.floor((Math.random() * 200) + 1);
-				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintan random number lagi.'
+				let timerSay = 'Selamat bagi yang memilih angka tersebut,\njika tidak ada angka yang cocok silahkan gunakan perintah random number lagi.'
 						setTimeout(() => { reply('Random Number -- diantara angka 0 sampai ..') }, 3000);
 						setTimeout(() => { reply('Angka akan muncul dalam waktu...') }, 6000);
 						setTimeout(() => { reply('Kurang dari ... 5 detik') }, 9000);
@@ -6248,8 +6264,30 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 
 			default:
 
+				let arrToxic = ['ASU','ANJING', 'anjing', 'Anjing', 'Anjg','BABI', 'Babi', 'babi','KONTOL', 'Kontol', 'kontol','NGENTOT', 'Ngentot', 'Ngentod', 'ngentot', 'ngentod','JEMBUT', 'Jembut', 'Jembot', 'jembut','JANCOK', 'Jancok', 'Jancuk', 'jancuk','MEMEK', 'Memek', 'memek'];
+				let budySayThx = ['Makasih', 'makasih', 'Terimakasih']
+				let sayHello = ['Hai', 'Halo', 'Bot']
+
+				if (budy.includes(...sayHello)) {
+				let replySayHello = ['Hai juga kak!', 'Hallo, doumo Azusa Bot desu!', 'Haik haikk... kokoni imasu!']
+					let replyHello = replySayHello[Math.floor(Math.random() * (replySayHello.length))]
+					reply(replyHello)
+				}
+
+				if (budy.includes(...arrToxic)) {
+					let msgReplyToxic = ['Aduhhh kok toxic si bang?','Weee jan toxic laa...','Hmmm... masih saya pantau Kamu ya','Hey Kamu... iya Kamu, kenapa toxic?\nSini cerita donk..','Inget kata emak, jangan toxic jangan nakal','Hehh dijaga ucapan mu itulohh','Hmmm... temennya Budi Kamu ya... pasti diajarin toxic sama dia','Hei hei... stop it, get some help!','Kenapa warga indo itu banyak yang toxic siii...','Kamu ini toxic, ajarannya siapa si?..','Hei.. stop berkata kasar, mari kita gunakan bahasa yang baik dan benar :)','Hehh Kak, jangan kasar laa','Kalo Kamu ngmong kasar lagi aku cepuin ke emak Kamu ya!','Mantapp lah, lanjutkan bakat toxic mu nak','Mamamu pasti bangga, punya anak kayak Kamu... eh koq satire :v']
+					let replyToxic = msgReplyToxic[Math.floor(Math.random() * (msgReplyToxic.length))]
+					reply(replyToxic)
+				}
+
+				if (budy.includes(...budySayThx)) {
+					let msgReplySayThx = ['Ya sama-sama kak :)','Terimakasih kembali kak','Sama-sama kak','Yoi mapren','Slebeww']
+					let replySayThx = msgReplySayThx[Math.floor(Math.random() * (msgReplySayThx.length))]
+					reply(replySayThx)
+				}
+
 				if (budy.includes(`6281329585825` || `081329585825` || `+6281329585825`)) {
-					const pesanOwner = [
+					let pesanOwner = [
 						"Hayoloo mo ngapain tag Owner gua?",
 						"Mau ngapain Kak?",
 						"Hmmm... masih Saya pantau :)",
@@ -6267,7 +6305,7 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 				}
 
 				if (budy.includes('628988469196'||'+628988469196')) {
-					const pesanBudi = [
+					let pesanBudi = [
 						"Gimana?, ada perlu apa sama Budi Kak?\nhayooloo mo ngapain... pasti nganu ya 😱",
 						"Budi lagi makan kak, jangan diganggu!",
 						"Budi katanya lagi ada kencan sama Lort Dina Kak!",
