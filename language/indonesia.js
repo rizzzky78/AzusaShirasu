@@ -1781,16 +1781,15 @@ or
 
 Saweria:
 https://saweria.co/rizzzky
-
 or Scan QR diatas
-
 
 
 Hai kak ☺️ 
 Kalian bisa mendukung Saya agar bot ini tetap hidup dan up to date dengan cara berdonasi
 Berapapun donasi kalian akan sangat berarti 👍
 
-Buat yang udah donasi bisa kirim bukti/nama atau alias di Saweria agar bisa di masukkan ke dashboard Donasi.
+_Buat yang udah donasi bisa kirim bukti/nama atau alias di Saweria agar bisa di masukkan ke dashboard Donasi._
+_List siapa saja yang sudah mendukung Bot ini bisa dilihat pada command *!listdonasi* ..._
 
 Thanks!
 
@@ -2924,12 +2923,13 @@ return `
 
 *_CHANGE FEATURES_*
 donasi -> replace deprecated QRIS to Saweria
+donasi -> added dashboard donasi, check at !donasi
 
 
 *_ADDED NEW FEATURES_*
-_last updated deployment: 7 sept 2022_
+_last updated deployment: 2 okt 2022_
 
-semuamenu _get all list menu_
+!semuamenu _get all list menu on safe mode_
 
 *_PATCH 07 SEPTEMBER 2022_*
 
@@ -3046,5 +3046,34 @@ drakorsearch
 drakorongoing
 cerpen
 ceritahoror
+
+*_PATCH 2 OKTOBER 2022_*
+
+URL SHORTENER
+shorturl1
+shorturl2
+shorturl3
+shorturl4
+shortouo
+ouo
+
+OTHER
+filetobase64
+texttomorse
+morsetotext
+ransoomer
+rangkum
+ringkasan
+random50
+random100
+random200
+
+IMAGE
+pixiv
+pixivsearch
+pixivid
+
+AUTO REPLY
+-- still in BETA
 `
 }
