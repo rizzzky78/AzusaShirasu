@@ -6,7 +6,7 @@ Change log:
 	- Major bug fixes(maybe?)
 	- added modular strings for data txt
 
-	Last Edited -- 27 Sept 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 02 Sept 2022 -- 21.14 WIB Indonesian Time
 
 */
 
@@ -6264,23 +6264,23 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 
 			default:
 
-				let arrToxic = ['ASU','ANJING', 'anjing', 'Anjing', 'Anjg','BABI', 'Babi', 'babi','KONTOL', 'Kontol', 'kontol','NGENTOT', 'Ngentot', 'Ngentod', 'ngentot', 'ngentod','JEMBUT', 'Jembut', 'Jembot', 'jembut','JANCOK', 'Jancok', 'Jancuk', 'jancuk','MEMEK', 'Memek', 'memek'];
-				let budySayThx = ['Makasih', 'makasih', 'Terimakasih']
-				let sayHello = ['Hai', 'Halo', 'Bot']
+				// let arrToxic = ['ASU','ANJING', 'anjing', 'Anjing', 'Anjg','BABI', 'Babi', 'babi','KONTOL', 'Kontol', 'kontol','NGENTOT', 'Ngentot', 'Ngentod', 'ngentot', 'ngentod','JEMBUT', 'Jembut', 'Jembot', 'jembut','JANCOK', 'Jancok', 'Jancuk', 'jancuk','MEMEK', 'Memek', 'memek'];
+				// let budySayThx = ['Makasih', 'makasih', 'Terimakasih']
+				// let sayHello = ['Hai', 'Halo', 'Bot']
 
-				if (budy.includes(...sayHello)) {
+				if (budy.includes('Hai'|'Halo'|'Bot')) {
 				let replySayHello = ['Hai juga kak!', 'Hallo, doumo Azusa Bot desu!', 'Haik haikk... kokoni imasu!']
 					let replyHello = replySayHello[Math.floor(Math.random() * (replySayHello.length))]
 					reply(replyHello)
 				}
 
-				if (budy.includes(...arrToxic)) {
+				if (budy.includes('ASU'||'ANJING'|| 'anjing'|| 'Anjing'|| 'Anjg'||'BABI'|| 'Babi'|| 'babi'||'KONTOL'|| 'Kontol'|| 'kontol'||'NGENTOT'|| 'Ngentot'|| 'Ngentod'|| 'ngentot'|| 'ngentod'||'JEMBUT'|| 'Jembut'|| 'Jembot'|| 'jembut'||'JANCOK'|| 'Jancok'|| 'Jancuk'|| 'jancuk'||'MEMEK'|| 'Memek'|| 'memek')) {
 					let msgReplyToxic = ['Aduhhh kok toxic si bang?','Weee jan toxic laa...','Hmmm... masih saya pantau Kamu ya','Hey Kamu... iya Kamu, kenapa toxic?\nSini cerita donk..','Inget kata emak, jangan toxic jangan nakal','Hehh dijaga ucapan mu itulohh','Hmmm... temennya Budi Kamu ya... pasti diajarin toxic sama dia','Hei hei... stop it, get some help!','Kenapa warga indo itu banyak yang toxic siii...','Kamu ini toxic, ajarannya siapa si?..','Hei.. stop berkata kasar, mari kita gunakan bahasa yang baik dan benar :)','Hehh Kak, jangan kasar laa','Kalo Kamu ngmong kasar lagi aku cepuin ke emak Kamu ya!','Mantapp lah, lanjutkan bakat toxic mu nak','Mamamu pasti bangga, punya anak kayak Kamu... eh koq satire :v']
 					let replyToxic = msgReplyToxic[Math.floor(Math.random() * (msgReplyToxic.length))]
 					reply(replyToxic)
 				}
 
-				if (budy.includes(...budySayThx)) {
+				if (budy.includes('Makasih', 'makasih', 'Terimakasih')) {
 					let msgReplySayThx = ['Ya sama-sama kak :)','Terimakasih kembali kak','Sama-sama kak','Yoi mapren','Slebeww']
 					let replySayThx = msgReplySayThx[Math.floor(Math.random() * (msgReplySayThx.length))]
 					reply(replySayThx)
