@@ -6268,7 +6268,7 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 				// let budySayThx = ['Makasih', 'makasih', 'Terimakasih']
 				// let sayHello = ['Hai', 'Halo', 'Bot']
 
-				if (budy.includes('Hai'|'Halo'|'Bot')) {
+				/*if (budy.includes('Hai'|'Halo'|'Bot')) {
 				let replySayHello = ['Hai juga kak!', 'Hallo, doumo Azusa Bot desu!', 'Haik haikk... kokoni imasu!']
 					let replyHello = replySayHello[Math.floor(Math.random() * (replySayHello.length))]
 					reply(replyHello)
@@ -6279,12 +6279,13 @@ ${prefix}nuliskiri Subscribe Ya https://youtube.com/c/zeeoneofc`)
 					let replyToxic = msgReplyToxic[Math.floor(Math.random() * (msgReplyToxic.length))]
 					reply(replyToxic)
 				}
-
-				if (budy.includes('Makasih', 'makasih', 'Terimakasih')) {
+				*/
+				if (budy.includes('Makasih')) {
 					let msgReplySayThx = ['Ya sama-sama kak :)','Terimakasih kembali kak','Sama-sama kak','Yoi mapren','Slebeww']
 					let replySayThx = msgReplySayThx[Math.floor(Math.random() * (msgReplySayThx.length))]
 					reply(replySayThx)
 				}
+				
 
 				if (budy.includes(`6281329585825` || `081329585825` || `+6281329585825`)) {
 					let pesanOwner = [
