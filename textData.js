@@ -114,15 +114,16 @@ fourth, ada problem di production App Bot nya... chat owner semisal nemu problem
 const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
 
- - _patch of Azusa Bot, end of jul ~ sep_
-┃ ♔ Budi ➛ 18 (+8) 💎 _updated_
-┃ ♔ Rry Kaslana ➛ 10 💎 _updated_
-┃ ♔ Ikki ➛ 2 💎 _updated_
-┃ ♔ Rizal ➛ 2 💎 _updated_
-┃ ♔ viky ➛ 1 💎 _updated_
+ - _patch of Azusa Bot, end of jul ~ oct_
+┃ ♔ Budi ➛ 18 💎 
+┃ ♔ Rry Kaslana ➛ 10 💎 
+┃ ♔ Faiz ➛ 7 💎 _updated_
+┃ ♔ Kanzaki Ikki ➛ 5 💎 _updated_
+┃ ♔ Lewd Chan ➛ 5 💎 _updated_
+┃ ♔ Rizal ➛ 4 💎 _updated_
+┃ ♔ viky ➛ 1 💎 
 
  - _patch of Shoujo Bot ~ Kei Bot_
-┃ ♔ Faiz ➛ 5 💎
 ┃ ♔ Allen ➛ 2 💎
 ┃ ♔ Dio ➛ 2 💎
 ┃ ♔ Dimas R. ➛ 2 💎
