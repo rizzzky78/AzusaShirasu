@@ -118,7 +118,7 @@ const __myDonationsBoards = `
 ┃ ♔ Budi ➛ 18 💎 
 ┃ ♔ Rry Kaslana ➛ 10 💎 
 ┃ ♔ Faiz ➛ 7 💎 _updated_
-┃ ♔ Kanzaki Ikki ➛ 5 💎 _updated_
+┃ ♔ Kanzaki Ikki ➛ 7 💎 _updated_
 ┃ ♔ Lewd Chan ➛ 5 💎 _updated_
 ┃ ♔ Rizal ➛ 4 💎 _updated_
 ┃ ♔ viky ➛ 1 💎 
