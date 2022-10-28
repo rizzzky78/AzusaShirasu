@@ -51,8 +51,24 @@ const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGr
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
 
 // Mongodb Atlas Database
-const { ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
-const serveAtlas = require('./atlas')
+const { MongoClient } = require("mongodb");
+const { ATLAS, ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
+// const serveAtlas = require('./atlas')
+
+const uri = `mongodb+srv://${ATLAS.user}:${ATLAS.key}@bot-database.w7oyxwa.mongodb.net/?retryWrites=true&w=majority`;
+
+const serveAtlas = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+
+serveAtlas.connect((error) => {
+  if (error) {
+    console.log(error);
+  }
+  console.log("Database connected");
+});
 
 const databaseName = ATLAS_DB.wabotUsers // switch database here
 const collection = ATLAS_COLLECTION.clientWabot // switch collection here
@@ -963,7 +979,7 @@ Info: *bold* hash is Locked
 			}
 				break
 
-			case 'registerbeta': {
+			case 'reg': {
 				const cryptoRandomString = require('crypto-random-string');
 
 				let args = args.join(' ')
@@ -975,7 +991,7 @@ Info: *bold* hash is Locked
 				let serialNumber = cryptoRandomString(15)
 				let phoneNumber = m.sender.split('@')[0]
 
-				if (!text && !text.includes('|')) return reply('Contoh: registerbeta Budi|cowo|25|game')
+				if (!text && !text.includes('|')) return reply('Contoh: reg Budi|cowo|25|game')
 				if (name.length > 15) return reply(lang.NamaReg())
 				if (hobbys.length > 10) return reply(lang.HobiReg())
 				if (isNaN(umurx)) return reply(lang.UmurReg())
