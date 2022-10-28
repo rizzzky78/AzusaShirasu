@@ -6,7 +6,7 @@ Change log:
 	- Major bug fixes(maybe?)
 	- added modular strings for data txt
 
-	Last Edited -- 02 Sept 2022 -- 21.14 WIB Indonesian Time
+	Last Edited -- 28 Oct 2022 -- 21.14 WIB Indonesian Time
 
 */
 
@@ -50,8 +50,16 @@ const {bytesToSize,fileIO,  UploadFileUgu,telesticker, webp2mp4File, TelegraPh }
 const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGroup, sendResponList, updateResponList, getDataResponList } = require('./lib/respon-list');
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
 
-// Heroku PostgreSQL Database
+// Mongodb Atlas Database
+const { ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
+const serveAtlas = require('./atlas')
 
+const databaseName = ATLAS_DB.wabotUsers // switch database here
+const collection = ATLAS_COLLECTION.clientWabot // switch collection here
+
+const dbAtlas = serveAtlas.db(databaseName)
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 const database = require('./database/database.json')
 const { getResults } = require('google-it/lib/googleIt')
@@ -954,6 +962,57 @@ Info: *bold* hash is Locked
 					{ buttonId: 'rules', buttonText: { displayText: 'Rules 📝' }, type: 1 }], lang.RegReg(cryptoRandomString(20), tanggal(new Date()), namax.trim(), umurx, hobix, m.sender.split('@')[0], prefix, prefix, Object.keys(global.db.data.users).length), `© ${ownername}`, [m.sender], { quoted: m })
 			}
 				break
+
+			case 'registerbeta': {
+				const cryptoRandomString = require('crypto-random-string');
+
+				let args = args.join(' ')
+				let name = args.split('|')[0]
+				let genders = args.split('|')[1]
+				let ages = args.split('|')[2]
+				let hobbys = args.split('|')[3]
+				let registerDate = new Date
+				let serialNumber = cryptoRandomString(15)
+				let phoneNumber = m.sender.split('@')[0]
+
+				if (!text && !text.includes('|')) return reply('Contoh: registerbeta Budi|cowo|25|game')
+				if (name.length > 15) return reply(lang.NamaReg())
+				if (hobbys.length > 10) return reply(lang.HobiReg())
+				if (isNaN(umurx)) return reply(lang.UmurReg())
+				if (parseInt(ages) > 99) return reply(lang.UmurXReg())
+				if (parseInt(ages) < 12) return reply('Yang bener aja, bocil gausah maenan bot... nyusu aja sana')
+				if (!['male', 'female', 'cewe', 'cowo', 'pria', 'wanita'].includes(genders)) return reply(lang.genderReg(lang.ExReg(prefix)))
+
+				await dbAtlas.collection(collection).insertOne({
+					userName: name,
+					gender: genders,
+					age: ages,
+					hobby: hobbys,
+					metaData: {
+						userID: phoneNumber,
+						registeredOn: registerDate,
+						userSerial: serialNumber
+					}
+				},
+				async (error, result) => {
+					if (error) {
+						return reply("error adding the data") && console.log(error);
+					}
+					reply(`Register Berhasil!\n\nNama : ${name}\nGender : ${genders}\nUmur : ${ages}\nHobi : ${hobbys}\nTerdaftar pada : ${registerDate}\nSerials : ${serialNumber}\n\nThankyou for Registering!`);
+					console.log(result);
+				})
+			} break
+
+			case 'getdatabase': {
+				reply(lang.wait())
+				await dbAtlas.collection(collection).find().toArray((error, result) => {
+    			if (error) {
+      			return reply(error);
+  				}
+    				reply(result);
+  			});
+			} break
+
 			case 'toimage': case 'toimg': {
 				/*if(db.data.settings[botNumber].userRegister && !db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))*/
 				/*if(db.data.users[m.sender].limit < 1) return alpha.send2ButMes(m.chat, lang.Nolimit(prefix), `© ${ownername}`, `daily`, `👉 Daily`, `weekly`, `Weekly 👈`, m)*/
@@ -1563,6 +1622,10 @@ break */
 			}
 				break
 			case 'join': {
+				if (!isCreator) return reply('Mau masukin Bot ke Grup?, Silahkan Chat Owner...\nwa.me/6281329585825')
+			}
+				break
+			case 'recruit': {
 				if (!isCreator) return reply('Mau masukin Bot ke Grup?, Silahkan Chat Owner...\nwa.me/6281329585825')
 				//if (!text) return reply(lang.JoinGc())
 				//if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(lang.erorLink())
