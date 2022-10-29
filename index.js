@@ -5,6 +5,7 @@ Change log:
 	- removed must be registered when using commands
 	- Major bug fixes(maybe?)
 	- added modular strings for data txt
+	- added mongodb atlas -- cloud database
 
 	Last Edited -- 28 Oct 2022 -- 21.14 WIB Indonesian Time
 
@@ -974,15 +975,17 @@ Info: *bold* hash is Locked
 					{ buttonId: 'sewabot', buttonText: { displayText: 'Sewa Bot' }, type: 1 },
 					{ buttonId: '.menu', buttonText: { displayText: '✅ Command' }, type: 1 },
 					{ buttonId: 'rules', buttonText: { displayText: 'Rules 📝' }, type: 1 }], lang.RegReg(cryptoRandomString(20), tanggal(new Date()), namax.trim(), umurx, hobix, m.sender.split('@')[0], prefix, prefix, Object.keys(global.db.data.users).length), `© ${ownername}`, [m.sender], { quoted: m })
+				setTimeout(() => { reply('*New Register Method Available!*\nMetode Daftar secara baru tersedia!\n\nperintah _!betaregist Nama|gender|umur|hobi\n\nBantu developer untuk mengembangkan fitur ini agar User tidak perlu mendaftar ulang karena database ter reset, tengkiu') }, 5000)
 			}
 				break
 
 			case 'cumatest': {
-				let txt = 'Well done!'
+				let txt = 'Well done!\n'
+						txt += 'deployment releases : 30 oct 2022'
 				reply(txt);
 			} break
 
-			case 'betaregis': {
+			case 'betaregist': {
 				const cryptoRandomString = require('crypto-random-string');
 
 				let arg = args.join(' ')
@@ -996,7 +999,7 @@ Info: *bold* hash is Locked
 				let phoneNumber = m.sender.split('@')[0]
 				let linkPhoneNumber = 'wa.me/' + phoneNumber
 
-				if (!text && !text.includes('|')) return reply('Contoh: betaregis Budi|cowo|25|game')
+				if (!text && !text.includes('|')) return reply('Contoh: betaregist Budi|cowo|25|game')
 				if (name.length > 15) return reply(lang.NamaReg())
 				if (hobbys.length > 10) return reply(lang.HobiReg())
 				if (isNaN(ages)) return reply(lang.UmurReg())
@@ -1031,8 +1034,20 @@ Info: *bold* hash is Locked
     			if (error) {
       			return reply(error);
   				}
-					let datas = result.toString()
-    				reply(datas);
+					let datas = result
+					let totalData = datas.length
+					let txt = `*Databse Azusa Bot*\nFrom MongoDB Atlas\nTotal : ${totalData}\n\n`
+					for (let data of datas) {
+						txt += `Nama : ${data.userName}\n` 
+						txt += `Gender : ${data.gender}\n` 
+						txt += `Umur : ${data.age}\n` 
+						txt += `Hobi : ${data.hobby}\n` 
+						txt += `Nomor : ${data.metaData.userID}\n` 
+						txt += `Serial : ${data.metaData.userSerial}\n` 
+						txt += `Terdaftar Pada Tanggal :\n${data.registeredOn}\n\n` 
+						txt += `- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n` 
+					}
+    				reply(txt);
   			});
 			} break
 
