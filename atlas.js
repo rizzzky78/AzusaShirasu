@@ -9,11 +9,11 @@ const serveAtlas = new MongoClient(uri, {
 });
 
 
-serveAtlas.connect((error) => {
-  if (error) {
-    console.log(error);
-  }
-  console.log("Database connected");
-});
+// serveAtlas.connect((error) => {
+//   if (error) {
+//     console.log(error);
+//   }
+//   console.log("Database connected");
+// });
 
 module.exports = serveAtlas
