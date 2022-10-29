@@ -1,6 +1,6 @@
 <div align="center">
 
-# Shirasu Asuza WA Bot
+# Shirasu Azusa WA Bot
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/azusa.jpg" alt="Shirasu-Azusa" width="auto"/>
@@ -48,7 +48,7 @@ You can edit the app settings in:
 
 ## Attention
 
-If you want to clone/copy this Repository, please make sure to **clean** `session.json` to empty `.json` before you start/run this app
+If you want to clone/copy this Repository, please make sure to **delete** `session.json` in root folder before you start/run this app
 
 ## Code Maintainer
 this app is maintained by: @rizu
