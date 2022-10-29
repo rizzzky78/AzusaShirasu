@@ -51,17 +51,15 @@ const { addResponList, delResponList, isAlreadyResponList, isAlreadyResponListGr
 const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, delay, format, logic, generateProfilePicture, parseMention, getRandom } = require('./lib/myfunc')
 
 // Mongodb Atlas Database
-const { MongoClient } = require("mongodb");
-const { ATLAS, ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
-// const serveAtlas = require('./atlas')
+const { ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
+const serveAtlas = require('./atlas')
 
-const uri = `mongodb+srv://${ATLAS.user}:${ATLAS.key}@bot-database.w7oyxwa.mongodb.net/?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://${ATLAS.user}:${ATLAS.key}@bot-database.w7oyxwa.mongodb.net/?retryWrites=true&w=majority`;
 
-const serveAtlas = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
+// const serveAtlas = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 serveAtlas.connect((error) => {
   if (error) {
@@ -71,7 +69,7 @@ serveAtlas.connect((error) => {
 });
 
 const databaseName = ATLAS_DB.wabotUsers // switch database here
-const collection = ATLAS_COLLECTION.clientWabot // switch collection here
+const collection = ATLAS_COLLECTION.azusaUsers // switch collection here
 
 const dbAtlas = serveAtlas.db(databaseName)
 
@@ -979,33 +977,41 @@ Info: *bold* hash is Locked
 			}
 				break
 
-			case 'reg': {
+			case 'cumatest': {
+				let txt = 'Well done!'
+				reply(txt);
+			} break
+
+			case 'betaregis': {
 				const cryptoRandomString = require('crypto-random-string');
 
-				let args = args.join(' ')
-				let name = args.split('|')[0]
-				let genders = args.split('|')[1]
-				let ages = args.split('|')[2]
-				let hobbys = args.split('|')[3]
-				let registerDate = new Date
+				let arg = args.join(' ')
+				let name = arg.split('|')[0]
+				let genders = arg.split('|')[1]
+				let ages = arg.split('|')[2]
+				let hobbys = arg.split('|')[3]
+				let nowDate = new Date
+				let registerDate = nowDate.toString()
 				let serialNumber = cryptoRandomString(15)
 				let phoneNumber = m.sender.split('@')[0]
+				let linkPhoneNumber = 'wa.me/' + phoneNumber
 
-				if (!text && !text.includes('|')) return reply('Contoh: reg Budi|cowo|25|game')
+				if (!text && !text.includes('|')) return reply('Contoh: betaregis Budi|cowo|25|game')
 				if (name.length > 15) return reply(lang.NamaReg())
 				if (hobbys.length > 10) return reply(lang.HobiReg())
-				if (isNaN(umurx)) return reply(lang.UmurReg())
+				if (isNaN(ages)) return reply(lang.UmurReg())
 				if (parseInt(ages) > 99) return reply(lang.UmurXReg())
 				if (parseInt(ages) < 12) return reply('Yang bener aja, bocil gausah maenan bot... nyusu aja sana')
 				if (!['male', 'female', 'cewe', 'cowo', 'pria', 'wanita'].includes(genders)) return reply(lang.genderReg(lang.ExReg(prefix)))
 
-				await dbAtlas.collection(collection).insertOne({
+				dbAtlas.collection(collection).insertOne({
 					userName: name,
 					gender: genders,
 					age: ages,
 					hobby: hobbys,
 					metaData: {
 						userID: phoneNumber,
+   					linkID: linkPhoneNumber,
 						registeredOn: registerDate,
 						userSerial: serialNumber
 					}
@@ -1014,18 +1020,19 @@ Info: *bold* hash is Locked
 					if (error) {
 						return reply("error adding the data") && console.log(error);
 					}
-					reply(`Register Berhasil!\n\nNama : ${name}\nGender : ${genders}\nUmur : ${ages}\nHobi : ${hobbys}\nTerdaftar pada : ${registerDate}\nSerials : ${serialNumber}\n\nThankyou for Registering!`);
+					reply(`Register Berhasil!\n\nNama : ${name}\nGender : ${genders}\nUmur : ${ages}\nHobi : ${hobbys}\nTerdaftar pada : ${registerDate}\nSerials : ${serialNumber}\n\nData Kamu aman disimpan di cloud server\nThankyou for Registering!`);
 					console.log(result);
 				})
 			} break
 
-			case 'getdatabase': {
+			case 'getmongodata': {
 				reply(lang.wait())
-				await dbAtlas.collection(collection).find().toArray((error, result) => {
+				dbAtlas.collection(collection).find().toArray((error, result) => {
     			if (error) {
       			return reply(error);
   				}
-    				reply(result);
+					let datas = result.toString()
+    				reply(datas);
   			});
 			} break
 
