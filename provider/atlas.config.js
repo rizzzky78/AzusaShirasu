@@ -3,7 +3,7 @@
 
 const ATLAS = {
   user: 'rizzzky',
-  key: 'DEV'
+  key: 'DEV',
 }
 
 const ATLAS_DB = {
@@ -18,7 +18,8 @@ const ATLAS_DB = {
 }
 
 const ATLAS_COLLECTION = {
-  clientWabot: "users_wabot",
+  clientWabot: "users",
+  azusaUsers: "users_azusabot",
   text: "text_store",
   image: "image_store",
   _list: {
