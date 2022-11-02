@@ -114,16 +114,15 @@ fourth, ada problem di production App Bot nya... chat owner semisal nemu problem
 const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
 
- - _patch of Azusa Bot, end of jul ~ oct_
-┃ ♔ Budi ➛ 18 💎 
-┃ ♔ Rry Kaslana ➛ 10 💎 
-┃ ♔ Faiz ➛ 7 💎 _updated_
-┃ ♔ Kanzaki Ikki ➛ 7 💎 _updated_
-┃ ♔ Lewd Chan ➛ 5 💎 _updated_
-┃ ♔ Rizal ➛ 4 💎 _updated_
-┃ ♔ viky ➛ 1 💎 
+ - _patch of Azusa Bot, end of jul ~ sep_
+┃ ♔ Budi ➛ 18 (+8) 💎 _updated_
+┃ ♔ Rry Kaslana ➛ 10 💎 _updated_
+┃ ♔ Ikki ➛ 2 💎 _updated_
+┃ ♔ Rizal ➛ 2 💎 _updated_
+┃ ♔ viky ➛ 1 💎 _updated_
 
  - _patch of Shoujo Bot ~ Kei Bot_
+┃ ♔ Faiz ➛ 5 💎
 ┃ ♔ Allen ➛ 2 💎
 ┃ ♔ Dio ➛ 2 💎
 ┃ ♔ Dimas R. ➛ 2 💎
@@ -140,4 +139,173 @@ const __myDonationsBoards = `
 
 ┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━`
 
-module.exports = { __userGuide, __myDonationsBoards };
+const __changelog = `
+*_CHANGELOG BOT_*
+
+
+*Support Oowner/Maintainer Bot dengan cara berdonasi agar Bot tetap hidup*
+*tanpa pemasukan, Bot tidak akan bertahan lama melayani User-sama*
+
+*_CHANGE DATABASES*
+migrate to Mongodb ATlas Database
+_penyesuaian semua fitur secara bertahap_
+
+*_CHANGE FEATURES_*
+donasi -> replace deprecated QRIS to Saweria
+donasi -> added dashboard donasi, check at !donasi
+
+
+*_ADDED NEW FEATURES_*
+_last updated deployment: 2 nov 2022_
+
+!semuamenu _get all list menu on safe mode_
+
+*_PATCH 07 SEPTEMBER 2022_*
+
+- NSFW
+nhentaisearch
+nhentaipdf
+doujindesu
+doujindesulatest
+doujindesusearch
+xnxxsearch [query]
+xnxx [link]
+xhamstersearch [query]
+xhamster [link]
+
+- ANIMANGA
+neonimelatest
+storyanime
+anime
+animesearch
+otakudesusearch [query]
+wait [link image] _what anime is that?_
+wmit [link image] _what manga is that?_
+
+- RANDOM TEXT
+cerpen
+ceritahoror
+faktaunik
+katabijak
+pantun
+puisi
+katabucin1
+katabucin2
+quotes
+quotesislami
+quotesdilan
+quotesanime
+
+- MEMES
+cmm [query] _change my mind memes_
+memes [select button]
+
+- RANDOM ASUPAN/IMAGE
+asupan
+cecan
+cogan
+ppcouple
+esteticpicture
+quotesimage
+
+- SEARCH
+wikipedia [query]
+kbbi [query]
+kanachansearch [query]
+danboorusearch [query]
+walppsearch1 [query]
+walppsearch2 [query]
+gimagesearch [query]
+shopeeproduct [query]
+pinterestsearch [query]
+unsplashsearch [query]
+grubwasearch [query]
+searchplace [query]
+searchquote [query]
+ytsearch2 [query] _alternative feature_
+
+- STICKER
+stickerpatrick
+stickerdadu
+stickeramongus
+stickergawgura
+stickeranjing
+stickerbucin
+
+- ISLAMI
+niatsholat [select query]
+kisahnabi [query]
+
+- DOWNLOADER
+fbdl1 [link] _download facebook content_
+fbdl2 [link] _download facebook content_
+jooxplay [query] _play some songs with lyrics_
+spotify [link] _play some song_
+spotifysearch [query] _search song_
+twtimage [link] _download picture from twitter link_
+twtvideo [link]  _choose media download video from twitter link_
+twtvideodl [link] _download video from selected twitter link_
+insta_gram [link]  _Instagram downloader (igtv, post, video, reel, etc)_
+ytplay2 [query] _alternative feature_
+youtubemp3 [link] _alternative feature_
+youtubemp4 [link] _alternative feature_
+
+
+*_PATCH 17 SEPTEMBER 2022_*
+
+OTHER
+shorturl1
+shorturl2
+shorturl3
+shorturl4
+shortouo
+ouo
+filetobase64
+texttomorse
+morsetotext
+ransoomer
+
+DOWNLOADER
+zippyshare
+apkdownloader
+
+MOVIE & STORY
+filmapik
+drakorsearch
+drakorongoing
+cerpen
+ceritahoror
+
+*_PATCH 2 OKTOBER 2022_*
+
+URL SHORTENER
+shorturl1
+shorturl2
+shorturl3
+shorturl4
+shortouo
+ouo
+
+OTHER
+filetobase64
+texttomorse
+morsetotext
+ransoomer
+rangkum
+ringkasan
+random50
+random100
+random200
+
+IMAGE
+pixiv
+pixivsearch
+pixivid
+
+
+*_PATCH 2 NOVEMBER 2022_*
+MIGRATE DATABASE
+LIMIT USAGE
+`
+
+module.exports = { __userGuide, __myDonationsBoards, __changelog };
