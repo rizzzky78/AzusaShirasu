@@ -1032,9 +1032,9 @@ Info: *bold* hash is Locked
 
 			case 'deployment': {
 				reply("```checking the patch ...```");
-				setTimeout(() => { reply("```Azusa Bot, in version releases of v3.1```") },4000)
+				setTimeout(() => { reply("```Azusa Bot, in version releases of v3.2```") },4000)
 				setTimeout(() => { reply("```getting meta data deployment ...```") },7000)
-				setTimeout(() => { reply("```latest deployment: 02 Nov 2022 ...```") },10000)
+				setTimeout(() => { reply("```latest deployment: 04 Nov 2022 ...```") },10000)
 				setTimeout(() => { reply("```well done!```") },12000)
 			} break
 
@@ -1483,18 +1483,19 @@ Info: *bold* hash is Locked
 				break
 
 				case 'stikerin': case 'sticker': case 'stiker': {
-					//(async () => {
-						let user_id = m.sender.split('@')[0]
+					(async () => {
+						try {
+							//
+							let user_id = m.sender.split('@')[0]
 						let parseId = parseInt(user_id)
 						await atlasData(parseId).then(async result => {
 							let user = result.userID
 							let getID = result.userID
 							let value = result.limit
 							console.log("Nomor user:", parseId, "ID user:", user)
-							if (!user == parseId) { return reply(NotRegistered) };
-							if (value == 0) {
-								return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `How to Get Limit`, m)
-							}
+							if (!user == parseId) { return reply(NotRegistered) }
+							if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `How to Get Limit`, m); };
+							
 								// --- command feature
 								if (!quoted) return reply(lang.NoToStik(prefix, command))
 								if (/image/.test(mime)) {
@@ -1512,9 +1513,13 @@ Info: *bold* hash is Locked
 								await atlasUpdate(getID, getChange)
 									let logChanges = user.limit;
 									console.log("Limit changes -1:", logChanges);
-								
-						})
-					//})();
+						});
+						} catch {
+							//
+							return reply(NotRegistered)
+						}
+
+					})();
 				} break
 			case 'setppbot': case 'setpp': {
 				if (!m.key.fromMe && !isCreator) return reply(lang.ownerOnly())
