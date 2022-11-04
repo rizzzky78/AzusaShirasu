@@ -7,7 +7,7 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 03 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 04 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
@@ -1032,9 +1032,9 @@ Info: *bold* hash is Locked
 
 			case 'deployment': {
 				reply("```checking the patch ...```");
-				setTimeout(() => { reply("```Azusa Bot, in version releases of v3.2```") },4000)
+				setTimeout(() => { reply("```Azusa Bot, in version releases of v3.3```") },4000)
 				setTimeout(() => { reply("```getting meta data deployment ...```") },7000)
-				setTimeout(() => { reply("```latest deployment: 04 Nov 2022 ...```") },10000)
+				setTimeout(() => { reply("```latest deployment: 12.32 04 Nov 2022 ...```") },10000)
 				setTimeout(() => { reply("```well done!```") },12000)
 			} break
 
@@ -1101,9 +1101,14 @@ Info: *bold* hash is Locked
 									txt += `Serials : ${serialNumber}\n`
 									txt += `Kamu terdaftar pada :\n${registerDate}\n\n`
 									txt += `_Thankyou for Registering!_\n\n`
-								let foo = `Kamu bisa cek Profilmu lewat perintah !myprofile atau klik tombol di bawah ini`
-							alpha.send1ButMes(m.chat, txt, `${foo}`, `myprofile`, `Cek Profilmu`, m)
-							//reply(txt);
+								 	txt += `_Kamu bisa cek Profilmu lewat perintah !myprofile atau klik tombol di bawah ini_\n`
+									txt += `_also tersedia penyimpanan cloud pribadi (premium user only), check at !mycloud_`
+							// alpha.send1ButMes(m.chat, txt, `${foo}`, `myprofile`, `Cek Profil Saya`, m)
+							alpha.sendButImage(m.chat, sender, [
+								{ buttonId: 'myprofile', buttonText: { displayText: 'My Profile' }, type: 1 },
+								{ buttonId: 'mycloud', buttonText: { displayText: 'My Cloud' }, type: 1 }],
+								txt, [sender, ownernomer + '@s.whatsapp.net'], { quoted: m })
+							setTimeout(() => { reply("Note: terdapat beberapa fitur yang belum terhubung dengan data register Kamu, jadi tidak bisa pakai fitur nya walopun Kamu udah daftar\nHarap sabar ya, Owner selagi fixing fitur tersebut, sorry for incovenience :("); },3000)
 							console.log(result);
 						})
 				}
@@ -1122,18 +1127,26 @@ Info: *bold* hash is Locked
 									txt += `Umur : ${user.age}\n`
 									txt += `Hobi : ${user.hobby}\n\n`
 									txt += `ID kamu\n`
-									txt += `Nomor : wa.me/${user.userID}\n`
+									txt += `Nomor : ${user.linkID}\n`
 									txt += `Limit : ${user.limit}\n`
-									txt += `Status Premium : ${user.isPremium ? '🤤':'🥺'}\n`
+									txt += `Status Premium : ${user.isPremium ? '🤤 Yes':'🥺 No'}\n`
 									txt += `Serials : ${user.userSerial}\n`
 									txt += `Terdaftar pada :\n${user.registeredOn}`
+									let txtt = "Azusa Chan"
 									// command
-									reply(txt);
+									// reply(txt);
+							alpha.send1ButMes(m.chat, txt, `${txtt}`, `mycloud`, `Cek Penyimpanan Saya`, m)
+
 								})
 							} catch {
 								reply(NotRegistered);
 							}
 						})();			
+			} break
+
+			case 'mycloud':{
+				let txt = "Coming soon!"
+				reply(txt);
 			} break
 
 			case 'howtolimit':{
@@ -1184,8 +1197,6 @@ Info: *bold* hash is Locked
 						txt += `Umur : ${data.age}\n` 
 						txt += `Hobi : ${data.hobby}\n` 
 						txt += `Nomor : ${countNum + vis}\n` 
-						txt += `Status Premium : ${data.isPremium}\n` 
-						txt += `Terdaftar Pada Tanggal :\n${data.registeredOn}\n\n` 
 						txt += `- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n` 
 					}
     				reply(txt);
@@ -1207,7 +1218,7 @@ Info: *bold* hash is Locked
 						txt += `Gender : ${data.gender}\n` 
 						txt += `Umur : ${data.age}\n` 
 						txt += `Hobi : ${data.hobby}\n` 
-						txt += `Nomor : wa.me/${data.userID}\n` 
+						txt += `Nomor : ${data.linkID}\n` 
 						txt += `Status Premium : ${data.isPremium}\n` 
 						txt += `Terdaftar Pada Tanggal :\n${data.registeredOn}\n\n` 
 						txt += `- - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n` 
@@ -2210,11 +2221,7 @@ delete caklontong[m.sender.split('@')[0]]
 			} break
 
 			case 'help': case 'panel': case 'menu': {
-				(async () => {
-					
-						let data = await totalData();
-						let userTotal = data.length
-						let usersData = await atlasData();	
+
 
 				try {
 					hit_total = await fetchJson('https://api.countapi.xyz/hit/api-alphabot.herokuapp.com/visits')
@@ -2262,7 +2269,7 @@ delete caklontong[m.sender.split('@')[0]]
 ├ Private chat : ${(Object.keys(db.data.chats).filter(v => v.endsWith('@s.whatsapp.net')).map(v => v).length)}
 ├ Group chat : ${(Object.keys(db.data.chats).filter(v => v.endsWith('@g.us')).map(v => v).length)}
 ├ Total chats :  ${(Object.keys(db.data.chats).filter(v => v.endsWith('@s.whatsapp.net')).map(v => v).length) + (Object.keys(db.data.chats).filter(v => v.endsWith('@g.us')).map(v => v).length)} 
-├ User Registered : ${userTotal} User
+├ User Registered : ... User
 ├ Runtime : ${runtime(process.uptime())}
 ╰❒ 
 
@@ -2311,7 +2318,7 @@ delete caklontong[m.sender.split('@')[0]]
 				if (typemenu == 'list') {
 					alpha.sendListMenu(m.chat, `╭─⬣「 _*INFO USER*_ 」⬣\n│  *Name* : ${pushname}\n│  *Number* : ${sender.split("@")[0]}\n│  *Status* : ${isCreator ? ` Owner️ ${botname}` : `User ${botname}`}\n╰─⬣\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : ${ownername}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣\n\n╭─⬣「 _*INDONESIAN TIME*_ 」⬣\n│ *Wib* : ${time}\n│ *Wita* : ${wita}\n│ *Wit* : ${wit}  \n╰─⬣`, `© ${ownername}`, `Selamat ${salam} ${pushname} ☺️`, `CLICK HERE`, { quoted: fgif })
 				}
-			})
+			
 			}
 				break
 			case 'allmenu': {
@@ -4472,7 +4479,7 @@ Similarity : ${result.similarity}`
 			}
 			*/
 			case 'budi': {
-				alpha.send1ButMes(m.chat, 'Dia Adalah Budi', `© ${ownername}`, `inibudi`, `Keluarkan Budi`, m)
+				alpha.send1ButMes(m.chat, 'Yg ngeklik kayak Kontol', `© ${ownername}`, `inibudi`, `Pecahkan Biji Budi`, m)
 			} break
 			case 'inibudi': {
 				setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000)
@@ -4480,9 +4487,9 @@ Similarity : ${result.similarity}`
 				setTimeout(() => { reply('Tiga - 3') }, 5000)
 				setTimeout(() => { reply('Dua - 2') }, 7000)
 				setTimeout(() => { reply('Satu - 1') }, 9000)
-				setTimeout(() => { reply('UDAH MUAK GW ANJG') }, 20000)
-				setTimeout(() => { reply('Ato elu aja yg mau gw kick hah?') }, 23000)
-				setTimeout(() => { reply('Bbb... bukannya aku marah yah, ttt...tapi kalo kamu kaya gitu terus, aku juga ga mw...\n...humphh >///<') }, 25000)
+				setTimeout(() => { reply('Bakso kontol Bakso Kontol........') }, 20000)
+				setTimeout(() => { reply('Kamu Nanya ????????????') }, 23000)
+				setTimeout(() => { reply('Apaansih cok, gajelas bet\n...humphh >///<') }, 25000)
 			} break
 
 			//sound
