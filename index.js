@@ -1607,7 +1607,7 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
           let getChange = await value - 1; await atlasUpdate(getID, getChange);
 
           AtlasTotalCmd.findOne(QueryProcessSticker).then(async datas => {
-            let value = datas.value; let valueChanges = await value - 1; let types = QueryProcessSticker;
+            let result = datas; let value = await result.value;  let types = QueryProcessSticker; let valueChanges = await value + 1;
             await atlasUpdateTotalCmd(types, valueChanges).then(async result => { console.log(result) });
           });
         });
