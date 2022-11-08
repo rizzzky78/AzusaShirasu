@@ -4475,9 +4475,8 @@ Similarity : ${result.similarity}`
   // pilhan ekspedisi: jnt, jne, pos, sicepat, dll
   case 'cekresi': {
     reply(lang.wait());
-    let arg = args.join(' ')
-    let expedition = arg.split('|')[0]
-    let resi = arg.split('|')[1]
+    let expedition = args.split('|')[0]
+    let resi = args.split('|')[1]
     if (args.length == 0) return reply(`Example: ${prefix + command} sicepat|003102532494\n\nPilihan Ekspedisi:\nJNE\nSICEPAT\nJNT/J&T\nTIKI\nJDL`)
     try {
       let user_id = m.sender.split('@')[0]
