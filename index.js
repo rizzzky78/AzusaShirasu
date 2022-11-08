@@ -7,7 +7,7 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 08 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 09 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
@@ -1059,9 +1059,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
 
   case 'deployment': {
     reply("```checking the patch ...```");
-    setTimeout(() => { reply("```Azusa Bot, in version releases of v3.4```") }, 4000)
+    setTimeout(() => { reply("```Azusa Bot, in version releases of v3.5```") }, 4000)
     setTimeout(() => { reply("```getting meta data deployment ...```") }, 7000)
-    setTimeout(() => { reply("```latest deployment: 07 Nov 2022 ...```") }, 10000)
+    setTimeout(() => { reply("```latest deployment: 08 Nov 2022 ...```") }, 10000)
     setTimeout(() => { reply("```well done!```") }, 12000)
   } break
 
@@ -1082,12 +1082,12 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
     let limitAwal = 50
 
     if (!text && !text.includes('|')) return reply('Contoh: daftar Budi|cowo|25|turu')
-    if (name.length > 15) return reply(lang.NamaReg())
-    if (hobbys.length > 10) return reply(lang.HobiReg())
+    if (name.length > 20) return reply(lang.NamaReg())
+    if (hobbys.length > 20) return reply(lang.HobiReg())
     if (isNaN(ages)) return reply(lang.UmurReg())
-    if (parseInt(ages) > 99) return reply(lang.UmurXReg())
+    if (parseInt(ages) > 60) return reply("Umur lo terlalu tua buat pakai Bot ini!")
     if (parseInt(ages) < 12) return reply('Yang bener aja, bocil gausah maenan bot... nyusu aja sana')
-    if (!['male', 'female', 'cewe', 'cowo', 'pria', 'wanita'].includes(genders)) return reply(lang.genderReg(lang.ExReg(prefix)))
+    if (!['male', 'female', 'cewe', 'cowo', 'pria', 'wanita'].includes(genders)) return reply("Gender hanya bisa: *cewe* atau *cowo*\ncontoh: daftar Finda Bersari|cewe|17|nyanyi sambil nangis")
 
     let appendUsers = {
       userName: name,
@@ -1235,10 +1235,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
           .then(async update => {
             let data = update
             let txt = `*Change User Limit Berhasil!*\n`
-            txt += `Nama User : ${data.userName}\n`
-            txt += `ID User : ${data.userID}\n`
-            txt += `Limit User : ${data.limit}\n`
-            txt += `Status Premium : ${data.isPremium}\n`
+            txt += `ID User : ${setLimit}\n`
+            txt += `Limit User : ${setLimit}\n`
+            txt += `Status Premium : ${data?.isPremium? 'Yes':'No'}\n`
             reply(txt);
           });
       } catch {
@@ -4487,10 +4486,9 @@ Similarity : ${result.similarity}`
         if (!user == parseId) { return reply(NotRegistered) }
         if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `How to Get Limit`, m); };
         //
-        let arg = args.join(' ')
-        let expedition = arg.split('|')[0]
-        let resi = arg.split('|')[1]
-        await fetchJson(`https://api.lolhuman.xyz/api/resi/${expedition}/${resi}?apikey=${lol}`)
+        let setQuery = args[0]
+        let query = setQuery.replace('|','/')
+        await fetchJson(`https://api.lolhuman.xyz/api/resi/${query}?apikey=${lol}`)
           .then(async result => {
             let data = result
             let txt = `Hasil Cek Resi\n\n*Info*`
@@ -4683,6 +4681,39 @@ Similarity : ${result.similarity}`
     }, 28000);
   } break
 
+
+  case 'betasignet': {
+    // send a list message!
+    const sections = [
+      {
+        title: "Section 1",
+        rows: [
+          { title: "Option 1", rowId: "option1" },
+          { title: "Option 2", rowId: "option2", description: "This is a description" }
+        ]
+      },
+      {
+        title: "Section 2",
+        rows: [
+          { title: "Option 3", rowId: "option3" },
+          { title: "Option 4", rowId: "option4", description: "This is a description V2" }
+        ]
+      },
+    ]
+
+    const listMessage = {
+      text: "This is a list",
+      footer: "nice footer, link: https://google.com",
+      title: "Amazing boldfaced list title",
+      buttonText: "Required, text on the button to view the list",
+      sections
+    }
+    try {
+      await alpha.sendMessage(id, listMessage)
+    } catch {
+      await alpha.sendMessage(m.chat, listMessage, { quoted: m })
+    }
+  } break
 
   case 'checkapikey': {
     await fetchJson(`https://api.lolhuman.xyz/api/checkapikey?apikey=${lol}`)
