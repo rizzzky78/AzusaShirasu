@@ -114,18 +114,21 @@ fourth, ada problem di production App Bot nya... chat owner semisal nemu problem
 const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
 
- - _patch of Azusa Bot, end of jul ~ sep_
-┃ ♔ Budi ➛ 18 (+8) 💎 _updated_
-┃ ♔ Rry Kaslana ➛ 10 💎 _updated_
-┃ ♔ Ikki ➛ 2 💎 _updated_
-┃ ♔ Rizal ➛ 2 💎 _updated_
-┃ ♔ viky ➛ 1 💎 _updated_
+ - _patch of Azusa Bot, end of jul ~ nov_
+┃ ♔ Budi ➛ 18 💎 
+┃ ♔ Rry Kaslana ➛ 10 💎 
+┃ ♔ Ikki ➛ 7 💎 
+┃ ♔ Faiz ➛ 7 💎 
+┃ ♔ Lewd Chan ➛ 5 💎 _updated_
+┃ ♔ Dimas R. ➛ 4 💎
+┃ ♔ Kadek Eva ➛ 2 💎 _updated_
+┃ ♔ Daedalus ➛ 2 💎 _updated_
+┃ ♔ Rizal ➛ 2 💎 
+┃ ♔ viky ➛ 1 💎 
 
  - _patch of Shoujo Bot ~ Kei Bot_
-┃ ♔ Faiz ➛ 5 💎
 ┃ ♔ Allen ➛ 2 💎
 ┃ ♔ Dio ➛ 2 💎
-┃ ♔ Dimas R. ➛ 2 💎
 ┃ ♔ Lloyd ➛ 3 💎
 ┃ ♔ Sinz ➛ 2 💎
 ┃ ♔ Shadow ➛ 1 💎
@@ -137,7 +140,9 @@ const __myDonationsBoards = `
 ┃        💎 equals as well as 5k IDR
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━`
+┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━
+
+Donations Equals/Above 5💎 has enjoyed 999 weekly limit!`
 
 const __changelog = `
 *_CHANGELOG BOT_*
@@ -147,7 +152,7 @@ const __changelog = `
 *tanpa pemasukan, Bot tidak akan bertahan lama melayani User-sama*
 
 *_CHANGE DATABASES*
-migrate to Mongodb ATlas Database
+migrate to Mongodb Atlas Database
 _penyesuaian semua fitur secara bertahap_
 
 *_CHANGE FEATURES_*
@@ -306,6 +311,19 @@ pixivid
 *_PATCH 2 NOVEMBER 2022_*
 MIGRATE DATABASE
 LIMIT USAGE
+
+*_PATCH 7 NOVEMBER 2022_*
+NEW:
+cekresi [ekspedisi|no resi]
+
+REVAMPED:
+ytsearch
+ytmp3
+ytmp4
+tiktok
+tiktokwm
+tiktoknowm
+animesearch
 `
 
 module.exports = { __userGuide, __myDonationsBoards, __changelog };
