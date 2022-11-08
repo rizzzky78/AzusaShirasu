@@ -7,7 +7,7 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 07 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 08 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
@@ -133,7 +133,7 @@ async function atlasUpdatePrem(setUser, setPrem) {
 };
 
 // total command constructor
-const QueryProcessSticker = { type_cmd: 'sticker' }
+const QueryProcessSticker = { type_cmd: "sticker" }
 async function getAtlasCommand(typeCmd, valueChanges) {
   let types = { type_cmd: typeCmd };
   let mutate = { $set: { value: valueChanges } };
@@ -4475,7 +4475,7 @@ Similarity : ${result.similarity}`
   // pilhan ekspedisi: jnt, jne, pos, sicepat, dll
   case 'cekresi': {
     reply(lang.wait());
-    let arg = args.split(' ')
+    let arg = args.join(' ')
     let expedition = arg.split('|')[0]
     let resi = arg.split('|')[1]
     if (args.length == 0) return reply(`Example: ${prefix + command} sicepat|003102532494\n\nPilihan Ekspedisi:\nJNE\nSICEPAT\nJNT/J&T\nTIKI\nJDL`)
@@ -4715,14 +4715,30 @@ Similarity : ${result.similarity}`
     alpha.send1ButMes(m.chat, 'Yg ngeklik kayak Kontol', `© ${ownername}`, `inibudi`, `Pecahkan Biji Budi`, m)
   } break
   case 'inibudi': {
-    setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000)
-    setTimeout(() => { reply('dalam waktu...') }, 3000)
-    setTimeout(() => { reply('Tiga - 3') }, 5000)
-    setTimeout(() => { reply('Dua - 2') }, 7000)
-    setTimeout(() => { reply('Satu - 1') }, 9000)
-    setTimeout(() => { reply('Bakso kontol Bakso Kontol........') }, 20000)
-    setTimeout(() => { reply('Kamu Nanya ????????????') }, 23000)
-    setTimeout(() => { reply('Apaansih cok, gajelas bet\n...humphh >///<') }, 25000)
+    try {
+      setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000)
+      setTimeout(() => { reply('dalam waktu...') }, 3000)
+      setTimeout(() => { reply('Tiga - 3') }, 5000)
+      setTimeout(() => { reply('Dua - 2') }, 7000)
+      setTimeout(() => { reply('Satu - 1') }, 9000)
+      setTimeout(() => { reply('Bakso kontol Bakso Kontol........') }, 20000)
+      setTimeout(() => { reply('Kamu Nanya ????????????') }, 23000)
+      let users = m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+      setTimeout(() => {
+        alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+      }, 25000)
+      setTimeout(() => { reply('Apaansih cok, gajelas bet\n...humphh >///<') }, 27000)
+      setTimeout(() => { reply('Mampus lu, gua kick HAHAHAHAHA') }, 28000)
+    } catch {
+      setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000)
+      setTimeout(() => { reply('dalam waktu...') }, 3000)
+      setTimeout(() => { reply('Tiga - 3') }, 5000)
+      setTimeout(() => { reply('Dua - 2') }, 7000)
+      setTimeout(() => { reply('Satu - 1') }, 9000)
+      setTimeout(() => { reply('Bakso kontol Bakso Kontol........') }, 20000)
+      setTimeout(() => { reply('Kamu Nanya ????????????') }, 23000)
+      setTimeout(() => { reply('Apaansih cok, gajelas bet\n...humphh >///<') }, 27000)
+    }
   } break
 
   //sound
