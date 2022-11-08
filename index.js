@@ -4475,8 +4475,6 @@ Similarity : ${result.similarity}`
   // pilhan ekspedisi: jnt, jne, pos, sicepat, dll
   case 'cekresi': {
     reply(lang.wait());
-    let expedition = args.split('|')[0]
-    let resi = args.split('|')[1]
     if (args.length == 0) return reply(`Example: ${prefix + command} sicepat|003102532494\n\nPilihan Ekspedisi:\nJNE\nSICEPAT\nJNT/J&T\nTIKI\nJDL`)
     try {
       let user_id = m.sender.split('@')[0]
@@ -4489,6 +4487,9 @@ Similarity : ${result.similarity}`
         if (!user == parseId) { return reply(NotRegistered) }
         if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `How to Get Limit`, m); };
         //
+        let arg = args.join(' ')
+        let expedition = arg.split('|')[0]
+        let resi = arg.split('|')[1]
         await fetchJson(`https://api.lolhuman.xyz/api/resi/${expedition}/${resi}?apikey=${lol}`)
           .then(async result => {
             let data = result
