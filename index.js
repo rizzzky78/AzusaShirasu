@@ -4686,33 +4686,46 @@ Similarity : ${result.similarity}`
     // send a list message!
     const sections = [
       {
-        title: "Section 1",
+        title: "Fu Hua Tepos",
         rows: [
-          { title: "Option 1", rowId: "option1" },
-          { title: "Option 2", rowId: "option2", description: "This is a description" }
+          { title: "Hershcer of Sentience", rowId: "option1" },
+          { title: "Recomended ER Signet", rowId: "option2", description: "Yatta Yatta!" }
         ]
       },
       {
-        title: "Section 2",
+        title: "Mei Beban",
         rows: [
-          { title: "Option 3", rowId: "option3" },
-          { title: "Option 4", rowId: "option4", description: "This is a description V2" }
+          { title: "Herscher of Thunder", rowId: "option3" },
+          { title: "Valkyrie Bladestrike", rowId: "option4", description: "Yang suka desah, ikeh!" }
         ]
       },
     ]
 
     const listMessage = {
-      text: "This is a list",
-      footer: "nice footer, link: https://google.com",
-      title: "Amazing boldfaced list title",
-      buttonText: "Required, text on the button to view the list",
+      text: "Elysian Realm\nRecomended Signet",
+      footer: "Soni plerr",
+      title: "ER SIGNET",
+      buttonText: "ER Signet Menu",
       sections
     }
-    try {
-      await alpha.sendMessage(id, listMessage)
-    } catch {
-      await alpha.sendMessage(m.chat, listMessage, { quoted: m })
-    }
+    await alpha.sendMessage(m.chat, listMessage, { quoted: m })
+  } break
+
+  case 'option1':{
+    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
+    reply(txt)
+  } break
+  case 'option2':{
+    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
+    reply(txt)
+  } break
+  case 'option3':{
+    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
+    reply(txt)
+  } break
+  case 'option4':{
+    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
+    reply(txt)
   } break
 
   case 'checkapikey': {
