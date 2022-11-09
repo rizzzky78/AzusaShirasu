@@ -7,11 +7,13 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 09 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 10 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
 const { __userGuide, __myDonationsBoards, __changelog } = require('./textData')
+const { InitialGuides , JadeKnight, HerscherOfHumanEgo_typeCharge, HerscherOfHumanEgo_typeUltimate } = require('./helper/SignetVer6.2')
+const { listAllValkyrie } = require('./helper/ValkListMaker')
 
 require('./settings')
 const { default: makeWASocket, BufferJSON, WAMessageStubType, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, downloadContentFromMessage, downloadHistory, proto, getMessage, generateWAMessageContent, prepareWAMessageMedia , generateWAMessage, areJidsSameUser, makeInMemoryStore} = require('@adiwajshing/baileys')
@@ -1059,9 +1061,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
 
   case 'deployment': {
     reply("```checking the patch ...```");
-    setTimeout(() => { reply("```Azusa Bot, in version releases of v3.5```") }, 4000)
+    setTimeout(() => { reply("```Azusa Bot, in version releases of v3.6```") }, 4000)
     setTimeout(() => { reply("```getting meta data deployment ...```") }, 7000)
-    setTimeout(() => { reply("```latest deployment: 08 Nov 2022 ...```") }, 10000)
+    setTimeout(() => { reply("```latest deployment: 10 Nov 2022 ...```") }, 10000)
     setTimeout(() => { reply("```well done!```") }, 12000)
   } break
 
@@ -4682,50 +4684,168 @@ Similarity : ${result.similarity}`
   } break
 
 
-  case 'betasignet': {
-    // send a list message!
-    const sections = [
-      {
-        title: "Fu Hua Tepos",
-        rows: [
-          { title: "Hershcer of Sentience", rowId: "option1" },
-          { title: "Recomended ER Signet", rowId: "option2", description: "Yatta Yatta!" }
-        ]
-      },
-      {
-        title: "Mei Beban",
-        rows: [
-          { title: "Herscher of Thunder", rowId: "option3" },
-          { title: "Valkyrie Bladestrike", rowId: "option4", description: "Yang suka desah, ikeh!" }
-        ]
-      },
-    ]
+  case 'honkaisignet': {
+    await alpha.sendMessage(m.chat, listAllValkyrie, { quoted: m })
+  } break
 
-    const listMessage = {
-      text: "Elysian Realm\nRecomended Signet",
-      footer: "Soni plerr",
-      title: "ER SIGNET",
-      buttonText: "ER Signet Menu",
-      sections
+  case 'erguides':{
+    let guide = InitialGuides
+    let txt = `*Elysian Realm*\n${guide.primarySignet}\n${guide.coreSignet}\n${guide.reinforceSignet}\n\n${guide.etc}`
+    reply(txt)
+  } break
+
+  case 'jadeknight': {
+    let valk = JadeKnight
+    let coreSignets = valk.coreSignets.signet
+    let reinforceSignets = valk.reinforceSignet.signet
+    let thumbs = valk.valk.thumbnails
+    let txt = `\n*${valk.valk.name}*\n`
+    txt += `Valk Type : ${valk.valk.type}\n`
+    txt += `ATK : ${valk.valk.atk}\n\n`
+    txt += `*Recommended Weapon:*\n`
+    txt += `${valk.weapon.primary}\n`
+    txt += `${valk.weapon.secondary}\n\n`
+    txt += `*Recommended Stigma*\n`
+    txt += `${valk.stigma.primary}\n`
+    txt += `${valk.stigma.secondary}\n`
+    txt += `*Recommended Support*\n`
+    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `${valk.supportValk.supportTypeA.slot1}\n`
+    txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
+    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `${valk.supportValk.supportTypeB.slot1}\n`
+    txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
+    txt += `*Emblems / Sigils*\n`
+    txt += `Early : ${valk.emblems.early.emblem}\n`
+    txt += `Mid : ${valk.emblems.mid.emblem}\n`
+    txt += `Late : ${valk.emblems.late.emblem}\n`
+    txt += `*Exclusive Signets*\n`
+    txt += `# ${valk.mainSignets.optionsA.signet}\n`
+    txt += `# ${valk.mainSignets.optionsA.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsB.signet}\n`
+    txt += `# ${valk.mainSignets.optionsB.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsC.signet}\n`
+    txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsD.signet}\n`
+    txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `*Core Signets*\n`
+    for (let signet of coreSignets) {
+      txt += `# ${signet}\n`
     }
-    await alpha.sendMessage(m.chat, listMessage, { quoted: m })
+    txt += `\n`
+    txt += `*Reinforcement Signets*\n`
+    for (let reinSignet of reinforceSignets) {
+      txt += `# ${reinSignet}\n`
+    }
+    txt += `\n`
+    txt += `- - - - - - - - _end_ - - - - - - - - `
+    await sendFileFromUrl(from, thumbs, txt, m).catch((err) => { reply(lang.err()) })
   } break
 
-  case 'option1':{
-    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
+  case 'hohtypecharge': {
+    let valk = HerscherOfHumanEgo_typeCharge
+    let coreSignets = valk.coreSignets.signet
+    let reinforceSignets = valk.reinforceSignet.signet
+    let thumbs = valk.valk.thumbnails
+    let txt = `\n*${valk.valk.name}*\n`
+    txt += `Valk Type : ${valk.valk.type}\n`
+    txt += `ATK : ${valk.valk.atk}\n\n`
+    txt += `*Recommended Weapon:*\n`
+    txt += `${valk.weapon.primary}\n`
+    txt += `${valk.weapon.secondary}\n\n`
+    txt += `*Recommended Stigma*\n`
+    txt += `${valk.stigma.primary}\n`
+    txt += `${valk.stigma.secondary}\n`
+    txt += `*Recommended Support*\n`
+    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `${valk.supportValk.supportTypeA.slot1}\n`
+    txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
+    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `${valk.supportValk.supportTypeB.slot1}\n`
+    txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
+    txt += `*Emblems / Sigils*\n`
+    txt += `Early : ${valk.emblems.early.emblem}\n`
+    txt += `Mid : ${valk.emblems.mid.emblem}\n`
+    txt += `Late : ${valk.emblems.late.emblem}\n`
+    txt += `*Exclusive Signets*\n`
+    txt += `# ${valk.mainSignets.optionsA.signet}\n`
+    txt += `# ${valk.mainSignets.optionsA.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsB.signet}\n`
+    txt += `# ${valk.mainSignets.optionsB.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsC.signet}\n`
+    txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsD.signet}\n`
+    txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `*Core Signets*\n`
+    for (let signet of coreSignets) {
+      txt += `# ${signet}\n`
+    }
+    txt += `\n`
+    txt += `*Reinforcement Signets*\n`
+    for (let reinSignet of reinforceSignets) {
+      txt += `# ${reinSignet}\n`
+    }
+    txt += `\n`
+    txt += `- - - - - - - - _end_ - - - - - - - - `
+    await sendFileFromUrl(from, thumbs, txt, m).catch((err) => { reply(lang.err()) })
+  } break
+
+  case 'hohtypeultimate': {
+    let valk = HerscherOfHumanEgo_typeUltimate
+    let coreSignets = valk.coreSignets.signet
+    let reinforceSignets = valk.reinforceSignet.signet
+    let thumbs = valk.valk.thumbnails
+    let txt = `\n*${valk.valk.name}*\n`
+    txt += `Valk Type : ${valk.valk.type}\n`
+    txt += `ATK : ${valk.valk.atk}\n\n`
+    txt += `*Recommended Weapon:*\n`
+    txt += `${valk.weapon.primary}\n`
+    txt += `${valk.weapon.secondary}\n\n`
+    txt += `*Recommended Stigma*\n`
+    txt += `${valk.stigma.primary}\n`
+    txt += `${valk.stigma.secondary}\n`
+    txt += `*Recommended Support*\n`
+    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `${valk.supportValk.supportTypeA.slot1}\n`
+    txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
+    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `${valk.supportValk.supportTypeB.slot1}\n`
+    txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
+    txt += `*Emblems / Sigils*\n`
+    txt += `Early : ${valk.emblems.early.emblem}\n`
+    txt += `Mid : ${valk.emblems.mid.emblem}\n`
+    txt += `Late : ${valk.emblems.late.emblem}\n`
+    txt += `*Exclusive Signets*\n`
+    txt += `# ${valk.mainSignets.optionsA.signet}\n`
+    txt += `# ${valk.mainSignets.optionsA.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsB.signet}\n`
+    txt += `# ${valk.mainSignets.optionsB.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsC.signet}\n`
+    txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsD.signet}\n`
+    txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `*Core Signets*\n`
+    for (let signet of coreSignets) {
+      txt += `# ${signet}\n`
+    }
+    txt += `\n`
+    txt += `*Reinforcement Signets*\n`
+    for (let reinSignet of reinforceSignets) {
+      txt += `# ${reinSignet}\n`
+    }
+    txt += `\n`
+    txt += `- - - - - - - - _end_ - - - - - - - - `
+    await sendFileFromUrl(from, thumbs, txt, m).catch((err) => { reply(lang.err()) })
+  } break
+
+  case 'wanipiroxxx':{
+    let txt = 'Mau lebih banyak lagi???\n\nWani piro masehhh? :)'
     reply(txt)
   } break
-  case 'option2':{
-    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
-    reply(txt)
-  } break
-  case 'option3':{
-    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
-    reply(txt)
-  } break
-  case 'option4':{
-    let txt = `Ngapain lu ngeklik gw pler\ndah tau masih nyoba`
-    reply(txt)
+
+  case 'xcommandx':{
+    let users = m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+      alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
   } break
 
   case 'checkapikey': {
@@ -4769,10 +4889,10 @@ Similarity : ${result.similarity}`
       setTimeout(() => { reply('Kamu Nanya ????????????') }, 23000)
       let users = m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
       setTimeout(() => {
-        alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+        //alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+        reply('Eitsss, kagak gw kick yee :)')
       }, 25000)
       setTimeout(() => { reply('Apaansih cok, gajelas bet\n...humphh >///<') }, 27000)
-      setTimeout(() => { reply('Mampus lu, gua kick HAHAHAHAHA') }, 28000)
     } catch {
       setTimeout(() => { reply('Mengeluarkan Budi dalam hitung waktu mundur...') }, 1000)
       setTimeout(() => { reply('dalam waktu...') }, 3000)
