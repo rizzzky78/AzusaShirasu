@@ -19,7 +19,7 @@ const JadeKnight = {
     name: 'Li Sushang: Jade Knight',
     type: 'PSY',
     atk: 'ICE',
-    thumbnails: ''
+    thumbnails: 'https://raw.githubusercontent.com/rizzzky78/AzusaShirasu/main/picture/sushang-jadeknight.jpg'
   },
   weapon: {
     primary: 'Nocturnal Stealth: Beam',
@@ -92,7 +92,7 @@ const HerscherOfHumanEgo_typeCharge = {
     name: 'Elysia: Herscher of Humanity',
     type: 'PSY',
     atk: 'ICE',
-    thumbnails: ''
+    thumbnails: 'https://raw.githubusercontent.com/rizzzky78/AzusaShirasu/main/picture/elysia-hoh.jpg'
   },
   weapon: {
     primary: 'Domain of Ego: Flawless Return',
@@ -169,7 +169,7 @@ const HerscherOfHumanEgo_typeUltimate = {
     name: 'Elysia: Herscher of Humanity',
     type: 'PSY',
     atk: 'ICE',
-    thumbnails: ''
+    thumbnails: 'https://raw.githubusercontent.com/rizzzky78/AzusaShirasu/main/picture/elysia-hoh.jpg'
   },
   weapon: {
     primary: 'Domain of Ego: Flawless Return',
