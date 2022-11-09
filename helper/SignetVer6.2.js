@@ -98,7 +98,7 @@ const HerscherOfHumanEgo_typeCharge = {
     primary: 'Domain of Ego: Flawless Return',
     secondary: 'High atk weapon'
   },
-  priorityStigma: {
+  stigma: {
     primary: 'Elysia: Pristine set',
     secondary: 'Ana Schariac set'
   },
@@ -175,7 +175,7 @@ const HerscherOfHumanEgo_typeUltimate = {
     primary: 'Domain of Ego: Flawless Return',
     secondary: 'High atk weapon'
   },
-  priorityStigma: {
+  stigma: {
     primary: 'Elysia: Pristine set',
     secondary: 'Willows set'
   },
