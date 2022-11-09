@@ -4707,12 +4707,12 @@ Similarity : ${result.similarity}`
     txt += `${valk.weapon.secondary}\n\n`
     txt += `*Recommended Stigma*\n`
     txt += `${valk.stigma.primary}\n`
-    txt += `${valk.stigma.secondary}\n`
+    txt += `${valk.stigma.secondary}\n\n`
     txt += `*Recommended Support*\n`
-    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `*${valk.supportValk.supportTypeA.type}*\n`
     txt += `${valk.supportValk.supportTypeA.slot1}\n`
     txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
-    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `*${valk.supportValk.supportTypeB.type}*\n`
     txt += `${valk.supportValk.supportTypeB.slot1}\n`
     txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
     txt += `*Emblems / Sigils*\n`
@@ -4728,14 +4728,16 @@ Similarity : ${result.similarity}`
     txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
     txt += `# ${valk.mainSignets.optionsD.signet}\n`
     txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsE.signet}\n`
+    txt += `# ${valk.mainSignets.optionsE.typeChoice}\n\n`
     txt += `*Core Signets*\n`
     for (let signet of coreSignets) {
-      txt += `# ${signet}\n`
+      txt += `# ${signet}\n\n`
     }
     txt += `\n`
     txt += `*Reinforcement Signets*\n`
     for (let reinSignet of reinforceSignets) {
-      txt += `# ${reinSignet}\n`
+      txt += `# ${reinSignet}\n\n`
     }
     txt += `\n`
     txt += `- - - - - - - - _end_ - - - - - - - - `
@@ -4755,12 +4757,12 @@ Similarity : ${result.similarity}`
     txt += `${valk.weapon.secondary}\n\n`
     txt += `*Recommended Stigma*\n`
     txt += `${valk.stigma.primary}\n`
-    txt += `${valk.stigma.secondary}\n`
+    txt += `${valk.stigma.secondary}\n\n`
     txt += `*Recommended Support*\n`
-    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `*${valk.supportValk.supportTypeA.type}*\n`
     txt += `${valk.supportValk.supportTypeA.slot1}\n`
     txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
-    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `*${valk.supportValk.supportTypeB.type}*\n`
     txt += `${valk.supportValk.supportTypeB.slot1}\n`
     txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
     txt += `*Emblems / Sigils*\n`
@@ -4776,14 +4778,16 @@ Similarity : ${result.similarity}`
     txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
     txt += `# ${valk.mainSignets.optionsD.signet}\n`
     txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsE.signet}\n`
+    txt += `# ${valk.mainSignets.optionsE.typeChoice}\n\n`
     txt += `*Core Signets*\n`
     for (let signet of coreSignets) {
-      txt += `# ${signet}\n`
+      txt += `# ${signet}\n\n`
     }
     txt += `\n`
     txt += `*Reinforcement Signets*\n`
     for (let reinSignet of reinforceSignets) {
-      txt += `# ${reinSignet}\n`
+      txt += `# ${reinSignet}\n\n`
     }
     txt += `\n`
     txt += `- - - - - - - - _end_ - - - - - - - - `
@@ -4803,12 +4807,12 @@ Similarity : ${result.similarity}`
     txt += `${valk.weapon.secondary}\n\n`
     txt += `*Recommended Stigma*\n`
     txt += `${valk.stigma.primary}\n`
-    txt += `${valk.stigma.secondary}\n`
+    txt += `${valk.stigma.secondary}\n\n`
     txt += `*Recommended Support*\n`
-    txt += `_${valk.supportValk.supportTypeA.type}_\n`
+    txt += `*${valk.supportValk.supportTypeA.type}*\n`
     txt += `${valk.supportValk.supportTypeA.slot1}\n`
     txt += `${valk.supportValk.supportTypeA.slot2}\n\n`
-    txt += `_${valk.supportValk.supportTypeB.type}_\n`
+    txt += `*${valk.supportValk.supportTypeB.type}*\n`
     txt += `${valk.supportValk.supportTypeB.slot1}\n`
     txt += `${valk.supportValk.supportTypeB.slot2}\n\n`
     txt += `*Emblems / Sigils*\n`
@@ -4824,14 +4828,16 @@ Similarity : ${result.similarity}`
     txt += `# ${valk.mainSignets.optionsC.typeChoice}\n\n`
     txt += `# ${valk.mainSignets.optionsD.signet}\n`
     txt += `# ${valk.mainSignets.optionsD.typeChoice}\n\n`
+    txt += `# ${valk.mainSignets.optionsE.signet}\n`
+    txt += `# ${valk.mainSignets.optionsE.typeChoice}\n\n`
     txt += `*Core Signets*\n`
     for (let signet of coreSignets) {
-      txt += `# ${signet}\n`
+      txt += `# ${signet}\n\n`
     }
     txt += `\n`
     txt += `*Reinforcement Signets*\n`
     for (let reinSignet of reinforceSignets) {
-      txt += `# ${reinSignet}\n`
+      txt += `# ${reinSignet}\n\n`
     }
     txt += `\n`
     txt += `- - - - - - - - _end_ - - - - - - - - `
