@@ -63,14 +63,14 @@ const JadeKnight = {
     },
     optionsC: {
       signet: 'Blessing of Jade Moon 壁月 Ultimate deals additional Ice DMG',
-      typeChoice: 'Blessing of Shaft 流光 Ultimate during Sword Array triggers Bolt Slash'
+      typeChoice: 'No'
     },
     optionsD: {
-      signet: 'Blessing of Smoky Waft 烟波 Blade Sanction built up by Basic ATKs increases',
+      signet: 'Blessing of Shaft 流光 Ultimate during Sword Array triggers Bolt Slash',
       typeChoice: 'No'
     },
     optionsE: {
-      signet: '',
+      signet: 'Blessing of Smoky Waft 烟波 Blade Sanction built up by Basic ATKs increases',
       typeChoice: 'No'
     }
   },
