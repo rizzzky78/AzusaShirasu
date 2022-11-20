@@ -141,8 +141,54 @@ const __myDonationsBoards = `
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 ┗━━━━━━━⟬ _Donations Board_ ⟭━━━━━━━
+`
 
-Donations Equals/Above 5💎 has enjoyed 999 weekly limit!`
+const __bundleLimit = `
+*_LIMIT BUNDLE_*
+
+# \`\`\`Bundle: Anak Kosan Akhir Bulan\`\`\`
+\`\`\`Limit + 30\`\`\`
+\`\`\`Price: 5k IDR\`\`\`
+
+# \`\`\`Bundle: Anak Kosan Yang Suka Nongkrong\`\`\`
+\`\`\`Limit + 70\`\`\`
+\`\`\`Price: 10k IDR\`\`\`
+
+# \`\`\`Bundle: Anak Kosan Hedon\`\`\`
+\`\`\`Limit + 100\`\`\`
+\`\`\`Price: 15k IDR\`\`\`
+
+# \`\`\`Bundle: Anak Kosan Royal\`\`\`
+\`\`\`Limit + 200\`\`\`
+\`\`\`Price: 25k IDR\`\`\`
+
+*_MASA BERLAKU LIMIT? = LIFETIME (SELAMA BOT HIDUP)_*
+
+*_How To Paid?_*
+- payment via donate QR Saweria, tetapi dipisah dari list donasi, akan di list ke subcriber Bot
+- setelah payment dilakukan, User mengirim bukti SS payment ke Owner dengan caption data user berupa: Username dan Nomor pada database bot (bisa dicek pada command *!myprofile*)
+- tunggu sampai Owner merespon, setelah itu perubahan limit bisa di cek via *!myprofile*
+
+
+_Regards,.._
+`
+
+const __storeHelp = `
+*Cloud Store Guides*
+untuk memakai fitur ini perlu diperhatikan step by step nya, antara lain:
+
+1 - gunakan perintah *!makestore* untuk membuat database jika belum membuat database
+
+2 - gunakan perintah *!newstore * jika user sudah membuat database, untuk menyimpan data ke database
+
+3 - gunakan perintah *!mystore* untuk melihat list data yang telah kamu buat sebelumnya
+
+4 - gunakan perintah *!getstore* untuk memilih dan mengambil data yang telah kamu buat sebelumnya
+
+Note Regulasi:
+[Data Key] tidak boleh duplikat atau memiliki spasi
+[Data] dapat berbentuk bebas dan memiliki batasan panjang 1000 kata
+`
 
 const __changelog = `
 *_CHANGELOG BOT_*
@@ -324,6 +370,17 @@ tiktok
 tiktokwm
 tiktoknowm
 animesearch
+
+*_PATCH 20 NOVEMBER 2022_*
+NEW FEATURES:
+makestore
+newstore
+mystore
+getstore
+
+CHANGES:
+LIMIT AWAL SET TO 25
+MAJOR FEATURES CONSUME LIMIT TO USE
 `
 
-module.exports = { __userGuide, __myDonationsBoards, __changelog };
+module.exports = { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp };
