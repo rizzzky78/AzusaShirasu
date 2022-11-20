@@ -147,21 +147,22 @@ const __bundleLimit = `
 *_LIMIT BUNDLE_*
 
 # \`\`\`Bundle: Anak Kosan Akhir Bulan\`\`\`
-\`\`\`Limit + 30\`\`\`
+\`\`\`Limit + 50\`\`\`
 \`\`\`Price: 5k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Yang Suka Nongkrong\`\`\`
-\`\`\`Limit + 70\`\`\`
+\`\`\`Limit + 120\`\`\`
 \`\`\`Price: 10k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Hedon\`\`\`
-\`\`\`Limit + 100\`\`\`
+\`\`\`Limit + 200\`\`\`
 \`\`\`Price: 15k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Royal\`\`\`
-\`\`\`Limit + 200\`\`\`
+\`\`\`Limit + 500\`\`\`
 \`\`\`Price: 25k IDR\`\`\`
 
+*_LIMIT DIGUNAKAN UNTUK MENGAKSES SEMUA FITUR BOT_*
 *_MASA BERLAKU LIMIT? = LIFETIME (SELAMA BOT HIDUP)_*
 
 *_How To Paid?_*
@@ -179,7 +180,7 @@ untuk memakai fitur ini perlu diperhatikan step by step nya, antara lain:
 
 1 - gunakan perintah *!makestore* untuk membuat database jika belum membuat database
 
-2 - gunakan perintah *!newstore * jika user sudah membuat database, untuk menyimpan data ke database
+2 - gunakan perintah *!newstore* jika user sudah membuat database, untuk menyimpan data ke database
 
 3 - gunakan perintah *!mystore* untuk melihat list data yang telah kamu buat sebelumnya
 
