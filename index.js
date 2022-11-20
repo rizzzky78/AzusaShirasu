@@ -7,7 +7,7 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 20 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 21 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
@@ -992,9 +992,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
 
   case 'deployment': {
     reply("```checking the patch ...```");
-    setTimeout(() => { reply("```Azusa Bot, in version releases of v4.0```") }, 4000)
+    setTimeout(() => { reply("```Azusa Bot, in version releases of v4.1```") }, 4000)
     setTimeout(() => { reply("```getting meta data deployment ...```") }, 7000)
-    setTimeout(() => { reply("```latest deployment: 20 Nov 2022 ...```") }, 10000)
+    setTimeout(() => { reply("```latest deployment: 21 Nov 2022 ...```") }, 10000)
     setTimeout(() => { reply("```well done!```") }, 12000)
   } break
 
@@ -1085,7 +1085,6 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
           txt += `Gender : ${user.gender}\n`
           txt += `Umur : ${user.age}\n`
           txt += `Hobi : ${user.hobby}\n\n`
-          txt += `ID kamu\n`
           txt += `Nomor : ${user.linkID}\n`
           txt += `Limit : ${user.limit}\n`
           // txt += `Status Premium : ${user.isPremium ? '🤤 Yes' : '🥺 No'}\n`
@@ -1158,11 +1157,12 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
           let txt = `*My Cloud Store*\n\n`
           txt += `User ID : ${data.userID}\n`
           txt += `Username : ${data.userName}\n\n`
-          txt += `Store:\n`
+          txt += `List Key :\n`
           for (let store of dataStore) {
-            txt += `Key : ${store.Key}\n`
+            txt += `*${store.Key ? store.Key : 'Kamu belum pernah mengupload data'}*\n`
+            txt += `dibuat: ${store.Created ? store.Created : '-'}\n\n`
           }
-          txt += `\nuntuk mengakses data bisa menggunakan perintah *!getstore [nama key]*`
+          txt += `\n\nuntuk mengakses data bisa menggunakan perintah *!getstore [nama key]*`
           reply(txt).catch(() => { reply(lang.err()) });
         });
       } catch {
@@ -2339,8 +2339,6 @@ delete caklontong[m.sender.split('@')[0]]
 ├ Creator :  @Rizu
 ├ Powered  : @${ini_mark.split('@')[0]}
 ├ Prefix :   ${prefix}
-├ Total hit : ${hitall}
-├ Hit today : ${hit_today.length}
 ├ Speed : ${latensii.toFixed(4)} Second
 ├ Memory Used : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
 ├ Hostname : ${os.hostname()}
@@ -2348,8 +2346,6 @@ delete caklontong[m.sender.split('@')[0]]
 ├ Private chat : ${(Object.keys(db.data.chats).filter(v => v.endsWith('@s.whatsapp.net')).map(v => v).length)}
 ├ Group chat : ${(Object.keys(db.data.chats).filter(v => v.endsWith('@g.us')).map(v => v).length)}
 ├ Total chats :  ${(Object.keys(db.data.chats).filter(v => v.endsWith('@s.whatsapp.net')).map(v => v).length) + (Object.keys(db.data.chats).filter(v => v.endsWith('@g.us')).map(v => v).length)} 
-├ User In Database : ${Object.keys(global.db.data.users).length} Users
-├ User Registered : ${(Object.values(global.db.data.users).filter(user => user.registered == true).length)}
 ├ Runtime : ${runtime(process.uptime())}
 ╰❒ 
 
@@ -2359,12 +2355,17 @@ delete caklontong[m.sender.split('@')[0]]
 ╰❒
 
 ╭─❒ 「 Additional Info 」 
-├ *Cek Menu Tambahan di
-├ !semuamenu
-├ untuk lihat panduan menggunakan Bot, ketik !panduan
+├ Alternatif List Menu & Panduan Bot
+├ *!semuamenu*
+├ *!panduan*
 ╰❒
 `
 /*
+├ Total hit : ${hitall}
+├ Hit today : ${hit_today.length}
+.
+├ User In Database : ${Object.keys(global.db.data.users).length} Users
+├ User Registered : ${(Object.values(global.db.data.users).filter(user => user.registered == true).length)}
 ╭─❒ 「 User Info 」 
 ├ Register: ${user.registered ? `✅\n├ Name : ${user.name}\n├ Age : ${user.age} years\n├ Gender : ${user.gender}\n├ Hobby : ${user.hobi}\n├ Registered on : ${tanggal(user.regTime)}` : '❌'}
 ├ Bio : ${bio}
@@ -2378,7 +2379,7 @@ delete caklontong[m.sender.split('@')[0]]
     const buttojns = [
       { buttonId: 'command', buttonText: { displayText: '📖 List Menu' }, type: 1 },
       { buttonId: 'owner', buttonText: { displayText: '🙍‍♂️ Owner' }, type: 1 },
-      { buttonId: 'donasi', buttonText: { displayText: '💰 Donation' }, type: 1 }
+      { buttonId: 'howtolimit', buttonText: { displayText: '💰 Buy Limit' }, type: 1 }
     ]
     if (typemenu == 'document') {
       if (db.data.users[m.sender].registered) {
