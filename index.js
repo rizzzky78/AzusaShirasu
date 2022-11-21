@@ -7,13 +7,13 @@ Change log:
 	- added modular strings for data txt
 	- added mongodb atlas -- cloud database
 
-	Last Edited -- 21 Nov 2022 -- 23.14 WIB Indonesian Time
+	Last Edited -- 22 Nov 2022 -- 23.14 WIB Indonesian Time
 
 */
 
 const { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp } = require('./textData')
 const { InitialGuides, JadeKnight, HerscherOfHumanEgo_typeCharge, HerscherOfHumanEgo_typeUltimate } = require('./helper/SignetVer6.2')
-const { listAllValkyrie } = require('./helper/ValkListMaker')
+const { listAllValkyrie, links, ValkPictureGuide } = require('./helper/ValkListMaker')
 const { ValkSignets } = require('./helper/DisplaySignet')
 
 const { RandomLewd_type1, RandomLewd_type2 } = require('./interface/Indexing')
@@ -59,7 +59,7 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
 
 // Mongodb Setup
 const { ATLAS_DB, ATLAS_COLLECTION } = require('./provider/atlas.config');
-const { totalData, atlasData, atlasUpdate, atlasUpdatePrem, atlasUpdateTotalCmd, atlasMakeStore, atlasUseStore, atlasSetStore, atlasGetStore } = require('./server/MongoAtlasFunc')
+const { totalData, atlasData, atlasUpdate, atlasUpdatePrem, atlasGetTotalCmd, atlasUpdateTotalCmd, atlasMakeStore, atlasUseStore, atlasSetStore, atlasGetStore } = require('./server/MongoAtlasFunc')
 const serveAtlas = require('./atlas')
 const MainDatabase = ATLAS_DB.azusaDatabase // switch database here
 const UsersCollection = ATLAS_COLLECTION.azusaUsers // switch collection here
@@ -959,7 +959,7 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
     alpha.send1ButMes(m.chat, 'Serial Number 👇\n\n' + db.data.users[m.sender].serialNumber, `© ${ownername}`, `unreg db.data.users[m.sender].serialNumber`, 'Unreg Now', m)
   }
     break
-  case 'maudaftar': {
+  case 'regbeta': {
   	if (db.data.users[m.sender].registered) return reply(lang.DoneReg())
   	if (!text && !text.includes('|')) return reply(lang.ExReg(prefix))
   	arg = args.join(' ')
@@ -986,15 +986,15 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
   		{ buttonId: 'sewabot', buttonText: { displayText: 'Sewa Bot' }, type: 1 },
   		{ buttonId: '.menu', buttonText: { displayText: '✅ Command' }, type: 1 },
   		{ buttonId: 'rules', buttonText: { displayText: 'Rules 📝' }, type: 1 }], lang.RegReg(cryptoRandomString(20), tanggal(new Date()), namax.trim(), umurx, hobix, m.sender.split('@')[0], prefix, prefix, Object.keys(global.db.data.users).length), `© ${ownername}`, [m.sender], { quoted: m })
-  	setTimeout(() => { reply('*New Register Method Available!*\nMetode Daftar secara baru tersedia!\n\nperintah _!betaregist Nama|gender|umur|hobi\n\nBantu developer untuk mengembangkan fitur ini agar User tidak perlu mendaftar ulang karena database ter reset, tengkiu') }, 5000)
+  	// setTimeout(() => { reply('*New Register Method Available!*\nMetode Daftar secara baru tersedia!\n\nperintah _!betaregist Nama|gender|umur|hobi\n\nBantu developer untuk mengembangkan fitur ini agar User tidak perlu mendaftar ulang karena database ter reset, tengkiu') }, 5000)
   }
   	break
 
   case 'deployment': {
     reply("```checking the patch ...```");
-    setTimeout(() => { reply("```Azusa Bot, in version releases of v4.1```") }, 4000)
+    setTimeout(() => { reply("```Azusa Bot, in version releases of v4.3```") }, 4000)
     setTimeout(() => { reply("```getting meta data deployment ...```") }, 7000)
-    setTimeout(() => { reply("```latest deployment: 21 Nov 2022 ...```") }, 10000)
+    setTimeout(() => { reply("```latest deployment: 22 Nov 2022 ...```") }, 10000)
     setTimeout(() => { reply("```well done!```") }, 12000)
   } break
 
@@ -1160,9 +1160,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
           txt += `List Key :\n`
           for (let store of dataStore) {
             txt += `*${store.Key ? store.Key : 'Kamu belum pernah mengupload data'}*\n`
-            txt += `dibuat: ${store.Created ? store.Created : '-'}\n\n`
+            // txt += `dibuat: ${store.Created ? store.Created : '-'}\n\n`
           }
-          txt += `\n\nuntuk mengakses data bisa menggunakan perintah *!getstore [nama key]*`
+          txt += `\n\nuntuk mengakses data bisa menggunakan perintah\n*!getstore [nama key]*`
           reply(txt).catch(() => { reply(lang.err()) });
         });
       } catch {
@@ -1606,9 +1606,9 @@ ${Object.entries(db.data.cmd).map(([key, value], index) => `${index + 1}. ${valu
 
           let getChange = await value - 1; await atlasUpdate(getID, getChange);
 
-          AtlasTotalCmd.findOne(QueryProcessSticker).then(async datas => {
-            let result = datas; let value = await result.value;  let types = QueryProcessSticker; let valueChanges = await value + 1;
-            await atlasUpdateTotalCmd(types, valueChanges).then(async result => { console.log(result) });
+          await atlasGetTotalCmd("sticker").then(async datas => {
+            let result = datas; let value = await result.value; let valueChanges = await value + 1;
+            await atlasUpdateTotalCmd("sticker", valueChanges).then(async result => { console.log(result) });
           });
         });
       } catch {
@@ -3161,7 +3161,10 @@ delete caklontong[m.sender.split('@')[0]]
               buttons: buttons,
               headerType: 4
           }
-          await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch((err) => { reply(lang.err()) })
+
+          await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch(() => { 
+            alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen1`, `Coba Lagi`, m)
+          });
           /* End Process */
 
           let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
@@ -3195,7 +3198,9 @@ delete caklontong[m.sender.split('@')[0]]
               buttons: buttons,
               headerType: 4
           }
-          await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch((err) => { reply(lang.err()) })
+          await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch(() => { 
+            alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen2`, `Coba Lagi`, m)
+          });
           /* End Process */
 
           let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
@@ -4954,11 +4959,8 @@ Similarity : ${result.similarity}`
   } break
 
 
-  case 'honkaisignet': case 'signet': {
-    await alpha.sendMessage(m.chat, listAllValkyrie, { quoted: m })
-  } break
 
-  case 'erguides':{
+ /* case 'erguides':{
     let guide = InitialGuides
     let txt = `*Elysian Realm*\n${guide.primarySignet}\n${guide.coreSignet}\n${guide.reinforceSignet}\n\n${guide.etc}`
     reply(txt)
@@ -4984,6 +4986,115 @@ Similarity : ${result.similarity}`
     let txt = ValkSignets(valk)
     await sendFileFromUrl(from, thumbs, txt, m).catch(() => { reply(lang.err()) })
   } break
+*/
+case 'honkaisignet': case 'signet': {
+  let headers = links + ValkPictureGuide.header
+  let txt = ''
+  await sendFileFromUrl(from, headers, txt, m);
+  setTimeout(() => { alpha.sendMessage(m.chat, listAllValkyrie, { quoted: m })}, 1500)
+} break
+
+case 'erguides': {
+  let selected = links + ValkPictureGuide.phase
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'jadeknight': {
+  let selected = links + ValkPictureGuide.sushang;
+  let txt = 'Li Sushang : Jade Knight';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'misspinkelf': {
+  let selected = links + ValkPictureGuide.elympe
+  let txt = 'Elysia : Miss Pink Elf';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'hohtypecharge': {
+  let selected = links + ValkPictureGuide.elyahohCharge
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'hohtypeultimate': {
+  let selected = links + ValkPictureGuide.elyhohUlti
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'kianavoid': {
+  let selected = links + ValkPictureGuide.kianahov
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'kianahof': {
+  let selected = links + ValkPictureGuide.kianahof
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'meihot7t': {
+  let selected = links + ValkPictureGuide.mei7t
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'meihotulti': {
+  let selected = links + ValkPictureGuide.meiburst
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'bronyahor': {
+  let selected = links + ValkPictureGuide.bronya
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'ritaaka': {
+  let selected = links + ValkPictureGuide.ritaAKA
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'ritafr': {
+  let selected = links + ValkPictureGuide.ritaFR
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'huasenti': {
+  let selected = links + ValkPictureGuide.hua
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'seelont': {
+  let selected = links + ValkPictureGuide.seele
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'feliscalico': {
+  let selected = links + ValkPictureGuide.felis
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'griseosi': {
+  let selected = links + ValkPictureGuide.griseo
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'edendiva': {
+  let selected = links + ValkPictureGuide.eden
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'aponiahot': {
+  let selected = links + ValkPictureGuide.aponia
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'mobiouroboros': {
+  let selected = links + ValkPictureGuide.mobius
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+case 'villvcontra': {
+  let selected = links + ValkPictureGuide.villv
+  let txt = '';
+  await sendFileFromUrl(from, selected, txt, m).catch(() => { reply(lang.err()) })
+} break
+
 
   case 'wanipiroxxx':{
     let txt = 'Mau lebih banyak lagi???\n\nWani piro masehhh? :)'
