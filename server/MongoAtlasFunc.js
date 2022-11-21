@@ -68,16 +68,25 @@ async function atlasUpdatePrem(setUser, setPrem) {
   let PremiumChanges = await getAtlasPrem(setUser, setPrem);
   return PremiumChanges;
 };
-
-// total command constructor
+// total command --getter constructor
+async function atlasTotalCommand(typeCmd) {
+  let queryCmd = { type_cmd: typeCmd }
+  const getTotalCmd = AtlasTotalCmd.findOne(queryCmd);
+  return getTotalCmd;
+};
+async function atlasGetTotalCmd(typeCmd) {
+  let DataCmd = await atlasTotalCommand(typeCmd);
+  return DataCmd;
+}
+// total command --setter constructor
 async function getAtlasCommand(typeCmd, valueChanges) {
   let types = { type_cmd: typeCmd };
   let mutate = { $set: { value: valueChanges } };
   const ValueChanges = AtlasTotalCmd.findOneAndUpdate(types, mutate);
   return ValueChanges;
 };
-async function atlasUpdateTotalCmd(type, value) {
-  let HasChanges = await getAtlasCommand(type, value);
+async function atlasUpdateTotalCmd(typeCmd, valueToChange) {
+  let HasChanges = await getAtlasCommand(typeCmd, valueToChange);
   return HasChanges;
 };
 
@@ -137,6 +146,7 @@ module.exports = {
   atlasData,
   atlasUpdate,
   atlasUpdatePrem,
+  atlasGetTotalCmd,
   atlasUpdateTotalCmd,
   atlasMakeStore,
   atlasUseStore,
