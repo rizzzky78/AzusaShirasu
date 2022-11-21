@@ -125,29 +125,29 @@ const listAllValkyrie = {
 }
 const links = 'https://raw.githubusercontent.com/rizzzky78/AzusaShirasu/main/picture/HoyolabER-V6.1/'
 const ValkPictureGuide = {
-  header: 'headers',
-  phase: 'currentphase',
+  header: 'headers.jpg',
+  phase: 'currentphase.jpg',
 
-  kianahof: 'kiana-hof',
-  kianahov: 'kiana-hov',
-  bronya: 'bronya-hor',
-  mei7t: 'mei-hot-7thunder-mode',
-  meiburst: 'mei-hot-burst-mode',
-  hua: 'hua-hos',
-  sushang: 'li-sushang-jade-knight',
-  ritaAKA: 'rita-aka',
-  ritaFR: 'rita-fallen-rosemary',
-  seele: 'seele-starchasm-nyx',
+  kianahof: 'kiana-hof.jpg',
+  kianahov: 'kiana-hov.jpg',
+  bronya: 'bronya-hor.jpg',
+  mei7t: 'mei-hot-7thunder-mode.jpg',
+  meiburst: 'mei-hot-burst-mode.jpg',
+  hua: 'hua-hos.jpg',
+  sushang: 'li-sushang-jade-knight.jpg',
+  ritaAKA: 'rita-aka.jpg',
+  ritaFR: 'rita-fallen-rosemary.jpg',
+  seele: 'seele-starchasm-nyx.jpg',
 
-  elympe: 'ely-mpe',
-  elyahohCharge: 'ely-hoh-type-charge',
-  elyhohUlti: 'ely-hoh-type-ultimate',
-  felis: 'felis-reverist-calico',
-  griseo: 'griseo-stary-impresion',
-  eden: 'eden-golden-diva',
+  elympe: 'ely-mpe.jpg',
+  elyahohCharge: 'ely-hoh-type-charge.jpg',
+  elyhohUlti: 'ely-hoh-type-ultimate.jpg',
+  felis: 'felis-reverist-calico.jpg',
+  griseo: 'griseo-stary-impresion.jpg',
+  eden: 'eden-golden-diva.jpg',
   aponia: 'aponia-diclipinary-perdition.jpg',
-  mobius: 'mobius-infinite-ouroboros',
-  villv: 'vill-v-hellical-contraption'
+  mobius: 'mobius-infinite-ouroboros.jpg',
+  villv: 'vill-v-hellical-contraption.jpg'
 
 }
 
