@@ -1,5 +1,5 @@
 exports.needReg = (a, b, c) =>{
-	return`Halo ${a} 🥺, sepertinya kamu belum terdaftar di database ${b}. Daftar dulu yuk dengan cara berikut 👇\n\n${c}register nama|umur|gender|hobi\nContoh : ${c}register botwa|18|cowo|Game`
+	return`Halo ${a} !, untuk sekarang ${b} sedang migrasi database, kedepannya akan diperbaiki secara bertahap. Namun jika ingin tetap menggunakan fitur ini silahkan daftar dengan cara 👇\n\n${c}regbeta nama|umur|gender|hobi\nContoh : ${c}regbeta botwa|18|cowo|Game\n\nMetode daftar ini bersifat sementara dan akan reset kembali setiap Bot restart, jad mohon dimengerti`
 	}
 exports.Nolimit = (prefix) =>{
 	return`Limit kamu hari ini telah habis ⚠️\n\nSilahkan beli limit dengan cara ketik ${prefix}buy atau ${prefix}buyall`
@@ -11,7 +11,7 @@ exports.NoseriOk = () =>{
 	return`Berhasil membatalkan pendaftaran!`
 	}
 exports.ExReg = (c) =>{
-	return`Gini bro ${c}register nama|umur|gender|hobi\nContoh penggunaan : \n${c}register botwa|18|pria|Game`
+	return`Gini kak ${c}regbeta nama|umur|gender|hobi\nContoh penggunaan : \n${c}regbeta botwa|18|pria|Game`
 	}
 exports.DoneReg = () =>{
 	return`Kamu sudah terdaftar di database`
@@ -49,7 +49,7 @@ exports.UmurXReg = () =>{
 	return`Umur kamu terlalu tua, bukannya mati ehh malah main bot`
 	}
 exports.firstChat = (a, b, c) =>{
-	return`Selamat ${a} ${b} 🤗, saya adalah ${c} yaitu bot whatsapp. Ada yang bisa ${c} bantu?`
+	return`Selamat ${a} Kak ${b} !\n\n${c} Ready to help!`
 	}
 exports.StartAbsen = () =>{
 	return`Mulai Absen`
