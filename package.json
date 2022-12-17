@@ -1,11 +1,12 @@
 {
-  "name": "Azusa Chan",
-  "version": "1.1.4",
+  "name": "Shirasu Azusa - Azusa Bot",
+  "version": "4.0",
   "description": "Shirasu Azusa WhatsApp Bot",
   "main": "zeeone.js",
   "license": "MIT",
   "scripts": {
-    "start": "node zeeone.js"
+    "start": "pm2 start zeeone.js --cron \"* */2 * * *\" && pm2 save && pm2 logs",
+    "init": "node zeeone.js"
   },
   "keywords": [
     "whatsapp",
@@ -14,7 +15,7 @@
     "base",
     "baileys-md"
   ],
-  "author": "ZeeoneOfc",
+  "author": "Rizu",
   "dependencies": {
     "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "@adiwajshing/keyed-db": "^0.2.4",
@@ -27,7 +28,6 @@
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
     "child_process": "^1.0.2",
-    "dotenv": "^16.0.3",
     "emoji-api": "^2.0.1",
     "fetch": "^1.1.0",
     "figlet": "^1.5.2",
@@ -55,9 +55,11 @@
     "path": "^0.12.7",
     "perf_hooks": "0.0.1",
     "pino": "^7.2.0",
+    "pm2": "^5.2.2",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.2",
     "scrape-primbon": "^1.1.0",
+    "typescript": "^4.9.4",
     "util": "^0.12.4",
     "xfarr-api": "^1.0.2",
     "yargs": "^17.2.1",
