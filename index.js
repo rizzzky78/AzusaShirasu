@@ -4,7 +4,7 @@
  * @Versions
  * @v4
  * Last Updated on:
- * 17 Dec 2022
+ * 22 Dec 2022
  */
 
 // require('./config/global.settings')
@@ -53,14 +53,17 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
  * @Import
  * @Config
  */
-const serveAtlas = require('./atlas')
-const { MyApikeys, ATLAS_DB, ATLAS_COLLECTION, makeLimitAwal } = require('./config/global.config')
+const serveAtlas = require('./config/mongodbAtlas')
+const { StoreMapper, StoreConstructor } = require('./functions/store.controller')
+const { MyApikeys, ATLAS_DB, ATLAS_COLLECTION, OpenAiConfig, makeLimitAwal, imgPlaceholder, versioningBot } = require('./config/global.config')
 const { totalData, atlasData, atlasUpdate, atlasUpdatePrem, atlasGetTotalCmd, atlasUpdateTotalCmd, atlasMakeStore, atlasUseStore, atlasSetStore, atlasGetStore } = require('./functions/atlas.controller')
 
 /** @Helpers */
-const { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
+const { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
 const { makeListValkyrie, makeListCharacter, makeListBuild, HonkaiGuides, GenshinGuides, GenshinBuild, CreditsCaptions } = require('./services/mihoyo')
-const { RandomLewd_type1, RandomLewd_type2 } = require('./interface/Indexing')
+const { RandomLewd_type1, RandomLewd_type2, ObjectCmd } = require('./interface/Indexing')
+const { SelectorMenu } = require('./interface/MenuMaker')
+const { CategorySelector } = require('./functions/menu.controller')
 
 // Mongodb Setup
 const MainDatabase = ATLAS_DB.azusaDatabase // switch database here
@@ -77,6 +80,28 @@ serveAtlas.connect((error) => {
 const AzusaData = serveAtlas.db(MainDatabase);
 const MainCollection = AzusaData.collection(UsersCollection);
 
+/**
+ * @openAiConfig
+ * @type
+ * `Models`, `Temperature`, `Tokens`, `Frequency`, `Presence`
+ */
+const AiModels = OpenAiConfig.model.davinci
+const AiTemp = OpenAiConfig.temperature.second
+const AiTokens = OpenAiConfig.tokens.expert
+const AiFpenalty = OpenAiConfig.freqPenalty.optOne
+const AiPpenalty = OpenAiConfig.prePenalty.optTwo
+
+const { openAiCompletions, openAiImageGenerations } = require('./functions/openAi.controller')
+
+/**
+ * @Store
+ * @state
+ */
+let stateConstructor = {};
+const ConstructStore = (setState) => {
+  stateConstructor = Object.assign({ }, stateConstructor, setState);
+  console.log('A new state has been declared!')
+};
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const database = require('./database/database.json')
 const { getResults } = require('google-it/lib/googleIt')
@@ -98,7 +123,7 @@ const saweria = 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/sh
 const dashboardDonasi = 'https://saweria.co/overlays/leaderboard?streamKey=90ac389d2ca9bfa6d50c2ac24c7a726b&backgroundColor=%23ffffffFF&color=%23000000FF&fontWeight=500&title=Leaderboard&mode=all';
 
 
-// Database Game
+// Database
 const hit_today = TotalHitToday
 const kuismath = db.data.game.math = {}
 const _family100 = db.data.game.family100 = []
@@ -1246,6 +1271,56 @@ switch(command) {
  * @GameGuides
  *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
  */
+  case 'chatgpt': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 3) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 3 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} Buatkan kalimat tentang reformasi`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await openAiCompletions(query, AiModels, AiTemp, AiTokens, AiFpenalty, AiPpenalty);
+          let Data = Res.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'chatgptimage': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 5) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 5 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} Gambar kucing warna oranye`)
+          let queryImage = args.join(' ')
+          reply(lang.wait())
+          let ResImage = await openAiImageGenerations(queryImage);
+          let Result = ResImage.data[0].url
+          let txt = `Query : ${queryImage}\n\nChatGPT by an OpenAi\nFrom: @AzusaBot\n\nFitur ini limited dan belum sepenuhnya stabil`
+          await sendFileFromUrl(from, Result, txt, m).catch(() => { reply(lang.err()) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        /* Rejection */
+        return reply(error);}
+    })();
+  } break
 
   case 'unreg': case 'unregister': {
     if (!db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
@@ -1395,20 +1470,23 @@ switch(command) {
     })();
   } break
 
+  case 'deployment': {
+    reply('Roger that! 404')
+  } break
+
   case 'makestore': {
     (async () => {
       try {
-        let setUsername = args[0]
         let phoneNumber = m.sender.split('@')[0]
         let user = parseInt(phoneNumber);
-        if (args.length == 0) return reply(`Contoh: ${prefix + command} Budi`)
+        let setUsername = args.join(' ')
+        if (args.length == 0) return reply(`Masukan Username, Contoh: !makestore Budi`)
         await atlasMakeStore(user, setUsername).then(async res => {
           let data = res
           let txt = `*Pembuatan Cloud Storage Berhasil!*\n\n`
-          txt += `${data}\n\n`
           txt += `id : ${user}\n`
           txt += `username : ${setUsername}\n\n`
-          txt += `Kamu sekarang bisa menambah data ke cloud, dengan perintah *!newstore [namaKey]|[data yang mau kamu simpan]*\ncontoh *!newstore nomorayah|08123456789 dan 08123456789\n_Key tidak boleh ada spasi, tetapi nomor dibolehkan, tipe Data dibebaskan bisa berupa angka/kata dan memiliki batasan panjang 1000 kata_`
+          txt += `Kamu sekarang bisa menambah data ke cloud, dengan perintah *!newstore [namaKey]|[data yang mau kamu simpan]*\n\ncontoh *!newstore nomorayah|08123456789 dan 08123456789\n\n_Key tidak boleh ada spasi, tetapi nomor dibolehkan, tipe Data dibebaskan bisa berupa angka/kata dan memiliki batasan panjang 1000 kata_`
           console.log(data);
           reply(txt).catch(() => { reply(lang.err()) });
         });
@@ -1430,37 +1508,29 @@ switch(command) {
           console.log(data)
           let txt = `*Sukses menambahkan Data!*\n`
           txt += `Key : ${Key}\n`
-          txt += `Data : ${Doc}\n\n`
+          txt += `Documents : ${Doc}\n\n`
           txt += `Untuk menampilkan Data yang telah Kamu simpan bisa menggunakan perintah *!mystore* atau ketuk tombol dibawah`
           alpha.send1ButMes(m.chat, txt, `© ${ownername}`, `mystore`, `My Store`, m)
         });
       } catch {
-        reply(__storeHelp);
+        reply('Kamu belum membuat database, silahkan buat database dengan cara !makestore _username kamu_');
       }
     })();
   } break
-  //  nodemon zeeone.js --ignore '*.js' --ignore '*.json'
+
   case 'mystore': {
     (async () => {
       try {
         let usernumber = m.sender.split('@')[0]
         let user = parseInt(usernumber);
-        await atlasSetStore(user).then(async result => {
-          let data = result
-          let dataStore = data.Store
-          let txt = `*My Cloud Store*\n\n`
-          txt += `User ID : ${data.userID}\n`
-          txt += `Username : ${data.userName}\n\n`
-          txt += `*List Key* :\n`
-          for (let store of dataStore) {
-            txt += `- ${store.Key ? store.Key : 'Kamu belum pernah mengupload data\nUntuk mengupload data baru gunakan perintah !newstore [Key]|[Data text yang mau kamu simpan], contoh !newstore emak|Mau beliin hadiah buat emak tercintah'}\n`
-            // txt += `dibuat: ${store.Created ? store.Created : '-'}\n\n`
-          }
-          txt += `\n\nuntuk mengakses data bisa menggunakan perintah\n*!getstore [nama key]*`
-          reply(txt).catch(() => { reply(lang.err()) });
-        });
+        await atlasSetStore(user).then(async Data => {
+          let ObjectData = StoreConstructor(Data);
+          ConstructStore(ObjectData);
+          let ListCollections = stateConstructor
+          setTimeout(() => { alpha.sendMessage(m.chat, ListCollections, { quoted: m }) }, 2000)
+        }).catch((error) => { reply(error) })
       } catch {
-        reply(__storeHelp);
+        reply('Kamu belum membuat database, silahkan buat database dengan cara !makestore _username kamu_');
       }
     })();
   } break
@@ -1474,7 +1544,7 @@ switch(command) {
         let ResultDoc = await atlasGetStore(user, queryDoc);
         reply(ResultDoc).catch(() => { reply(lang.err()) });
       } catch {
-        reply(__storeHelp);
+        reply('_Error! / User yang mengakses data tidak valid!_');
       }
     })();
   } break
@@ -1606,6 +1676,10 @@ switch(command) {
     })();
   } break
 
+  case 'rules': {
+    reply(__myRules);
+  } break
+
   case 'guide': case 'panduan': {
     reply(lang.wait())
     let txt = __userGuide
@@ -1696,7 +1770,7 @@ switch(command) {
     ╰❒ Owner : ${isCreator ? 'True' : `False`}
     */
     const buttojns = [
-      { buttonId: 'command', buttonText: { displayText: '📖 List Menu' }, type: 1 },
+      { buttonId: 'azusacommand', buttonText: { displayText: '📖 List Menu' }, type: 1 },
       { buttonId: 'owner', buttonText: { displayText: '🙍‍♂️ Owner' }, type: 1 },
       { buttonId: 'howtolimit', buttonText: { displayText: '💰 Buy Limit' }, type: 1 }
     ]
@@ -2048,6 +2122,26 @@ switch(command) {
       }], `Selamat ${salam} @${sender.split('@')[0]} 😊\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : @${ownernomer.split("@")[0]}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣` + '\n\n' + lang.tqto(), `© ${ownername}`, [sender, ownernomer + '@s.whatsapp.net'], { quoted: m })
   } break
 
+  case 'azusacommand': {
+    let selector = args[0]
+    let picture = imgPlaceholder.azusa
+    let makeInfos = 'Azusa Bot Menu'
+    let foots = 'azusa desu!'
+    try {
+      let texts = CategorySelector(selector, makeInfos, foots)
+      await sendFileFromUrl(from, picture, texts, m);
+    } catch {
+      let ObjectSelector = {
+        text: `Selamat ${salam} @${sender.split('@')[0]} 😊\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : @${ownernomer.split("@")[0]}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣`,
+        footer: '@AzusaBot',
+        title: 'Selector Menu',
+        buttonText: 'Buka List Menu',
+        sections: SelectorMenu
+      };
+      alpha.sendMessage(m.chat, ObjectSelector, { quoted: m })
+    }
+  } break
+
   /**
    * @endsHere
    */
@@ -2103,30 +2197,57 @@ switch(command) {
     await sendFileFromUrl(from, thumb, lang.listMenu(time, salam, pushname, prefix), m)
   } break
 
-  case 'rules': {
-    let gam = await getBuffer(picak + 'Terms and Conditions')
-    var but = [
-      {
-        "urlButton": {
-          "displayText": "Website",
-          "url": `${myweb}`
-        }
-      }
-    ]
-    await alpha.send5ButImg(from, lang.rules(prefix), `© ${ownername}`, gam, but, { userJid: m.chat, quoted: m })
+  case 'sewabot':{
+    reply('Silahkan pm Owner, ketik !owner untuk mendapatkan nomornya')
   } break
-  case 'sewabot': {
-    let gum = await getBuffer(picak + 'Sewa Bot')
-    var but = [
-      {
-        "urlButton": {
-          "displayText": "Chat Owner",
-          "url": `${youtube}`
-        }
-      }
-    ]
-    await alpha.send5ButImg(from, lang.sewaBot(prefix), `© ${ownername}`, gum, but, { userJid: m.chat, quoted: m })
+
+  case 'rules': case 'rulesbot': {
+    let pict = imgPlaceholder.azusa
+    let txt = __myRules
+    await sendFileFromUrl(from, pict, txt, m)
   } break
+
+  case 'infobot': {
+    let pict = imgPlaceholder.azusa
+    let txt = versioningBot.infos
+    await sendFileFromUrl(from, pict, txt, m)
+  } break
+
+  case 'faq': {
+    let pict = imgPlaceholder.azusa
+    let txt = __faq
+    await sendFileFromUrl(from, pict, txt, m)
+  } break
+
+  case 'storehelp': {
+    let pict = imgPlaceholder.azusa
+    let txt = __storeHelp
+    await sendFileFromUrl(from, pict, txt, m)
+  } break
+  // case 'rules': {
+  //   let gam = await getBuffer(picak + 'Terms and Conditions')
+  //   var but = [
+  //     {
+  //       "urlButton": {
+  //         "displayText": "Website",
+  //         "url": `${myweb}`
+  //       }
+  //     }
+  //   ]
+  //   await alpha.send5ButImg(from, lang.rules(prefix), `© ${ownername}`, gam, but, { userJid: m.chat, quoted: m })
+  // } break
+  // case 'sewabot': {
+  //   let gum = await getBuffer(picak + 'Sewa Bot')
+  //   var but = [
+  //     {
+  //       "urlButton": {
+  //         "displayText": "Chat Owner",
+  //         "url": `${youtube}`
+  //       }
+  //     }
+  //   ]
+  //   await alpha.send5ButImg(from, lang.sewaBot(prefix), `© ${ownername}`, gum, but, { userJid: m.chat, quoted: m })
+  // } break
 
   case 'random50': {
     let ran50 = Math.floor((Math.random() * 50) + 1);
@@ -2502,9 +2623,9 @@ delete caklontong[m.sender.split('@')[0]]
  *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
  */
 
-  case 'randomhentai': case 'chiisaihentai': case 'trap': case 'blowjob': case 'yaoi': case 'ecchi': case 'hentai': case 'ahegao': case 'hololewd':
-  case 'sideoppai': case 'animefeets': case 'animebooty': case 'animethighss': case 'hentaiparadise': case 'animearmpits': case 'hentaifemdom': case 'lewdanimegirls':
-  case 'biganimetiddies': case 'animebellybutton': case 'hentai4everyone': case 'neko': case 'waifu': case 'loli': case 'milf': {
+  case 'chiisaihentai': case 'trap': case 'blowjob': case 'yaoi': case 'ecchi': case 'hentai': case 'ahegao':
+  case 'hololewd': case 'sideoppai': case 'animefeets': case 'animebooty': case 'animethighss': case 'hentaiparadise':
+  case 'animearmpits': case 'hentaifemdom': case 'lewdanimegirls': case 'biganimetiddies': case 'animebellybutton': case 'hentai4everyone': {
 
     (async () => {
       try {
@@ -2542,11 +2663,12 @@ delete caklontong[m.sender.split('@')[0]]
     })();
   } break
 
-  case 'randomhentai2': case 'bj': case 'ero': case 'cum': case 'feet': case 'yuri': case 'trap': case 'lewd': case 'feed': case 'eron': case 'solo':
-  case 'gasm': case 'poke': case 'anal': case 'holo': case 'tits': case 'kuni': case 'kiss': case 'erok': case 'smug': case 'baka': case 'solog':
-  case 'feetg': case 'lewdk': case 'waifu': case 'pussy': case 'femdom': case 'cuddle': case 'hentai': case 'eroyuri': case 'cum_jpg':
-  case 'blowjob': case 'erofeet': case 'holoero': case 'classic': case 'erokemo': case 'fox_girl': case 'futanari': case 'lewdkemo': case 'wallpaper':
-  case 'pussy_jpg': case 'kemonomimi': case 'nsfw_avatar': case 'lewd': case 'keta': case 'femdom': case 'futanari': case 'anal': {
+  case 'bj': case 'ero': case 'cum': case 'feet': case 'yuri': case 'trap': case 'lewd': case 'feed': case 'eron':
+  case 'solo': case 'gasm': case 'poke': case 'anal': case 'holo': case 'tits': case 'kuni': case 'kiss': case 'erok':
+  case 'smug': case 'baka': case 'solog': case 'feetg': case 'lewdk': case 'waifu': case 'pussy': case 'femdom':
+  case 'cuddle': case 'hentai': case 'eroyuri': case 'cum_jpg': case 'blowjob': case 'erofeet': case 'holoero':
+  case 'classic': case 'erokemo': case 'fox_girl': case 'futanari': case 'lewdkemo': case 'wallpaper':
+  case 'pussy_jpg': case 'kemonomimi': case 'nsfw_avatar': {
 
     (async () => {
       try {
@@ -2635,7 +2757,7 @@ delete caklontong[m.sender.split('@')[0]]
           /* Start Process */
           reply(lang.wait())
           let selectedLewd = RandomLewd_type2[Math.floor(Math.random() * (RandomLewd_type2.length))]
-          let thisLewd = (`https://api.lolhuman.xyz/api/random/nsfw/${selectedLewd}?apikey=${lol}`)
+          let thisLewd = (`https://api.lolhuman.xyz/api/random2/${selectedLewd}?apikey=${lol}`)
           const buttons = [
             { buttonId: 'randomlewdgen1', buttonText: { displayText: 'Random Lewd 1' }, type: 1 },
             { buttonId: 'randomlewdgen2', buttonText: { displayText: 'Random Lewd 2' }, type: 1 },
@@ -2662,8 +2784,9 @@ delete caklontong[m.sender.split('@')[0]]
   } break
 
 
-  case 'waifuu': case 'art': case 'bts': case 'exo': case 'elf': case 'loli': case 'shota': case 'husbu': case 'sagiri':
-  case 'shinobu': case 'megumin': case 'wallnime': {
+  case 'art': case 'awoo': case 'bts': case 'cecan': case 'cogan': case 'elaina': case 'exo':
+  case 'elf': case 'estetic': case 'kanna': case 'loli': case 'neko': case 'waifu': case 'shota':
+  case 'husbu': case 'sagiri': case 'shinobu': case 'megumin': case 'wallnime': case 'quotesimage': {
 
     (async () => {
       try {
@@ -4310,6 +4433,10 @@ delete caklontong[m.sender.split('@')[0]]
     }
   } break
 
+  case 'shorturl': {
+    reply('Tersedia 4 pilihan:\n!shorturl 1-4\n\nContoh: !shorturl3 https://neko.poi/anime/marin-kitagawa/episode-1')
+  } break
+
   case 'shorturl1': {
     let link = args[0]
     fetchJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${lol}&url=${link}`)
@@ -4432,7 +4559,7 @@ delete caklontong[m.sender.split('@')[0]]
       alpha.sendMessage(m.chat, makeListValkyrie, { quoted: m })
     }
   } break
-  case 'sheet': case 'genshin': {
+  case 'sheet': case 'genshinmaterial': {
     let query = args[0]
     let process = GenshinGuides(query)
     try {
@@ -4442,7 +4569,7 @@ delete caklontong[m.sender.split('@')[0]]
     }
   } break
 
-  case 'sheet2': case 'gibuild': {
+  case 'sheet2': case 'genshinbuild': {
     let query = args[0]
     let process = GenshinBuild(query)
     try {
@@ -7226,5 +7353,7 @@ fs.watchFile(file, () => {
 	require(file)
 })
 
-/* this is the end of code 
-	last updated: ... */
+/**
+* @EndOfCode
+* @AzusaBot
+*/
