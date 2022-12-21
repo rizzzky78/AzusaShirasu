@@ -2,7 +2,7 @@
  * @global
  * @info
  */
-
+const __dashboard = `Update v4.0`
 // Validation Function
 const NotRegistered = "Kamu belum terdaftar di database Azusa Bot, silahkan daftar terlebih dahulu agar bisa menggunakan Bot dengan cara *!daftar*\nFormat: *!daftar Nama|gender|umur|hobi*\nContoh: *!daftar Budi|cowo|29|turu*"
 const userHasEmptyLimit = "Enjoy the Features?, but unfortunately your limit has empty\nKetuk tombol dibawah untuk melihat Bundle Limit"
@@ -412,4 +412,4 @@ LIMIT AWAL SET TO 25
 MAJOR FEATURES CONSUME LIMIT TO USE
 `
 
-module.exports = { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
+module.exports = { __dashboard, __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
