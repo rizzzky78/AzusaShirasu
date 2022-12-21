@@ -55,11 +55,11 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
  */
 const serveAtlas = require('./config/mongodbAtlas')
 const { StoreMapper, StoreConstructor } = require('./functions/store.controller')
-const { MyApikeys, ATLAS_DB, ATLAS_COLLECTION, OpenAiConfig, makeLimitAwal, imgPlaceholder, versioningBot } = require('./config/global.config')
+const { MyApikeys, ATLAS_DB, ATLAS_COLLECTION, OpenAiConfig, makeLimitAwal, imgPlaceholder, versioningBot, interfaces } = require('./config/global.config')
 const { totalData, atlasData, atlasUpdate, atlasUpdatePrem, atlasGetTotalCmd, atlasUpdateTotalCmd, atlasMakeStore, atlasUseStore, atlasSetStore, atlasGetStore } = require('./functions/atlas.controller')
 
 /** @Helpers */
-const { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
+const { __dashboard, __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
 const { makeListValkyrie, makeListCharacter, makeListBuild, HonkaiGuides, GenshinGuides, GenshinBuild, CreditsCaptions } = require('./services/mihoyo')
 const { RandomLewd_type1, RandomLewd_type2, ObjectCmd } = require('./interface/Indexing')
 const { SelectorMenu } = require('./interface/MenuMaker')
@@ -102,6 +102,10 @@ const ConstructStore = (setState) => {
   stateConstructor = Object.assign({ }, stateConstructor, setState);
   console.log('A new state has been declared!')
 };
+let xx = interfaces.side
+let xy = interfaces.upper
+let yx = interfaces.lower
+let markers = interfaces.marker
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const database = require('./database/database.json')
 const { getResults } = require('google-it/lib/googleIt')
@@ -1528,7 +1532,7 @@ switch(command) {
           ConstructStore(ObjectData);
           let ListCollections = stateConstructor
           setTimeout(() => { alpha.sendMessage(m.chat, ListCollections, { quoted: m }) }, 2000)
-        }).catch((error) => { reply(error) })
+        });
       } catch {
         reply('Kamu belum membuat database, silahkan buat database dengan cara !makestore _username kamu_');
       }
@@ -1538,6 +1542,7 @@ switch(command) {
   case 'getstore': {
     (async () => {
       try {
+        // if (args.length == 0) return reply(`Contoh: ${prefix + command} Budi`)
         let queryDoc = args[0]
         let usernumber = m.sender.split('@')[0]
         let user = parseInt(usernumber);
@@ -1741,10 +1746,7 @@ switch(command) {
   ┗━❐
   
   ┏━❐  *_Dashboard_*  ❐━━
-  ┃ Alternatif List Menu, Panduan, changelog Bot
-  ┃ !semuamenu
-  ┃ !panduan
-  ┃ !changelog
+  ┃ ⌬ ${__dashboard}
   ┗━❐
   `
     /*⊙⊚⊛⎋
@@ -1798,7 +1800,7 @@ switch(command) {
     break
   case 'allmenu': {
     await alpha.send5ButLoc(from, `Hai kak ${pushname} 👋, saya *${botname}* ` + '\n\n' + lang.listMenu(time, salam, pushname, prefix), `© ${ownername}`, pp_bot, [
-      { "quickReplyButton": { "displayText": "Sewa Bot", "id": 'sewaBot' } },
+      { "quickReplyButton": { "displayText": "Sewa Bot", "id": 'howtolimit' } },
       { "quickReplyButton": { "displayText": "Owner", "id": 'owner' } },
       { "quickReplyButton": { "displayText": "Rules", "id": 'rules' } }
     ])
@@ -2125,21 +2127,65 @@ switch(command) {
   case 'azusacommand': {
     let selector = args[0]
     let picture = imgPlaceholder.azusa
-    let makeInfos = 'Azusa Bot Menu'
-    let foots = 'azusa desu!'
+let makeInfos = `
+${xx}${xy}${markers}
+${xx} *Shirasu Azusa Bot*
+${xx} _Run on VPS_
+${xx}${xy}
+`
+let foots = `
+${xy}${markers}
+${xx} \`\`\`\@Azusa Bot v4.0\`\`\`
+${yx}
+`
     try {
-      let texts = CategorySelector(selector, makeInfos, foots)
+      let texts = CategorySelector(selector, makeInfos, foots);
       await sendFileFromUrl(from, picture, texts, m);
+
+      let buttons = [
+        { buttonId: 'azusacommand', buttonText: { displayText: 'List Menu' }, type: 1 },
+        { buttonId: 'myprofile', buttonText: { displayText: 'My Profile' }, type: 1 }
+      ];
+      let buttonMessage = {
+        image: { url: picture },
+        caption: texts,
+        footer: ownername,
+        buttons: buttons,
+        headerType: 4
+      };
+      await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch((err) => { reply(lang.err()) })
     } catch {
+let texts = `
+╭─⬣「 _*INFO USER*_ 」⬣
+│  *Name* : ${pushname}
+│  *Number* : ${sender.split("@")[0]}
+│  *Status* : ${isCreator ? ` Owner️ ${botname}` : `User ${botname}`}
+╰─⬣
+
+╭─⬣「 _*INFO BOT*_ 」⬣
+│ *Prefix* :  Multi Prefix
+│ *Name* : ${botname}
+│ *Owner* : ${ownername}
+│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}
+│ *Runtime* : ${runtime(process.uptime())}
+│ *Lib* : Baileys-Md@4.0.0
+╰─⬣
+
+╭─⬣「 _*INDONESIAN TIME*_ 」⬣
+│ *Wib* : ${time}
+│ *Wita* : ${wita}
+│ *Wit* : ${wit}
+╰─⬣
+`
       let ObjectSelector = {
-        text: `Selamat ${salam} @${sender.split('@')[0]} 😊\n\n╭─⬣「 _*INFO BOT*_ 」⬣\n│ *Prefix* :  ${prefix} \n│ *Name* : ${botname}\n│ *Owner* : @${ownernomer.split("@")[0]}\n│ *Mode* : ${alpha.public ? 'Public-Mode' : 'Self-Mode'}\n│ *Runtime* : ${runtime(process.uptime())}\n│ *Lib* : Baileys-Md@4.0.0\n╰─⬣`,
+        text: texts,
         footer: '@AzusaBot',
-        title: 'Selector Menu',
+        title: `${xy}${markers}\n${xx} *Azusa Bot*\n${xx} *v4.0*\n${yx}${markers}`,
         buttonText: 'Buka List Menu',
         sections: SelectorMenu
       };
       alpha.sendMessage(m.chat, ObjectSelector, { quoted: m })
-    }
+    };
   } break
 
   /**
@@ -2223,6 +2269,10 @@ switch(command) {
     let pict = imgPlaceholder.azusa
     let txt = __storeHelp
     await sendFileFromUrl(from, pict, txt, m)
+  } break
+
+  case 'lastdeploy': {
+    reply('Last deployment: 22 Dec 2022')
   } break
   // case 'rules': {
   //   let gam = await getBuffer(picak + 'Terms and Conditions')
