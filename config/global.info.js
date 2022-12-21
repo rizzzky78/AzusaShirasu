@@ -79,42 +79,65 @@ contoh: sama seperti penggunaan fitur !alquran diatas
 
 
 *_Fitur-Fitur yang lain kurang lebih penggunaannya sama seperti yang sudah dicontohkan diatas_*
-
-
-
-*_Extra Guide & FAQ_*
-_Selengkapnya:_
-
-*_About GET Features!_*
-*GET Features => Fitur Bot yg menggunakan APIkey Premium/berbayar untuk memproses request!
-*Note: web APIkey terkadang error saat memproses request, NOT 100% guaranteed WORK
-
-*_FAQ:_*
-Q:Apa Bot ini FREE?
-A:Yes, kalo mau donasi silahkan, alhamdulillah banget :)
-
-Q:Apa Bot ini ada limit / batasan pemakaian?
-A:Tidak ada, kamu bebas pakai semaumu.
-
-Q:Hasil proses fitur darimana?
-A:APIkey provider (berbayar)
-
-Q:Cara masukin Bot ke Grup gimana?
-A:Kamu bisa chat owner agar Bot dimasukan ke Grup yang kamu mau, chat owner di wa.me/6281329585825
-
-Q:Kok error / gak muncul requestnya banh?
-A:Okey,.. gw jelasin dikit
-
-first, apakah perintah yg kamu masukin udh bener dan sesuai format yg ada di list menu?
-second, tanda [...] itu cuman marker ya,.. jadi gaperlu dimasukin tiap request... nanti malah gak ke proses request kamu
-third, bisa jadi karena ada problem di bagian server side Bot.. yep, server Reest API Bot
-fourth, ada problem di production App Bot nya... chat owner semisal nemu problem ya,..
-
-
 *untuk panduan fitur lainnya segera menyusul,..*
 
 
 ...thankyou for reading till end :)
+`
+const __faq = `
+*_FAQ:_*
+
+Q: Apakah Bot ini gratis digunakan?
+A: Yes.
+
+Q: Boleh dimasukin ke Grup gak min?
+A: Silahkan chat Owner ya.
+
+Q: Apakah Bot online 24 jam?
+A: Bot akan selalu Online 24 jam, berjalan di Server VPS.
+
+Q: Data aman min?
+A: Data kamu aman 100% dan tidak akan disalahgunakan.
+
+Q: Apakah Bot dipantau terus sama Owner?
+A: Bot berjalan di server dan tetap di monitoring oleh Owner.
+
+Q: Min, kok ada limit nya sih?
+A: Limit di ibaratkan sebagai cash/money yang mana digunakan untuk memproses request kamu, dari pertama daftar kamu sudah mendapatkan gratis 50 limit.
+
+Q: Min, limit aku habis nih
+A: Limit bisa kamu beli, murah kok mulai 5k kamu udh dpt 70 limit, detailnya cek di panel Menu
+
+Q: Min kok ga respon yaa?
+A: Jika Bot tidak merespon, silahkan kirim ulang perintah. Bot terkadang restart untuk refresh cache pada server
+
+Q: Koq hasilnya ga sesuai request ya min?
+A: Lebih spesifik lagi dalam membuat request, karena yang memproses adalah sistem bukan manusia, tehe :))
+
+Q: Koq aku di ban/block min?
+A: Jika kamu melanggar rules / terms of service Bot maka akan otomatis tereksekusi, chat Owner untuk unban/unblock.
+
+
+*_ENDs HERE_*
+`
+const __myRules = `
+*_Azusa Bot Rules / Terms of Service_*
+
+*Rules*
+- Dilarang Call / Video Call ke bot
+- Dilarang spam pesan (apapun) ke Bot, beri jeda waktu 5-10 detik
+- Bot tidak 100% bisa memproses Request, terkadang terjadi error, dsb
+- Bot masih dalam tahap pengembangan lebih lanjut
+
+*Terms of Service*
+- User perlu Registrasi agar bisa menggunakan Fitur Bot
+- Data Registrasi User digunakan untuk validasi/user terkait limitasi dan penggunaan Fitur Bot
+- Data User 100% aman, dan tidak akan disebar/disalahgunakan
+- Adanya Limitasi/User, dikarenakan akhir-akhir ini jarang ada yang Support Bot
+- Bot menggunakan Virtual Server (paid), jadi jika tidak ada pemasukan maka kemungkinan besar Bot hiatus sementara/permanen
+
+_Segala kebijakan dan ketentuan bot dapat berubah kapan saja_
+_Azusa Bot_
 `
 
 const __myDonationsBoards = `
@@ -153,19 +176,19 @@ const __bundleLimit = `
 *_LIMIT BUNDLE_*
 
 # \`\`\`Bundle: Anak Kosan Akhir Bulan\`\`\`
-\`\`\`Limit + 30\`\`\`
+\`\`\`Limit +70\`\`\`
 \`\`\`Price: 5k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Yang Suka Nongkrong\`\`\`
-\`\`\`Limit + 70\`\`\`
+\`\`\`Limit +120\`\`\`
 \`\`\`Price: 10k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Hedon\`\`\`
-\`\`\`Limit + 100\`\`\`
+\`\`\`Limit +200\`\`\`
 \`\`\`Price: 15k IDR\`\`\`
 
 # \`\`\`Bundle: Anak Kosan Royal\`\`\`
-\`\`\`Limit + 200\`\`\`
+\`\`\`Limit + 500\`\`\`
 \`\`\`Price: 25k IDR\`\`\`
 
 *_MASA BERLAKU LIMIT? = LIFETIME (SELAMA BOT HIDUP)_*
@@ -185,7 +208,7 @@ untuk memakai fitur ini perlu diperhatikan step by step nya, antara lain:
 
 1 - gunakan perintah *!makestore* untuk membuat database jika belum membuat database
 
-2 - gunakan perintah *!newstore * jika user sudah membuat database, untuk menyimpan data ke database
+2 - gunakan perintah *!newstore* jika user sudah membuat database, untuk menyimpan data ke database
 
 3 - gunakan perintah *!mystore* untuk melihat list data yang telah kamu buat sebelumnya
 
@@ -389,4 +412,4 @@ LIMIT AWAL SET TO 25
 MAJOR FEATURES CONSUME LIMIT TO USE
 `
 
-module.exports = { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, userHasEmptyLimit, NotRegistered };
+module.exports = { __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
