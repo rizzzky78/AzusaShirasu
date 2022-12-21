@@ -53,12 +53,11 @@ const interfaces = {
 };
 let picture = [
   'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/picture/img-azusa-main.jpeg',
-  'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/picture/img-azusa-secondary.jpeg',
-  'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/picture/img-azusa-third.jpeg'
+  'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/picture/img-azusa-secondary.jpeg'
 ]
 const imgPlaceholder = {
   azusa: picture[Math.floor(Math.random() * (picture.length))]
-}
+};
 /**
  * MongoDB Atlas
  * @user as Username
