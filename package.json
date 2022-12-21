@@ -2,11 +2,11 @@
   "name": "Shirasu Azusa - Azusa Bot",
   "version": "4.0",
   "description": "Shirasu Azusa WhatsApp Bot",
-  "main": "zeeone.js",
+  "main": "azusa.js",
   "license": "MIT",
   "scripts": {
-    "start": "pm2 start zeeone.js --cron \"* */2 * * *\" && pm2 save && pm2 logs",
-    "init": "node zeeone.js"
+    "start": "pm2 start azusa.js --cron \"* */2 * * *\" && pm2 save && pm2 logs",
+    "init": "node azusa.js"
   },
   "keywords": [
     "whatsapp",
@@ -51,6 +51,7 @@
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.4",
     "node-webpmux": "^3.1.0",
+    "openai": "^3.1.0",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "perf_hooks": "0.0.1",
