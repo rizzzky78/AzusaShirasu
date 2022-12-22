@@ -20,7 +20,7 @@ const CategorySelector = (stringQuery, information, footer) => {
     case 'cloudstore':
       ArraySetter = ObjCommand.cloudstore;
       break;
-    case 'openai':
+    case 'open404ai':
       ArraySetter = ObjCommand.openai;
       break;
     case 'groupmenu':
