@@ -191,8 +191,19 @@ const CloudStore = [
   'mystore'
 ]
 const OpenAi = [
-  'chatgpt [query text]',
-  'chatgptimage [query specifier]'
+  'chatgpt',
+  'chatgptimage',
+  'qna',
+  'grammar',
+  'summary',
+  'code',
+  'keyword',
+  'factual',
+  'chat',
+  'analogy',
+  'chatbot',
+  'marv',
+  'study'
 ]
 const GroupManagement = [
   'absen',
