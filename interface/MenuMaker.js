@@ -8,7 +8,7 @@ const SelectorMenu = [
     rows: [
       {
         title: 'All Menu\'s',
-        rowId: 'allmenu',
+        rowId: 'semuamenu',
         description: 'Menampilkan semua Fitur Bot'
       },
       {
@@ -43,7 +43,7 @@ const SelectorMenu = [
       },
       {
         title: 'Open Ai',
-        rowId: 'azusacommand openai',
+        rowId: 'openai',
         description: 'Fitur Exclusive, direspon dengan Ai / kecerdasan buatan'
       },
       {
@@ -260,4 +260,4 @@ const SelectorMenu = [
   }
 ]
 
-module.exports = { SelectorMenu }
+module.exports = { SelectorMenu };
