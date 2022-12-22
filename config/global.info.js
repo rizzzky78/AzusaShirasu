@@ -6,7 +6,7 @@ const __dashboard = `Update v4.0`
 // Validation Function
 const NotRegistered = "Kamu belum terdaftar di database Azusa Bot, silahkan daftar terlebih dahulu agar bisa menggunakan Bot dengan cara *!daftar*\nFormat: *!daftar Nama|gender|umur|hobi*\nContoh: *!daftar Budi|cowo|29|turu*"
 const userHasEmptyLimit = "Enjoy the Features?, but unfortunately your limit has empty\nKetuk tombol dibawah untuk melihat Bundle Limit"
-
+const marks = '```'
 const __userGuide = `
 *_Azusa Bot -- Shirasu Azusa Bot_*
 _a successor of shoujo bot, who is predecessor of shiroko bot and deprecated of kei bot_
@@ -139,6 +139,55 @@ const __myRules = `
 _Segala kebijakan dan ketentuan bot dapat berubah kapan saja_
 _Azusa Bot_
 `
+
+const __openAiHelp = `${marks}
+Hints:
+# chatgpt
+- tools paling powerful dalam menjawab/menyelesaikan semua jenis permasalahan secara lebih detail.
+
+# chatgptimage
+- tools untuk generasi gambar sesuai masukan, didukung oleh openAi DALL-E 2.0.
+
+# ai qna
+- sesi Q & A, dijawab dengan kecerdasan buatan, hasil jawaban relatif tidak terlalu panjang.
+
+# ai grammar
+- tools untuk mnengkoreksi ejaan, bisa EYD, jawaban akan lebih sempurna jika menggunakan bahasa inggris.
+
+# ai summary
+- tools untuk meringkas kalimat/paragraf, hasil jawaban relatif pendek.
+
+# ai code
+- tools untuk generasi syntax koding, hasil jawaban tidak bisa terlalu panjang dan detail.
+
+# ai keyword
+- tools untuk membuat kata kunci dari suatu kalimat/paragraf, biasanya digunakan untuk SEO.
+
+# ai factual
+- sesi Q & A dengan jawaban fakta dan benar terjadi sesuai data yang ada.
+
+# ai chat
+- sesi chatbot dan direspon dengan kecerdasan buatan.
+
+# ai analogy
+- tools untuk membuat sebuah analogi dengan input berupa kata-kata/kalimat.
+
+# ai chatbot
+- sesi chatbot dan direspon dengan kecerdasan buatan, dengan respon relatif lebih panjang.
+
+# ai marv
+- sesi chatbot yang terkadang direspon dangan sisipan kata-kata sarkas.
+
+# ai study
+- tools untuk generasi hal apa saja yang harus dilakukan ketika ingin belajar sesuatu.
+
+Footnote:
+penggunaan: ai+command, contoh: aifactual indonesia,
+chatgpt & chatgptimage memerlukan limit lebih banyak dari fitur lain, gunakan secara bijak.
+query bebas sesuai keinginan dan imajinasi User, hasil tidak selalu 100% akurat.
+ 
+don't forget to support me ookay! :))
+${marks}`
 
 const __myDonationsBoards = `
 ┏━━━━━━━⟬ *Donations Board* ⟭━━━━━━━
@@ -412,4 +461,4 @@ LIMIT AWAL SET TO 25
 MAJOR FEATURES CONSUME LIMIT TO USE
 `
 
-module.exports = { __dashboard, __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
+module.exports = { __dashboard, __userGuide, __openAiHelp, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
