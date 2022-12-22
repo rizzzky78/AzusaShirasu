@@ -54,14 +54,14 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
  * @Config
  */
 const serveAtlas = require('./config/mongodbAtlas')
-const { StoreMapper, StoreConstructor } = require('./functions/store.controller')
+const { StoreConstructor, StoreSetState, StoreGetState } = require('./functions/store.controller')
 const { MyApikeys, ATLAS_DB, ATLAS_COLLECTION, OpenAiConfig, makeLimitAwal, imgPlaceholder, versioningBot, interfaces } = require('./config/global.config')
 const { totalData, atlasData, atlasUpdate, atlasUpdatePrem, atlasGetTotalCmd, atlasUpdateTotalCmd, atlasMakeStore, atlasUseStore, atlasSetStore, atlasGetStore } = require('./functions/atlas.controller')
 
 /** @Helpers */
-const { __dashboard, __userGuide, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
+const { __dashboard, __userGuide, __openAiHelp, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered } = require('./config/global.info')
 const { makeListValkyrie, makeListCharacter, makeListBuild, HonkaiGuides, GenshinGuides, GenshinBuild, CreditsCaptions } = require('./services/mihoyo')
-const { RandomLewd_type1, RandomLewd_type2, ObjectCmd } = require('./interface/Indexing')
+const { RandomLewd_type1, RandomLewd_type2 } = require('./interface/Indexing')
 const { SelectorMenu } = require('./interface/MenuMaker')
 const { CategorySelector } = require('./functions/menu.controller')
 
@@ -91,7 +91,7 @@ const AiTokens = OpenAiConfig.tokens.expert
 const AiFpenalty = OpenAiConfig.freqPenalty.optOne
 const AiPpenalty = OpenAiConfig.prePenalty.optTwo
 
-const { openAiCompletions, openAiImageGenerations } = require('./functions/openAi.controller')
+const { OpenAi, openAiCreateCompletion, openAiCompletions, openAiImageGenerations } = require('./functions/openAi.controller')
 
 /**
  * @Store
@@ -1275,6 +1275,25 @@ switch(command) {
  * @GameGuides
  *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
  */
+  case 'openai': {
+    let infos = `\n${markers} OpenAi Features ${markers}\n`
+    let foots = __openAiHelp
+    let picture = imgPlaceholder.azusa
+    let texts = CategorySelector('open404ai', infos, foots);
+    let buttons = [
+      { buttonId: 'azusacommand', buttonText: { displayText: 'List Menu' }, type: 1 },
+      { buttonId: 'myprofile', buttonText: { displayText: 'My Profile' }, type: 1 }
+    ];
+    let buttonMessage = {
+      image: { url: picture },
+      caption: texts,
+      footer: ownername,
+      buttons: buttons,
+      headerType: 4
+    };
+    await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch((err) => { reply(lang.err()) })
+  } break
+
   case 'chatgpt': {
     (async () => {
       try {
@@ -1282,19 +1301,19 @@ switch(command) {
         await atlasData(parseId).then(async result => {
           let user = result.userID; let getID = result.userID; let value = result.limit;
           if (!user == parseId) { return reply(NotRegistered) };
-          if (value < 3) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 3 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+          if (value < 5) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 5 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
 
           /* Start Process */
-          if (args.length == 0) return reply(`Contoh: ${prefix + command} Buatkan kalimat tentang reformasi`)
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} Buatkan paper penelitian tentang metode six sigma beserta implementasinya`)
           let query = args.join(' ')
           reply(lang.wait())
-          let Res = await openAiCompletions(query, AiModels, AiTemp, AiTokens, AiFpenalty, AiPpenalty);
-          let Data = Res.choices[0].text
-          let txt = `\n\n${Data}\n\n`
+          let Res = await openAiCreateCompletion(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n${Data}\n\n`
           reply(txt).catch((error) => { reply(error) });
           /* End Process */
 
-          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+          let getChange = await value - 5; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -5:", monit);});
       } catch (error) {
         return reply(error);}
     })();
@@ -1307,7 +1326,7 @@ switch(command) {
         await atlasData(parseId).then(async result => {
           let user = result.userID; let getID = result.userID; let value = result.limit;
           if (!user == parseId) { return reply(NotRegistered) };
-          if (value < 5) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 5 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+          if (value < 10) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 10 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
 
           /* Start Process */
           if (args.length == 0) return reply(`Contoh: ${prefix + command} Gambar kucing warna oranye`)
@@ -1319,12 +1338,288 @@ switch(command) {
           await sendFileFromUrl(from, Result, txt, m).catch(() => { reply(lang.err()) });
           /* End Process */
 
-          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+          let getChange = await value - 10; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -10:", monit);});
       } catch (error) {
         /* Rejection */
         return reply(error);}
     })();
   } break
+
+  case 'aiqna': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} ibukota jakarta berlokasi dimana?`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.QnA(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'grammar': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} ayah bekerja sedang di sawah, sedangkan ibu si dapur sedang memasak sayur`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.GrammarCorection(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aisummary': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} penelitian ini dilakukan semata-mata untuk mereplikasikan kejadian....`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.Summarizer(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aicode': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 3) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 3 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} terjemahkan sintaks berikut kedalam bahasa phyton dan ruby:\nconst hewans = ['burung','ayam','itik']\nlet texts\nfor (var hewan of hewans) { texts = \`\${hewan}\\n\` }`);
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.TranslateProgrammingLang(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 3; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -3:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aikeyword': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} kalimat/paragraf`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.Keywords(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aifactual': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} ledakan di beirut lebanon`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.Factual(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aichat': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} hai, siapa kamu?`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.FriendChat(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aianalogy': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 2) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 2 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} buatkan analogi tentang: research & development`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.AnalogyMaker(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 2; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -2:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aichatbot': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} aku sebenarnya sedang patah hati, apakah kamu tahu hal apa saja yang mungkin bisa menghiburku?`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.Chat(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aimarv': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 0) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 1 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} kemarin aku kalah taruhan, uangku habis semua :(`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.Marv(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
+  case 'aistudy': {
+    (async () => {
+      try {
+        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+        await atlasData(parseId).then(async result => {
+          let user = result.userID; let getID = result.userID; let value = result.limit;
+          if (!user == parseId) { return reply(NotRegistered) };
+          if (value < 2) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 2 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+
+          /* Start Process */
+          if (args.length == 0) return reply(`Contoh: ${prefix + command} aku sedang mencoba belajar basket, buatkan list apa saja yang perlu dipelajari`)
+          let query = args.join(' ')
+          reply(lang.wait())
+          let Res = await OpenAi.StudyNotes(query);
+          let Data = Res.data.choices[0].text
+          let txt = `\n\n${Data}\n\n`
+          reply(txt).catch((error) => { reply(error) });
+          /* End Process */
+
+          let getChange = await value - 2; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -2:", monit);});
+      } catch (error) {
+        return reply(error);}
+    })();
+  } break
+
 
   case 'unreg': case 'unregister': {
     if (!db.data.users[m.sender].registered) return reply(lang.needReg(pushname, botname, prefix))
@@ -1524,33 +1819,33 @@ switch(command) {
 
   case 'mystore': {
     (async () => {
-      try {
-        let usernumber = m.sender.split('@')[0]
-        let user = parseInt(usernumber);
-        await atlasSetStore(user).then(async Data => {
+
+      let usernumber = m.sender.split('@')[0]
+      let user = parseInt(usernumber);
+      await atlasSetStore(user).then(async Data => {
+        try {
           let ObjectData = StoreConstructor(Data);
-          ConstructStore(ObjectData);
-          let ListCollections = stateConstructor
-          setTimeout(() => { alpha.sendMessage(m.chat, ListCollections, { quoted: m }) }, 2000)
-        });
-      } catch {
-        reply('Kamu belum membuat database, silahkan buat database dengan cara !makestore _username kamu_');
-      }
+          StoreSetState(ObjectData);
+          let ObjectList = StoreGetState()
+          setTimeout(() => { alpha.sendMessage(m.chat, ObjectList, { quoted: m }) }, 2000)
+        } catch {
+          let ObjectData = StoreConstructor(Data);
+          alpha.sendMessage(m.chat, ObjectData, { quoted: m })
+        }
+      }).catch(() => { reply('Error!, kamu belum membuat database / Key yang dimasukan salah!') });
+
     })();
   } break
 
   case 'getstore': {
     (async () => {
-      try {
         // if (args.length == 0) return reply(`Contoh: ${prefix + command} Budi`)
         let queryDoc = args[0]
         let usernumber = m.sender.split('@')[0]
         let user = parseInt(usernumber);
         let ResultDoc = await atlasGetStore(user, queryDoc);
-        reply(ResultDoc).catch(() => { reply(lang.err()) });
-      } catch {
-        reply('_Error! / User yang mengakses data tidak valid!_');
-      }
+        reply(ResultDoc).catch(() => { reply('_Error! / User yang mengakses data tidak valid!_'); });
+
     })();
   } break
 
@@ -2128,19 +2423,18 @@ switch(command) {
     let selector = args[0]
     let picture = imgPlaceholder.azusa
 let makeInfos = `
-${xx}${xy}${markers}
+${xy}${markers}
 ${xx} *Shirasu Azusa Bot*
 ${xx} _Run on VPS_
-${xx}${xy}
+${yx}${markers}
 `
 let foots = `
 ${xy}${markers}
 ${xx} \`\`\`\@Azusa Bot v4.0\`\`\`
-${yx}
+${yx}${markers}
 `
     try {
       let texts = CategorySelector(selector, makeInfos, foots);
-      await sendFileFromUrl(from, picture, texts, m);
 
       let buttons = [
         { buttonId: 'azusacommand', buttonText: { displayText: 'List Menu' }, type: 1 },
@@ -2409,39 +2703,38 @@ let texts = `
 
   case 'stikerin': case 'sticker': case 'stiker': {
     (async () => {
-      try {
-        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
-        await atlasData(parseId).then(async result => {
-          let user = result.userID; let getID = result.userID; let value = result.limit;
-          if (!user == parseId) { return reply(NotRegistered) };
-          if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
 
-          // --- command here -- start
-          if (!quoted) return reply(lang.NoToStik(prefix, command))
-          if (/image/.test(mime)) {
-            let media = await quoted.download()
-            let encmedia = await alpha.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-            await fs.unlinkSync(encmedia)
-            reply("_-1 limit digunakan..._")
-          } else if (/video/.test(mime)) {
-            if ((quoted.msg || quoted).seconds > 11) return reply(lang.NoToStik(prefix, command))
-            let media = await quoted.download()
-            let encmedia = await alpha.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-            await fs.unlinkSync(encmedia)
-            reply("_-1 limit digunakan..._")
-          } else { reply(lang.NoToStik(prefix, command)) }
-          // --- command here -- end
+      let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+      await atlasData(parseId).then(async result => {
+        let user = result.userID; let getID = result.userID; let value = result.limit;
+        if (!user == parseId) { return reply(NotRegistered) };
+        if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
 
-          let getChange = await value - 1; await atlasUpdate(getID, getChange);
+        // --- command here -- start
+        if (!quoted) return reply(lang.NoToStik(prefix, command))
+        if (/image/.test(mime)) {
+          let media = await quoted.download()
+          let encmedia = await alpha.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+          await fs.unlinkSync(encmedia)
+          reply("_-1 limit digunakan..._")
+        } else if (/video/.test(mime)) {
+          if ((quoted.msg || quoted).seconds > 11) return reply(lang.NoToStik(prefix, command))
+          let media = await quoted.download()
+          let encmedia = await alpha.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+          await fs.unlinkSync(encmedia)
+          reply("_-1 limit digunakan..._")
+        } else { reply(lang.NoToStik(prefix, command)) }
+        // --- command here -- end
 
-          await atlasGetTotalCmd("sticker").then(async datas => {
-            let result = datas; let value = await result.value; let valueChanges = await value + 1;
-            await atlasUpdateTotalCmd("sticker", valueChanges).then(async result => { console.log(result) });
-          });
+        let getChange = await value - 1; await atlasUpdate(getID, getChange);
+
+        await atlasGetTotalCmd("sticker").then(async datas => {
+          let result = datas; let value = await result.value; let valueChanges = await value + 1;
+          await atlasUpdateTotalCmd("sticker", valueChanges).then(async result => { console.log(result) });
         });
-      } catch {
-        return reply(NotRegistered);
-      }
+
+      });
+
     })();
   } break
 
@@ -2782,7 +3075,7 @@ delete caklontong[m.sender.split('@')[0]]
           }
 
           await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch(() => {
-            alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen1`, `Coba Lagi`, m)
+            return alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen1`, `Coba Lagi`, m)
           });
           /* End Process */
 
@@ -2820,7 +3113,7 @@ delete caklontong[m.sender.split('@')[0]]
             headerType: 4
           }
           await alpha.sendMessage(m.chat, buttonMessage, { quoted: m }).catch(() => {
-            alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen2`, `Coba Lagi`, m)
+            return alpha.send1ButMes(m.chat, 'Yahh terjadi Error kak :(', `© ${ownername}`, `randomlewdgen2`, `Coba Lagi`, m)
           });
           /* End Process */
 
@@ -2850,7 +3143,7 @@ delete caklontong[m.sender.split('@')[0]]
           reply(lang.wait())
           let anu1 = `Nih kack, jangan lupa bilang makasih...`
           let queryanu = await (`https://api.lolhuman.xyz/api/random/${command}?apikey=${lol}`)
-          await sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { reply(lang.err()) })
+          await sendFileFromUrl(from, queryanu, anu1, m).catch((err) => { return reply(lang.err()) })
           /* End Process */
 
           let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);
@@ -3169,11 +3462,7 @@ delete caklontong[m.sender.split('@')[0]]
     reply(lang.wait())
     await fetchJson(`https://api.lolhuman.xyz/api/storynime?apikey=${lol}`).then(async storyAnime => {
       let getResult = storyAnime.result
-      try {
-        await sendFileFromUrl(from, getResult, lang.ok(), m)
-      } catch {
-        reply(`Lu download sendiri gih, lemot di gua, nih link nya\n${getResult}`).catch((err) => { reply(lang.err()) })
-      }
+        await sendFileFromUrl(from, getResult, lang.ok(), m).catch((err) => { reply(lang.err()) })
     })
   } break
 
@@ -4600,33 +4889,62 @@ delete caklontong[m.sender.split('@')[0]]
  *  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
  */
 
-  case 'er': case 'signet': {
-    let query = args[0]
-    let process = HonkaiGuides(query)
-    try {
-      await sendFileFromUrl(from, process, CreditsCaptions, m)
-    } catch {
-      alpha.sendMessage(m.chat, makeListValkyrie, { quoted: m })
-    }
-  } break
-  case 'sheet': case 'genshinmaterial': {
-    let query = args[0]
-    let process = GenshinGuides(query)
-    try {
-      await sendFileFromUrl(from, process, CreditsCaptions, m)
-    } catch {
-      alpha.sendMessage(m.chat, makeListCharacter, { quoted: m })
-    }
+  case 'signet': {
+    alpha.sendMessage(m.chat, makeListValkyrie, { quoted: m })
   } break
 
-  case 'sheet2': case 'genshinbuild': {
-    let query = args[0]
-    let process = GenshinBuild(query)
-    try {
-      await sendFileFromUrl(from, process, CreditsCaptions, m)
-    } catch {
-      alpha.sendMessage(m.chat, makeListBuild, { quoted: m })
-    }
+  case 'er': {
+    let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+    await atlasData(parseId).then(async result => {
+      let user = result.userID; let getID = result.userID; let value = result.limit;
+      if (!user == parseId) { return reply(NotRegistered) };
+      if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+      /* Start Process */
+      let selects = HonkaiGuides(args[0]);
+      await sendFileFromUrl(from, selects, CreditsCaptions, m).catch((error) => { reply(error) });
+      /* End Process */
+      let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);
+    });
+  } break
+
+  case 'genshinmaterial': {
+    alpha.sendMessage(m.chat, makeListCharacter, { quoted: m })
+  } break
+
+  case 'sheet': {
+    (async () => {
+      let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+      await atlasData(parseId).then(async result => {
+        let user = result.userID; let getID = result.userID; let value = result.limit;
+        if (!user == parseId) { return reply(NotRegistered) };
+        if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+        /* Start Process */
+        let selects = GenshinGuides(args[0]);
+        await sendFileFromUrl(from, selects, CreditsCaptions, m)
+        /* End Process */
+        let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);
+      });
+    })();
+  } break
+
+  case 'genshinbuild': {
+    alpha.sendMessage(m.chat, makeListBuild, { quoted: m })
+  } break
+
+  case 'sheet2': {
+    (async () => {
+      let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
+      await atlasData(parseId).then(async result => {
+        let user = result.userID; let getID = result.userID; let value = result.limit;
+        if (!user == parseId) { return reply(NotRegistered) };
+        if (value == 0) { return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
+        /* Start Process */
+        let selects = GenshinBuild(args[0]);
+        await sendFileFromUrl(from, selects, CreditsCaptions, m);
+        /* End Process */
+        let getChange = await value - 1; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -1:", monit);
+      });
+    })();
   } break
 
   /**
