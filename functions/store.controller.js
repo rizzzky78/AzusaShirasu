@@ -62,8 +62,14 @@ Database Kamu dibuat pada:
 ${Data.CreatedOn}
 
 Silahkan pilh Data yang akan diambil
-Note: perintah tidak akan tereksekusi jika yang mengakses bukan pemilik Database!
+Note:
+_*perintah tidak akan tereksekusi jika yang mengakses bukan pemilik Database!_
+_*jika tidak bisa mengakses data, ambil data manual dgn cara !getstore [nama key]_
 `
+  /**
+   * @param {*} arr type of `Inserted Array`
+   * @returns `Array` of Object Results
+   */
   const CollectionMapper = (arr) => {
     let Mapped = arr.map((val) => (
       {
@@ -82,7 +88,7 @@ Note: perintah tidak akan tereksekusi jika yang mengakses bukan pemilik Database
     buttonText: 'Buka Data Saya',
     sections: [
       {
-        title: 'Users Collections',
+        title: 'List Data Key',
         rows: CollectionMapper(Arrays)
       },
       {
@@ -98,5 +104,28 @@ Note: perintah tidak akan tereksekusi jika yang mengakses bukan pemilik Database
     ]
   }
 };
+/**
+ * @param {*} dataObj Represents `Object` results from [StoreConstructor](./functions/store.controller.js)
+ * @returns `Change State` in file [StoreState.json](./json/StoreState.json)
+ */
+const StoreSetState = (dataObj) => {
+  let writeFile = JSON.stringify(dataObj, null, 2);
+  fs.writeFileSync('../json/StoreState.json', writeFile, 'utf-8');
+  console.log('Data has been saved!:\n', writeFile);
+};
+/**
+ * @returns `Object` that has been converted from `String`
+ */
+const StoreGetState = () => {
+  let dataString = fs.readFileSync('../json/StoreState.json', 'utf8');
+  let dataObject = JSON.parse(dataString);
+  console.log('Sucess converted into object:\n', dataObject);
+  return dataObject;
+};
 
-module.exports = { StoreMapper, StoreConstructor };
+module.exports = {
+  StoreMapper,
+  StoreConstructor,
+  StoreSetState,
+  StoreGetState
+}
