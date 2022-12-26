@@ -13,7 +13,7 @@ const AtlasTotalCmd = AzusaData.collection(totalCMD);
 // setup store msg
 const StoreDocuments = AzusaData.collection(UsersDocuments);
 
-
+const cryptoRandomString = require('crypto-random-string');
 /* = = = = = = = New Date Constructor = = = = = = = */
 /* =============================================== */
 const newDate = () => {
@@ -62,6 +62,39 @@ const atlasData = async (id) => {
 };
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
+const atlasMakeFormUser = async (username, userId, genders, ages, hobbys, limits) => {
+  let FormInput = {
+    userName: username,
+    gender: genders,
+    age: parseInt(ages),
+    hobby: hobbys,
+    userID: parseInt(userId),
+    linkID: 'wa.me/' + userId,
+    isPremium: false,
+    isBanned: false,
+    limit: limits,
+    registeredOn: newDate(),
+    userSerial: cryptoRandomString(15)
+  };
+  let SaveUser = MainCollection.insertOne(FormInput);
+  console.log(FormInput);
+  return SaveUser ? SaveUser : 'Error adding the Data!' && console.log('Error!')
+};
+/**
+ * 
+ * @param {*} username 
+ * @param {*} userId 
+ * @param {*} genders 
+ * @param {*} ages 
+ * @param {*} hobbys 
+ * @param {*} limits 
+ * @returns `Input Form Results`
+ */
+const atlasMakeUser = async (username, userId, genders, ages, hobbys, limits) => {
+  return await atlasMakeFormUser(username, userId, genders, ages, hobbys, limits)
+};
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 /** @DatabaseManipulator */
 const getAtlasUpdate = async (userId, setUserLimit) => {
@@ -89,10 +122,6 @@ const atlasTotalCommand = async (typeCmd) => {
 const atlasGetTotalCmd = async (typeCmd) => {
   return await atlasTotalCommand(typeCmd);
 };
-
-(async () => {
-  console.log(await atlasGetTotalCmd('sticker'))
-})();
 
 // total command --setter constructor
 async function getAtlasCommand(typeCmd, valueChanges) {
@@ -175,6 +204,7 @@ const atlasGetStore = async (id, documentKey) => {
 module.exports = {
   totalData,
   atlasData,
+  atlasMakeUser,
   atlasUpdate,
   atlasUpdatePrem,
   atlasGetTotalCmd,
@@ -183,4 +213,4 @@ module.exports = {
   atlasUseStore,
   atlasSetStore,
   atlasGetStore
-}
+};
