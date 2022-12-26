@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * @param {*} StoreObject a value extend Promises from cloud store
  * @returns {*} `Object`
@@ -5,6 +6,7 @@
 const StoreMapper = (StoreObject) => {
   const Data = StoreObject
   const Collections = Data.Store
+
   const CollectionsMapper = (Array) => {
     const Arrays = Array.map((value) => (
       {
@@ -110,14 +112,14 @@ _*jika tidak bisa mengakses data, ambil data manual dgn cara !getstore [nama key
  */
 const StoreSetState = (dataObj) => {
   let writeFile = JSON.stringify(dataObj, null, 2);
-  fs.writeFileSync('../json/StoreState.json', writeFile, 'utf-8');
+  fs.writeFileSync('./store.json', writeFile, 'utf-8');
   console.log('Data has been saved!:\n', writeFile);
 };
 /**
  * @returns `Object` that has been converted from `String`
  */
 const StoreGetState = () => {
-  let dataString = fs.readFileSync('../json/StoreState.json', 'utf8');
+  let dataString = fs.readFileSync('./store.json', 'utf8');
   let dataObject = JSON.parse(dataString);
   console.log('Sucess converted into object:\n', dataObject);
   return dataObject;
@@ -128,4 +130,4 @@ module.exports = {
   StoreConstructor,
   StoreSetState,
   StoreGetState
-}
+};
