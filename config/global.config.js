@@ -27,7 +27,7 @@ ${marks}
 const versioningBot = {
   globalGroup: 'https://chat.whatsapp.com/GEbLQ62KoWRFZcbRBrQYvd',
   infos
-}
+};
 /**
  * @newRegister `for who has new Register`
  * @limitAwal `value as Number`
@@ -57,7 +57,8 @@ let picture = [
   'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/picture/img-azusa-secondary.jpeg'
 ]
 const imgPlaceholder = {
-  azusa: picture[Math.floor(Math.random() * (picture.length))]
+  azusa: picture[Math.floor(Math.random() * (picture.length))],
+  saweria: 'https://raw.githubusercontent.com/rizzzky78/rizzzkyRepo/main/shoujoBot1.0/qrcode-saweria.png'
 };
 /**
  * MongoDB Atlas
@@ -129,4 +130,4 @@ module.exports = {
   makeLimitAwal,
   interfaces,
   imgPlaceholder
-}
+};
