@@ -2,10 +2,10 @@
  * @global
  * @info
  */
-const __dashboard = `Update v4.0`
+const __dashboard = `Update v4.1`
 // Validation Function
-const NotRegistered = "Kamu belum terdaftar di database Azusa Bot, silahkan daftar terlebih dahulu agar bisa menggunakan Bot dengan cara *!daftar*\nFormat: *!daftar Nama|gender|umur|hobi*\nContoh: *!daftar Budi|cowo|29|turu*"
-const userHasEmptyLimit = "Enjoy the Features?, but unfortunately your limit has empty\nKetuk tombol dibawah untuk melihat Bundle Limit"
+const NotRegistered = "Kamu belum terdaftar di database Azusa Bot, silahkan daftar terlebih dahulu agar bisa menggunakan fitur Bot.\n\nFormat: *!daftar Nama|gender|umur|hobi*\nContoh: *!daftar Budi|cowo|20|Maen bola sambil tiktokan*"
+const userHasEmptyLimit = "Enjoy fiturnya?, tapi sayangnya Limit kamu sudah habis :((\nJangan khawatir kamu bisa menambah limit, ketuk tombol dibawah untuk melihat pricelist limit"
 const marks = '```'
 const __userGuide = `
 *_Azusa Bot -- Shirasu Azusa Bot_*
@@ -111,6 +111,9 @@ A: Limit bisa kamu beli, murah kok mulai 5k kamu udh dpt 70 limit, detailnya cek
 Q: Min kok ga respon yaa?
 A: Jika Bot tidak merespon, silahkan kirim ulang perintah. Bot terkadang restart untuk refresh cache pada server
 
+Q: Kok anonymous chat nya gak bisa min?
+A: Fitur ini memerlukan partner, harus ada 2 user atau lebih yang menggunakan fitur ini diwaktu yang sama.
+
 Q: Koq hasilnya ga sesuai request ya min?
 A: Lebih spesifik lagi dalam membuat request, karena yang memproses adalah sistem bukan manusia, tehe :))
 
@@ -121,7 +124,7 @@ A: Jika kamu melanggar rules / terms of service Bot maka akan otomatis terekseku
 *_ENDs HERE_*
 `
 const __myRules = `
-*_Azusa Bot Rules / Terms of Service_*
+*_Azusa Bot Rules / Terms of Services_*
 
 *Rules*
 - Dilarang Call / Video Call ke bot
@@ -134,9 +137,15 @@ const __myRules = `
 - Data Registrasi User digunakan untuk validasi/user terkait limitasi dan penggunaan Fitur Bot
 - Data User 100% aman, dan tidak akan disebar/disalahgunakan
 - Adanya Limitasi/User, dikarenakan akhir-akhir ini jarang ada yang Support Bot
+- Jika limit habis kamu bisa membelinya di panel Menu
 - Bot menggunakan Virtual Server (paid), jadi jika tidak ada pemasukan maka kemungkinan besar Bot hiatus sementara/permanen
 
+
+*Melanggar Rules konsekuensi banned/block kontak*
+*User yang mendaftar dianggap menyetujui ToS yang ada*
+
 _Segala kebijakan dan ketentuan bot dapat berubah kapan saja_
+
 _Azusa Bot_
 `
 
@@ -148,37 +157,37 @@ Hints:
 # chatgptimage
 - tools untuk generasi gambar sesuai masukan, didukung oleh openAi DALL-E 2.0.
 
-# ai qna
+# aiqna
 - sesi Q & A, dijawab dengan kecerdasan buatan, hasil jawaban relatif tidak terlalu panjang.
 
-# ai grammar
+# aigrammar
 - tools untuk mnengkoreksi ejaan, bisa EYD, jawaban akan lebih sempurna jika menggunakan bahasa inggris.
 
-# ai summary
+# aisummary
 - tools untuk meringkas kalimat/paragraf, hasil jawaban relatif pendek.
 
-# ai code
+# aicode
 - tools untuk generasi syntax koding, hasil jawaban tidak bisa terlalu panjang dan detail.
 
-# ai keyword
+# aikeyword
 - tools untuk membuat kata kunci dari suatu kalimat/paragraf, biasanya digunakan untuk SEO.
 
-# ai factual
+# aifactual
 - sesi Q & A dengan jawaban fakta dan benar terjadi sesuai data yang ada.
 
-# ai chat
+# aichat
 - sesi chatbot dan direspon dengan kecerdasan buatan.
 
-# ai analogy
+# aianalogy
 - tools untuk membuat sebuah analogi dengan input berupa kata-kata/kalimat.
 
-# ai chatbot
+# aichatbot
 - sesi chatbot dan direspon dengan kecerdasan buatan, dengan respon relatif lebih panjang.
 
-# ai marv
+# aimarv
 - sesi chatbot yang terkadang direspon dangan sisipan kata-kata sarkas.
 
-# ai study
+# aistudy
 - tools untuk generasi hal apa saja yang harus dilakukan ketika ingin belajar sesuatu.
 
 Footnote:
@@ -222,30 +231,24 @@ const __myDonationsBoards = `
 `
 
 const __bundleLimit = `
-*_LIMIT BUNDLE_*
+*Bundles*
 
-# \`\`\`Bundle: Anak Kosan Akhir Bulan\`\`\`
-\`\`\`Limit +70\`\`\`
-\`\`\`Price: 5k IDR\`\`\`
+# Bundle Limit +50
+# 5K IDR
 
-# \`\`\`Bundle: Anak Kosan Yang Suka Nongkrong\`\`\`
-\`\`\`Limit +120\`\`\`
-\`\`\`Price: 10k IDR\`\`\`
++bonus +20 Limit/Bundle
+Berlaku kelipatan,
+contoh: beli Bundle 2x buy 10K IDR, maka dapat Limit 100 (+20 +20) = +140 Limit
 
-# \`\`\`Bundle: Anak Kosan Hedon\`\`\`
-\`\`\`Limit +200\`\`\`
-\`\`\`Price: 15k IDR\`\`\`
+Platform:
+Saweria: https://saweria.co/rizzzky
+Trakteer: https://trakteer.id/rizzzuchan
 
-# \`\`\`Bundle: Anak Kosan Royal\`\`\`
-\`\`\`Limit + 500\`\`\`
-\`\`\`Price: 25k IDR\`\`\`
-
-*_MASA BERLAKU LIMIT? = LIFETIME (SELAMA BOT HIDUP)_*
-
-*_How To Paid?_*
-- payment via donate QR Saweria, tetapi dipisah dari list donasi, akan di list ke subcriber Bot
-- setelah payment dilakukan, User mengirim bukti SS payment ke Owner dengan caption data user berupa: Username dan Nomor pada database bot (bisa dicek pada command *!myprofile*)
-- tunggu sampai Owner merespon, setelah itu perubahan limit bisa di cek via *!myprofile*
+*How To Paid?*
+Pay via platform diatas bebas pilih, kirim screenshot ke Owner dengan caption:
+No Telp: 628123xxx
+Username: xxxx
+Bisa di cek melalui *myprofile*
 
 
 _Regards,.._
@@ -461,4 +464,16 @@ LIMIT AWAL SET TO 25
 MAJOR FEATURES CONSUME LIMIT TO USE
 `
 
-module.exports = { __dashboard, __userGuide, __openAiHelp, __myDonationsBoards, __bundleLimit, __changelog, __storeHelp, __myRules, __faq, userHasEmptyLimit, NotRegistered };
+module.exports = {
+  __dashboard,
+  __userGuide,
+  __openAiHelp,
+  __myDonationsBoards,
+  __bundleLimit,
+  __changelog,
+  __storeHelp,
+  __myRules,
+  __faq,
+  userHasEmptyLimit,
+  NotRegistered
+};
