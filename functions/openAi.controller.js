@@ -43,10 +43,10 @@ const openAiCreateCompletion = async (queryPrompt) => {
       model: OpenAiConfig.model.davinci,
       prompt: queryPrompt,
       temperature: 0.8,
-      max_tokens: 1800,
+      max_tokens: 2000,
       top_p: 1,
       frequency_penalty: 0.2,
-      presence_penalty: 1.2
+      presence_penalty: 1
     }
   );
 };
