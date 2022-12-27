@@ -4,7 +4,7 @@
  * @Versions
  * @v4
  * Last Updated on:
- * 26 Dec 2022
+ * 27 Dec 2022
  */
 
 // require('./config/global.settings')
@@ -1296,52 +1296,37 @@ switch(command) {
 
   case 'chatgpt': {
     (async () => {
-      try {
-        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
-        await atlasData(parseId).then(async result => {
-          let user = result.userID; let getID = result.userID; let value = result.limit;
-          if (!user == parseId) { return reply(NotRegistered) };
-          if (value < 5) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 5 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
-
-          /* Start Process */
-          if (args.length == 0) return reply(`Contoh: ${prefix + command} Buatkan paper penelitian tentang metode six sigma beserta implementasinya`)
-          let query = args.join(' ')
-          reply(lang.wait())
-          let Res = await openAiCreateCompletion(query);
-          let Data = Res.data.choices[0].text
-          let txt = `\n${Data}\n\n`
-          reply(txt).catch((error) => { reply(error) });
-          /* End Process */
-
-          let getChange = await value - 5; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -5:", monit);});
-      } catch (error) {
-        return reply(error);}
+      let userId = m.sender.split('@')[0]; let parseId = parseInt(userId); let userData = await atlasData(parseId);
+      if (userData == null) return reply(NotRegistered); let { userID, limit } = userData;
+      if (limit < 0) return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 5 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m);
+      /** @starts */
+      if (args.length == 0) return reply(`Contoh: ${prefix + command} Buatkan paper penelitian tentang metode six sigma beserta implementasinya`)
+      let query = args.join(' ')
+      reply(lang.wait())
+      let Res = await openAiCreateCompletion(query);
+      let Data = Res.data.choices[0].text
+      let txt = `\n${Data}\n\n`
+      reply(txt).catch((error) => { reply(error) });
+      /** @ends */
+      let getChange = await limit - 5; let monit = await atlasUpdate(userID, getChange); console.log("Limit changes -5:", monit);
     })();
   } break
 
   case 'chatgptimage': {
     (async () => {
-      try {
-        let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id);
-        await atlasData(parseId).then(async result => {
-          let user = result.userID; let getID = result.userID; let value = result.limit;
-          if (!user == parseId) { return reply(NotRegistered) };
-          if (value < 10) { return alpha.send1ButMes(m.chat, 'Limit mu kurang agar dapat menggunakan Fitur ini!\nLimit yang dibutuhkan yaitu sebesar 10 limit/request', `@${ownername}`, `howtolimit`, `Bundle Limit`, m); };
-
-          /* Start Process */
-          if (args.length == 0) return reply(`Contoh: ${prefix + command} Gambar kucing warna oranye`)
-          let queryImage = args.join(' ')
-          reply(lang.wait())
-          let ResImage = await openAiImageGenerations(queryImage);
-          let Result = ResImage.data[0].url
-          let txt = `Query : ${queryImage}\n\nChatGPT by an OpenAi\nFrom: @AzusaBot\n\nFitur ini limited dan belum sepenuhnya stabil`
-          await sendFileFromUrl(from, Result, txt, m).catch(() => { reply(lang.err()) });
-          /* End Process */
-
-          let getChange = await value - 10; let monit = await atlasUpdate(getID, getChange); console.log("Limit changes -10:", monit);});
-      } catch (error) {
-        /* Rejection */
-        return reply(error);}
+      let userId = m.sender.split('@')[0]; let parseId = parseInt(userId); let userData = await atlasData(parseId);
+      if (userData == null) return reply(NotRegistered); let { userID, limit } = userData;
+      if (limit == 0) return alpha.send1ButMes(m.chat, userHasEmptyLimit, `@${ownername}`, `howtolimit`, `Bundle Limit`, m);
+      /** @starts */
+      if (args.length == 0) return reply(`Contoh: ${prefix + command} Gambar kucing warna oranye`)
+      let queryImage = args.join(' ')
+      reply(lang.wait())
+      let ResImage = await openAiImageGenerations(queryImage);
+      let Result = ResImage.data[0].url
+      let txt = `Query : ${queryImage}\n\nChatGPT by an OpenAi\nFrom: @AzusaBot\n\nFitur ini limited dan belum sepenuhnya stabil`
+      await sendFileFromUrl(from, Result, txt, m).catch(() => { reply(lang.err()) });
+      /** @ends */
+      let getChange = await limit - 1; let monit = await atlasUpdate(userID, getChange); console.log("Limit changes -1:", monit);
     })();
   } break
 
@@ -1744,50 +1729,44 @@ switch(command) {
 
   case 'daftar': case 'register': {
     (async () => {
-
       let _userIDs = m.sender.split('@')[0]
       let _userId = parseInt(_userIDs)
-      let userData = await atlasData(_userId);
-      let { userID } = userData;
-      if (userID == _userId)  return reply("Kamu sudah terdaftar sebelumnya!, cek profilmu di *!myprofile*");
-      // if (isBanned == true)  return reply("Kamu di banned!");
+      try {
+        let userData = await atlasData(_userId);
+        let { userID } = userData;
+        if (userID == _userId) return reply("Kamu sudah terdaftar sebelumnya!, cek profilmu di *!myprofile*");
+        // if (userData == null) return { };
+        // if (isBanned == true)  return reply("Kamu di banned!");
+      } catch {
+        let arg = args.join(' ')
+        let usernames = arg.split('|')[0]
+        let genders = arg.split('|')[1]
+        let ages = arg.split('|')[2]
+        let hobbys = arg.split('|')[3]
 
-      let arg = args.join(' ')
-      let usernames = arg.split('|')[0]
-      let genders = arg.split('|')[1]
-      let ages = arg.split('|')[2]
-      let hobbys = arg.split('|')[3]
+        if (!text && !text.includes('|')) return reply('Format salah!\ncontoh: daftar Budi|cowo|25|turu')
+        if (usernames.length > 20) return reply(lang.NamaReg())
+        if (hobbys.length > 20) return reply(lang.HobiReg())
+        if (isNaN(ages)) return reply(lang.UmurReg())
+        if (parseInt(ages) > 60) return reply("Umur lo terlalu tua buat pakai Bot ini!")
+        if (parseInt(ages) < 12) return reply('Yang bener aja, bocil gausah maenan bot... nyusu aja sana')
+        if (!['cewe', 'cowo'].includes(genders)) return reply("Gender hanya bisa: *cewe* atau *cowo*\ncontoh: daftar Finda Bersari|cewe|17|nyanyi sambil nangis")
 
-      if (!text && !text.includes('|')) return reply('Format salah!\ncontoh: daftar Budi|cowo|25|turu')
-      if (usernames.length > 20) return reply(lang.NamaReg())
-      if (hobbys.length > 20) return reply(lang.HobiReg())
-      if (isNaN(ages)) return reply(lang.UmurReg())
-      if (parseInt(ages) > 60) return reply("Umur lo terlalu tua buat pakai Bot ini!")
-      if (parseInt(ages) < 12) return reply('Yang bener aja, bocil gausah maenan bot... nyusu aja sana')
-      if (!['male', 'female', 'cewe', 'cowo', 'pria', 'wanita'].includes(genders)) return reply("Gender hanya bisa: *cewe* atau *cowo*\ncontoh: daftar Finda Bersari|cewe|17|nyanyi sambil nangis")
+        let makeUser = await atlasMakeUser(usernames, _userIDs, genders, ages, hobbys, makeLimitAwal);
 
-      let makeUser = await atlasMakeUser(usernames, _userIDs, genders, ages, hobbys, makeLimitAwal);
-
-      let txt = `*Register Berhasil!*\n\n`
-      txt += `${xy}${markers}\n`
-      txt += `${xx} *Profil Kamu*\n`
-      txt += `${xx} Nama : ${usernames}\n`
-      txt += `${xx} Gender : ${genders}\n`
-      txt += `${xx} Umur : ${ages}\n`
-      txt += `${xx} Hobi : ${hobbys}\n`
-      txt += `${xx} \n`
-      txt += `${xx} *Data Kamu*\n`
-      txt += `${xx} Nomor : wa.me/${phoneNumber}\n`
-      txt += `${xx} Limit Awal : ${limitAwal}\n`
-      txt += `${xx} Status Premium : ${premium ? 'Yes' : 'No'}\n`
-      txt += `${xx} Serials : ${serialNumber}\n`
-      txt += `${xx} Kamu terdaftar pada :\n`
-      txt += `${xx} ${registerDate}\n`
-      txt += `${yx}${markers}`
-      alpha.sendButImage(m.chat, sender,
-        [{ buttonId: 'myprofile', buttonText: { displayText: 'My Profile' }, type: 1 }, { buttonId: 'rulesbot', buttonText: { displayText: 'Rules' }, type: 1 }],
-        txt, `© ${ownername}`, [sender, ownernomer + '@s.whatsapp.net'], { quoted: m })
-      console.log(makeUser, txt);
+        let txt = `*Register Berhasil!*\n\n`
+        txt += `${xy}${markers}\n`
+        txt += `${xx} *Profil Kamu*\n`
+        txt += `${xx} Nama : ${usernames}\n`
+        txt += `${xx} Gender : ${genders}\n`
+        txt += `${xx} Umur : ${ages}\n`
+        txt += `${xx} Hobi : ${hobbys}\n`
+        txt += `${yx}${markers}`
+        alpha.sendButImage(m.chat, sender,
+          [{ buttonId: 'myprofile', buttonText: { displayText: 'My Profile' }, type: 1 }, { buttonId: 'rulesbot', buttonText: { displayText: 'Rules' }, type: 1 }],
+          txt, `© ${ownername}`, [sender, ownernomer + '@s.whatsapp.net'], { quoted: m })
+        console.log(makeUser, txt);
+      }
     })();
   } break
 
@@ -1796,18 +1775,19 @@ switch(command) {
       let user_id = m.sender.split('@')[0]; let parseId = parseInt(user_id); let userData = await atlasData(parseId);
       if (userData == null) return reply(NotRegistered);
       let { userID, userName, gender, age, hobby, linkID, limit, userSerial, registeredOn } = userData;
-      let txt = `*Data Diri Kamu*\n\n`
-      txt += `${xy}${markers}\n`
+      let txt = ``
+      txt += `${xy}${markers} *Data Diri Kamu*\n`
       txt += `${xx} Username : ${userName}\n`
       txt += `${xx} Gender : ${gender}\n`
       txt += `${xx} Umur : ${age}\n`
-      txt += `${xx} Hobi : ${hobby}\n\n`
+      txt += `${xx} Hobi : ${hobby}\n`
       txt += `${xx} Nomor : ${linkID}\n`
       txt += `${xx} Limit : ${limit}\n`
       // txt += `Status Premium : ${user.isPremium ? '🤤 Yes' : '🥺 No'}\n`
       txt += `${xx} Serials : ${userSerial}\n`
-      txt += `${xx} Terdaftar pada :\n${registeredOn}\n`
-      txt += `${yx}`
+      txt += `${xx} Terdaftar pada :\n`
+      txt += `${xx} ${registeredOn}\n`
+      txt += `${yx}${markers}`
       let buttons = [
         { buttonId: 'mystore', buttonText: { displayText: 'My Store' }, type: 1 },
         { buttonId: 'azusacommand', buttonText: { displayText: 'List Menu' }, type: 1 }
@@ -1904,7 +1884,7 @@ switch(command) {
   } break
 
   case 'howtolimit': {
-    let picts = imgPlaceholder.saweria
+    let picts = imgPlaceholder.azusa
     let txt = __bundleLimit
     await sendFileFromUrl(from, picts, txt, m);
   } break
