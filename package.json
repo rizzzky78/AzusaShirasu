@@ -5,7 +5,7 @@
   "main": "azusa.js",
   "license": "MIT",
   "scripts": {
-    "start": "pm2 start azusa.js --cron \"* */2 * * *\" && pm2 save && pm2 logs",
+    "start": "pm2 start azusa.js --cron \"* */2 * * *\" && pm2 monit",
     "init": "node azusa.js"
   },
   "keywords": [
