@@ -40,7 +40,7 @@ const makeLimitAwal = 50
  */
 const MyApikeys = {
   LoLHumanApikeys: "rizzzuchi78apikey",
-  OpenAi: "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"
+  OpenAi: "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"
 };
 /**
  * @interface
